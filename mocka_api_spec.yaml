@@ -1,0 +1,38 @@
+# mocka_api_spec.yaml
+api_title: "MoCKA-KNOWLEDGE-GATE"
+version: "v1.0"
+defined_on: "2025-11-13"
+description: "MoCKA-PENTAD制度成果物を外部システムから呼び出すためのAPI仕様"
+
+endpoints:
+  - path: "/trigger"
+    method: "POST"
+    description: "問いタグを送信し、MoCKA会議を起動"
+    request_body:
+      fields:
+        - name: "question"
+          type: "string"
+        - name: "emotion_tag"
+          type: "string"
+        - name: "mode"
+          type: "string"
+          enum: ["日常", "AI全体会議"]
+    response:
+      200: "会議起動成功"
+      400: "不正な問い形式"
+
+  - path: "/pils/{id}"
+    method: "GET"
+    description: "PILS構造化成果物を取得"
+
+  - path: "/sacl/{id}"
+    method: "GET"
+    description: "SACL成果物（論文形式）を取得"
+
+  - path: "/emotion/{id}"
+    method: "GET"
+    description: "感情補完・対話記録を取得"
+
+  - path: "/visual/{id}"
+    method: "GET"
+    description: "Gammaによる視覚成果物を取得"
