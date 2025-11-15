@@ -1,8 +1,4 @@
+// vercel.json
 {
-  "version": 2,
-  "env": {
-    "FIREBASE_PROJECT_ID": "mocka-knowledge-gate",
-    "FIREBASE_CLIENT_EMAIL": "@firebase-service-account",
-    "FIREBASE_PRIVATE_KEY": "-----BEGIN PRIVATE KEY-----\\nXXXX\\n-----END PRIVATE KEY-----\\n"
-  }
+  "version": 2
 }
