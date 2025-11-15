@@ -1,3 +1,6 @@
 {
-  "version": 2
+  "version": 2,
+  "functions": {
+    "pages/api/**/*.js": { "runtime": "nodejs18.x" }
+  }
 }
