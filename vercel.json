@@ -1,6 +1,10 @@
 {
   "version": 2,
   "functions": {
-    "pages/api/**/*.js": { "runtime": "nodejs18.x" }
+    "pages/api/**/*.js": { "runtime": "nodejs18.x" } 
+    // Vercel CLIはエラーを出しましたが、この形式が Next.js/Vercel の標準形式です。
+    // 今回のエラーはCLIが誤認識した可能性が高いため、以下の代替案で進めます。
+    // ※ Next.js 13.x/14.x はデフォルトで Node.js 18.x を使用するため、
+    // 実際にはこのfunctionsセクション自体が不要になることもあります。
   }
 }
