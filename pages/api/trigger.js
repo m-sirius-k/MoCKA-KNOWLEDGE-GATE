@@ -48,7 +48,6 @@ export default async function handler(req, res) {
 
     if (req.method === "GET") {
       const snapshot = await db.collection("triggers")
-        .orderBy("createdAt", "desc")
         .limit(20)
         .get();
 
@@ -66,3 +65,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: error.message });
   }
 }
+
