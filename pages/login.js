@@ -10,66 +10,71 @@ export default function Login() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     setError('');
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (!formData.email || !formData.password) {
-      setError('Email and password are required');
-      return;
-    }
-
-    if (!formData.email.includes('@')) {
-      setError('Please enter a valid email address');
-      return;
-    }
-
     setLoading(true);
     setError('');
-    setSuccessMessage('');
+
+    if (!formData.email || !formData.password) {
+      setError('メールアドレスとパスワードを入力してください。');
+      setLoading(false);
+      return;
+    }
 
     try {
+      // Call Login API
       const response = await fetch('/api/auth', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          action: 'login',
           email: formData.email,
           password: formData.password,
+          action: 'login',
         }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.error || 'Login failed. Please check your credentials.');
-        return;
-      }
+      if (response.ok && data.token) {
+        // Store token in localStorage or sessionStorage
+        if (rememberMe) {
+          localStorage.setItem('authToken', data.token);
+          localStorage.setItem('userEmail', formData.email);
+        } else {
+          sessionStorage.setItem('authToken', data.token);
+          sessionStorage.setItem('userEmail', formData.email);
+        }
 
-      // Store the token if provided
-      if (data.token) {
-        localStorage.setItem('authToken', data.token);
-      }
+        // Log audit event
+        await fetch('/api/audit-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            eventType: 'USER_LOGIN',
+            email: formData.email,
+            timestamp: new Date().toISOString(),
+            ipAddress: data.ipAddress || 'unknown',
+          }),
+        });
 
-      setSuccessMessage('Login successful! Redirecting...');
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1500);
+        // Redirect to dashboard
+        setTimeout(() => router.push('/dashboard'), 500);
+      } else {
+        setError(data.error || 'ログインに失敗しました。');
+      }
     } catch (err) {
-      setError('An error occurred during login. Please try again.');
-      console.error('Login error:', err);
+      setError('ログインエラー：' + err.message);
     } finally {
       setLoading(false);
     }
@@ -79,178 +84,125 @@ export default function Login() {
     <>
       <Head>
         <title>Sign In - MoCKA KNOWLEDGE GATE</title>
-        <meta name="description" content="Sign into your MoCKA KNOWLEDGE GATE account" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="MoCKA Knowledge Gate - User Login" />
       </Head>
 
-      <div style={styles.container}>
-        <div style={styles.card}>
-          <h1 style={styles.title}>MoCKA KNOWLEDGE GATE</h1>
-          <p style={styles.subtitle}>Sign In to Your Account</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-4 py-12">
+        <div className="w-full max-w-md">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white mb-2">MoCKA KNOWLEDGE GATE</h1>
+            <p className="text-purple-300 text-lg">Sign In</p>
+          </div>
 
-          {error && <div style={styles.errorAlert}>{error}</div>}
-          {successMessage && <div style={styles.successAlert}>{successMessage}</div>}
+          {/* Card */}
+          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg shadow-2xl p-8 border border-purple-300 border-opacity-20">
+            <form onSubmit={handleLogin}>
+              {/* Email Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  メールアドレス *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="your.email@example.com"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                />
+              </div>
 
-          <form onSubmit={handleLogin} style={styles.form}>
-            <div style={styles.formGroup}>
-              <label htmlFor="email" style={styles.label}>Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="your.email@example.com"
-                style={styles.input}
-                required
+              {/* Password Input */}
+              <div className="mb-6">
+                <div className="flex justify-between items-center mb-2">
+                  <label className="block text-sm font-medium text-purple-200">
+                    パスワード *
+                  </label>
+                  <a
+                    href="#"
+                    className="text-xs text-purple-300 hover:text-purple-100 transition"
+                  >
+                    パスワードをお忘れですか？
+                  </a>
+                </div>
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  placeholder="パスワード"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Remember Me */}
+              <div className="mb-6 flex items-center">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 text-purple-600 bg-purple-500 border-purple-400 rounded focus:ring-2 focus:ring-purple-500"
+                />
+                <label
+                  htmlFor="rememberMe"
+                  className="ml-2 text-sm font-medium text-purple-200"
+                >
+                  このデバイスで私を記憶している
+                </label>
+              </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="mb-4 p-3 bg-red-500 bg-opacity-20 border border-red-500 text-red-200 rounded-lg text-sm">
+                  {error}
+                </div>
+              )}
+
+              {/* Sign In Button */}
+              <button
+                type="submit"
                 disabled={loading}
-              />
+                className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition duration-200 mb-4"
+              >
+                {loading ? 'ログイン中...' : 'サインイン'}
+              </button>
+            </form>
+
+            {/* Footer Links */}
+            <div className="text-center border-t border-purple-300 border-opacity-20 pt-6">
+              <p className="text-purple-200 mb-3">
+                アカウントをお持ちでありませんか？{' '}
+                <a
+                  href="/signup"
+                  className="text-purple-300 hover:text-purple-100 font-semibold transition"
+                >
+                  招待コードで登録
+                </a>
+              </p>
+              <p className="text-xs text-purple-400">
+                ご質問やサポートが必要ですか？{' '}
+                <a
+                  href="/support"
+                  className="text-purple-300 hover:text-purple-100 underline"
+                >
+                  お問い合わせ
+                </a>
+              </p>
             </div>
+          </div>
 
-            <div style={styles.formGroup}>
-              <label htmlFor="password" style={styles.label}>Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Your password"
-                style={styles.input}
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              style={styles.submitButton}
-            >
-              {loading ? 'Signing In...' : 'Sign In'}
-            </button>
-          </form>
-
-          <div style={styles.divider}></div>
-
-          <p style={styles.signupLink}>
-            Don't have an account? <a href="/signup" style={styles.link}>Sign Up</a>
-          </p>
-
-          <p style={styles.helpText}>
-            Forgot your password? Contact your administrator for assistance.
-          </p>
+          {/* Security Note */}
+          <div className="mt-6 p-4 bg-purple-900 bg-opacity-50 rounded-lg border border-purple-400 border-opacity-20">
+            <p className="text-xs text-purple-300 text-center">
+              🔐 セキュアどを確事にするため、認証いだきいたときと公共のコンピュータを使用しないでください。
+            </p>
+          </div>
         </div>
       </div>
     </>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    padding: '20px',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '10px',
-    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
-    padding: '40px',
-    maxWidth: '450px',
-    width: '100%',
-  },
-  title: {
-    textAlign: 'center',
-    color: '#333',
-    marginBottom: '10px',
-    fontSize: '28px',
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: '#666',
-    marginBottom: '30px',
-    fontSize: '16px',
-  },
-  errorAlert: {
-    backgroundColor: '#fee',
-    border: '1px solid #fcc',
-    color: '#c00',
-    padding: '12px',
-    borderRadius: '6px',
-    marginBottom: '20px',
-    fontSize: '14px',
-  },
-  successAlert: {
-    backgroundColor: '#efe',
-    border: '1px solid #cfc',
-    color: '#060',
-    padding: '12px',
-    borderRadius: '6px',
-    marginBottom: '20px',
-    fontSize: '14px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '14px',
-    fontWeight: '600',
-    color: '#333',
-  },
-  input: {
-    width: '100%',
-    padding: '10px 12px',
-    fontSize: '14px',
-    border: '1px solid #ddd',
-    borderRadius: '6px',
-    fontFamily: 'inherit',
-    transition: 'border-color 0.2s',
-  },
-  submitButton: {
-    padding: '12px 24px',
-    fontSize: '16px',
-    fontWeight: '600',
-    backgroundColor: '#667eea',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    width: '100%',
-    transition: 'background-color 0.2s',
-    marginTop: '10px',
-  },
-  divider: {
-    height: '1px',
-    backgroundColor: '#eee',
-    margin: '20px 0',
-  },
-  signupLink: {
-    textAlign: 'center',
-    fontSize: '14px',
-    color: '#666',
-    marginBottom: '10px',
-  },
-  link: {
-    color: '#667eea',
-    textDecoration: 'none',
-    fontWeight: '600',
-  },
-  helpText: {
-    textAlign: 'center',
-    fontSize: '12px',
-    color: '#999',
-    marginTop: '10px',
-  },
-};
