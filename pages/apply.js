@@ -1,19 +1,23 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 export default function Apply() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
+    organizationName: '',
+    reason: '',
     email: '',
-    name: '',
-    requestReason: '',
+    phone: '',
+    requestedAccess: 'viewer',
   });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -22,40 +26,74 @@ export default function Apply() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.email || !formData.name) {
-      setError('Email and name are required');
-      return;
-    }
-
-    if (!formData.email.includes('@')) {
-      setError('Please enter a valid email address');
-      return;
-    }
-
     setLoading(true);
-    setMessage('');
     setError('');
 
+    // Validation
+    if (!formData.organizationName || !formData.reason || !formData.email || !formData.phone) {
+      setError('すべてのフィールドを入力してください。');
+      setLoading(false);
+      return;
+    }
+
     try {
+      // Submit request
       const response = await fetch('/api/request-approval', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          organizationName: formData.organizationName,
+          reason: formData.reason,
+          email: formData.email,
+          phone: formData.phone,
+          requestedAccess: formData.requestedAccess,
+          status: 'pending',
+          timestamp: new Date().toISOString(),
+        }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setError(data.error || 'Failed to submit request');
-        return;
-      }
+      if (response.ok) {
+        setSuccessMessage('申請が正常に送信されました。管理者が確認して、様子メールに連絡いたします。');
+        setFormData({
+          organizationName: '',
+          reason: '',
+          email: '',
+          phone: '',
+          requestedAccess: 'viewer',
+        });
 
-      setMessage('Request submitted successfully! Check your email for updates.');
-      setFormData({ email: '', name: '', requestReason: '' });
+        // Log audit event
+        await fetch('/api/audit-log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            eventType: 'ACCESS_REQUEST_SUBMITTED',
+            email: formData.email,
+            organization: formData.organizationName,
+            timestamp: new Date().toISOString(),
+          }),
+        });
+
+        // Send notification email to admins
+        await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: 'admin@example.com',
+            subject: '新しいアクセスリクエスト - ' + formData.organizationName,
+            templateType: 'admin-request-notification',
+            data: formData,
+          }),
+        });
+
+        setTimeout(() => router.push('/dashboard'), 2000);
+      } else {
+        setError(data.error || '申請の送信に失敗しました。');
+      }
     } catch (err) {
-      setError('An error occurred. Please try again.');
-      console.error('Submit error:', err);
+      setError('申請エラー：' + err.message);
     } finally {
       setLoading(false);
     }
@@ -64,167 +102,143 @@ export default function Apply() {
   return (
     <>
       <Head>
-        <title>Request Access - MoCKA KNOWLEDGE GATE</title>
-        <meta name="description" content="Request access to MoCKA KNOWLEDGE GATE" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Access Request - MoCKA KNOWLEDGE GATE</title>
       </Head>
-      
-      <div style={styles.container}>
-        <div style={styles.card}>
-          <h1 style={styles.title}>Request Access</h1>
-          <p style={styles.subtitle}>Fill out the form below to request access to MoCKA KNOWLEDGE GATE</p>
 
-          {error && <div style={styles.errorAlert}>{error}</div>}
-          {message && <div style={styles.successAlert}>{message}</div>}
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-4 py-12">
+        <div className="max-w-2xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white mb-2">MoCKA KNOWLEDGE GATE</h1>
+            <p className="text-purple-300 text-lg">アクセスリクエスト</p>
+          </div>
 
-          <form onSubmit={handleSubmit} style={styles.form}>
-            <div style={styles.formGroup}>
-              <label htmlFor="name" style={styles.label}>Full Name *</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Your full name"
-                style={styles.input}
-                required
-              />
+          {/* Card */}
+          <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg shadow-2xl p-8 border border-purple-300 border-opacity-20">
+            <form onSubmit={handleSubmit}>
+              {/* Organization Name */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  所属組織 / 会社名 *
+                </label>
+                <input
+                  type="text"
+                  name="organizationName"
+                  value={formData.organizationName}
+                  onChange={handleInputChange}
+                  placeholder="e.g. ABC Corporation"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Reason / Purpose */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  アクセスを試したい理由 *
+                </label>
+                <textarea
+                  name="reason"
+                  value={formData.reason}
+                  onChange={handleInputChange}
+                  placeholder="あなたがこのプラットフォームを取得したい理由を説明してください。"
+                  rows="4"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition resize-none"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Email */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  メールアドレス *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="contact@example.com"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  電話番号 *
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="+81-XX-XXXX-XXXX"
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white placeholder-purple-300 placeholder-opacity-50 focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                />
+              </div>
+
+              {/* Requested Access Level */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-purple-200 mb-2">
+                  リクエストしたアクセスレベル *
+                </label>
+                <select
+                  name="requestedAccess"
+                  value={formData.requestedAccess}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-white bg-opacity-10 border border-purple-400 border-opacity-30 rounded-lg text-white focus:bg-opacity-20 focus:border-purple-300 focus:outline-none transition"
+                  disabled={loading}
+                >
+                  <option value="viewer" className="bg-slate-800">閲覧用 (Viewer)</option>
+                  <option value="user" className="bg-slate-800">ユーザー (User)</option>
+                  <option value="admin" className="bg-slate-800">管理者 (Admin)</option>
+                </select>
+              </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="mb-4 p-3 bg-red-500 bg-opacity-20 border border-red-500 text-red-200 rounded-lg text-sm">
+                  {error}
+                </div>
+              )}
+
+              {/* Success Message */}
+              {successMessage && (
+                <div className="mb-4 p-3 bg-green-500 bg-opacity-20 border border-green-500 text-green-200 rounded-lg text-sm">
+                  {successMessage}
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition duration-200 mb-4"
+              >
+                {loading ? '送信中...' : 'アクセスリクエストを送信'}
+              </button>
+
+              {/* Back Button */}
+              <a
+                href="/dashboard"
+                className="block text-center text-purple-300 hover:text-purple-100 font-medium py-2 transition"
+              >
+                戻る
+              </a>
+            </form>
+
+            {/* Info Box */}
+            <div className="mt-8 p-4 bg-purple-600 bg-opacity-20 rounded-lg border border-purple-400 border-opacity-20">
+              <p className="text-sm text-purple-200">
+                🔐 <strong>次の情報を貼付けてください：</strong> こいしは、新しい招待を取得したい場合、お所属組織、会社名、利用分夙を貼付けて、下記を送信してください。 admin@example.com
+              </p>
             </div>
-
-            <div style={styles.formGroup}>
-              <label htmlFor="email" style={styles.label}>Email Address *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="your.email@example.com"
-                style={styles.input}
-                required
-              />
-            </div>
-
-            <div style={styles.formGroup}>
-              <label htmlFor="requestReason" style={styles.label}>Reason for Access</label>
-              <textarea
-                id="requestReason"
-                name="requestReason"
-                value={formData.requestReason}
-                onChange={handleInputChange}
-                placeholder="Tell us why you need access..."
-                style={{...styles.input, minHeight: '100px'}}
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              style={styles.submitButton}
-            >
-              {loading ? 'Submitting...' : 'Submit Request'}
-            </button>
-          </form>
-
-          <p style={styles.helpText}>
-            Already have an invitation code? <a href="/signup" style={styles.link}>Sign up here</a>
-          </p>
+          </div>
         </div>
       </div>
     </>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    padding: '20px',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: '10px',
-    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
-    padding: '40px',
-    maxWidth: '500px',
-    width: '100%',
-  },
-  title: {
-    textAlign: 'center',
-    color: '#333',
-    marginBottom: '10px',
-    fontSize: '28px',
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: '#666',
-    marginBottom: '30px',
-    fontSize: '16px',
-  },
-  errorAlert: {
-    backgroundColor: '#fee',
-    border: '1px solid #fcc',
-    color: '#c00',
-    padding: '12px',
-    borderRadius: '6px',
-    marginBottom: '20px',
-  },
-  successAlert: {
-    backgroundColor: '#efe',
-    border: '1px solid #cfc',
-    color: '#060',
-    padding: '12px',
-    borderRadius: '6px',
-    marginBottom: '20px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '8px',
-    fontSize: '14px',
-    fontWeight: '600',
-    color: '#333',
-  },
-  input: {
-    width: '100%',
-    padding: '10px 12px',
-    fontSize: '14px',
-    border: '1px solid #ddd',
-    borderRadius: '6px',
-    fontFamily: 'inherit',
-  },
-  submitButton: {
-    padding: '12px 24px',
-    fontSize: '16px',
-    fontWeight: '600',
-    backgroundColor: '#667eea',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-    width: '100%',
-  },
-  helpText: {
-    textAlign: 'center',
-    fontSize: '14px',
-    color: '#666',
-    marginTop: '20px',
-  },
-  link: {
-    color: '#667eea',
-    textDecoration: 'none',
-    fontWeight: '600',
-  },
-};
