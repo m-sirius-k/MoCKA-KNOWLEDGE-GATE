@@ -1,55 +1,61 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-export default function Dashboard() {
+const Dashboard = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState('viewer');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('overview');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
-    // Check if user is authenticated
-    const token = localStorage.getItem('authToken');
+    // Check authentication
+    const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
+    const email = localStorage.getItem('userEmail') || sessionStorage.getItem('userEmail');
+
     if (!token) {
       router.push('/login');
       return;
     }
 
-    // In a real app, you would fetch user data from your auth endpoint
-    // For now, we'll just check that the token exists
+    // Mock user data - in real app, fetch from API
     setUser({
-      email: localStorage.getItem('userEmail') || 'user@example.com',
-      role: localStorage.getItem('userRole') || 'viewer',
+      email: email || 'user@example.com',
+      name: 'User Name',
+      role: 'admin',
     });
+    setRole('admin');
     setLoading(false);
   }, [router]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // Log audit event
+    await fetch('/api/audit-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        eventType: 'USER_LOGOUT',
+        email: user?.email,
+        timestamp: new Date().toISOString(),
+      }),
+    });
+
     localStorage.removeItem('authToken');
     localStorage.removeItem('userEmail');
-    localStorage.removeItem('userRole');
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('userEmail');
     router.push('/login');
   };
 
   if (loading) {
     return (
-      <div style={styles.loadingContainer}>
-        <div style={styles.spinner}></div>
-        <p>Loading dashboard...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div style={styles.errorContainer}>
-        <h2>Error</h2>
-        <p>{error}</p>
-        <button onClick={() => router.push('/login')} style={styles.button}>
-          Return to Login
-        </button>
+      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+          <p className="mt-4 text-purple-300">Loading dashboard...</p>
+        </div>
       </div>
     );
   }
@@ -58,314 +64,187 @@ export default function Dashboard() {
     <>
       <Head>
         <title>Dashboard - MoCKA KNOWLEDGE GATE</title>
-        <meta name="description" content="Your MoCKA KNOWLEDGE GATE Dashboard" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div style={styles.container}>
+      <div className="min-h-screen bg-slate-900 text-white">
         {/* Header */}
-        <header style={styles.header}>
-          <div style={styles.headerContent}>
-            <h1 style={styles.logo}>MoCKA KNOWLEDGE GATE</h1>
-            <div style={styles.userSection}>
-              <span style={styles.userInfo}>{user?.email}</span>
-              <span style={styles.role}>{user?.role}</span>
-              <button onClick={handleLogout} style={styles.logoutButton}>
-                Logout
+        <header className="bg-slate-800 border-b border-purple-500 border-opacity-20 sticky top-0 z-40">
+          <div className="flex items-center justify-between px-6 py-4">
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 hover:bg-slate-700 rounded-lg transition"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+              <h1 className="text-2xl font-bold text-purple-300">MoCKA KNOWLEDGE GATE</h1>
+            </div>
+            <div className="flex items-center space-x-6">
+              <div className="text-right">
+                <p className="font-semibold">{user?.name}</p>
+                <p className="text-sm text-purple-300">{user?.email}</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition font-medium"
+              >
+                ログアウト
               </button>
             </div>
           </div>
         </header>
 
-        {/* Main Content */}
-        <main style={styles.main}>
-          {/* Sidebar Navigation */}
-          <aside style={styles.sidebar}>
-            <nav style={styles.nav}>
-              <button
-                style={{
-                  ...styles.navButton,
-                  ...(activeTab === 'overview' ? styles.navButtonActive : {}),
-                }}
-                onClick={() => setActiveTab('overview')}
-              >
-                Overview
-              </button>
-              <button
-                style={{
-                  ...styles.navButton,
-                  ...(activeTab === 'conversations' ? styles.navButtonActive : {}),
-                }}
-                onClick={() => setActiveTab('conversations')}
-              >
-                Conversations
-              </button>
-              <button
-                style={{
-                  ...styles.navButton,
-                  ...(activeTab === 'api-keys' ? styles.navButtonActive : {}),
-                }}
-                onClick={() => setActiveTab('api-keys')}
-              >
-                API Keys
-              </button>
-              <button
-                style={{
-                  ...styles.navButton,
-                  ...(activeTab === 'settings' ? styles.navButtonActive : {}),
-                }}
-                onClick={() => setActiveTab('settings')}
-              >
-                Settings
-              </button>
+        <div className="flex">
+          {/* Sidebar */}
+          <aside
+            className={`${
+              sidebarOpen ? 'w-64' : 'w-0'
+            } bg-slate-800 border-r border-purple-500 border-opacity-20 transition-all duration-300 overflow-hidden`}
+          >
+            <nav className="p-4 space-y-2 mt-4">
+              {[
+                { id: 'overview', label: '概要', icon: '📋' },
+                { id: 'requests', label: '申請一覧', icon: '📋' },
+                ...(role === 'admin'
+                  ? [
+                      { id: 'approvals', label: '承認管理', icon: '✅' },
+                      { id: 'users', label: 'ユーザー管理', icon: '👥' },
+                      { id: 'audit', label: '監査ログ', icon: '📑' },
+                    ]
+                  : []),
+                { id: 'profile', label: 'Profile', icon: '👤' },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full text-left px-4 py-3 rounded-lg transition ${
+                    activeTab === item.id
+                      ? 'bg-purple-600 text-white'
+                      : 'text-purple-200 hover:bg-slate-700'
+                  }`}
+                >
+                  <span className="mr-2">{item.icon}</span>
+                  {item.label}
+                </button>
+              ))}
             </nav>
           </aside>
 
-          {/* Content Area */}
-          <div style={styles.content}>
+          {/* Main Content */}
+          <main className="flex-1 p-8">
+            {/* Overview Tab */}
             {activeTab === 'overview' && (
-              <div style={styles.section}>
-                <h2>Welcome to Your Dashboard</h2>
-                <p>This is your MoCKA KNOWLEDGE GATE dashboard. You can manage conversations, API keys, and settings from here.</p>
-                <div style={styles.statsGrid}>
-                  <div style={styles.statCard}>
-                    <h3>Conversations</h3>
-                    <p style={styles.statNumber}>0</p>
+              <div>
+                <h2 className="text-3xl font-bold mb-6">ダッシュボード</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-slate-800 rounded-lg p-6 border border-purple-500 border-opacity-20">
+                    <h3 className="text-purple-300 text-sm font-semibold mb-2">Your Role</h3>
+                    <p className="text-2xl font-bold capitalize">{role}</p>
                   </div>
-                  <div style={styles.statCard}>
-                    <h3>API Keys</h3>
-                    <p style={styles.statNumber}>0</p>
+                  <div className="bg-slate-800 rounded-lg p-6 border border-purple-500 border-opacity-20">
+                    <h3 className="text-purple-300 text-sm font-semibold mb-2">Pending Requests</h3>
+                    <p className="text-2xl font-bold">3</p>
                   </div>
-                  <div style={styles.statCard}>
-                    <h3>Audit Logs</h3>
-                    <p style={styles.statNumber}>0</p>
+                  <div className="bg-slate-800 rounded-lg p-6 border border-purple-500 border-opacity-20">
+                    <h3 className="text-purple-300 text-sm font-semibold mb-2">Last Login</h3>
+                    <p className="text-sm text-purple-300">{new Date().toLocaleDateString()}</p>
                   </div>
                 </div>
               </div>
             )}
 
-            {activeTab === 'conversations' && (
-              <div style={styles.section}>
-                <h2>Conversations</h2>
-                <p>View and manage your conversations here.</p>
-                <div style={styles.emptyState}>
-                  <p>No conversations yet.</p>
+            {/* Requests Tab */}
+            {activeTab === 'requests' && (
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-3xl font-bold">申請一覧</h2>
+                  <a
+                    href="/apply"
+                    className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition font-medium"
+                  >
+                    新規申請
+                  </a>
+                </div>
+                <div className="bg-slate-800 rounded-lg border border-purple-500 border-opacity-20 p-6">
+                  <p className="text-purple-300">Your requests will appear here...</p>
                 </div>
               </div>
             )}
 
-            {activeTab === 'api-keys' && (
-              <div style={styles.section}>
-                <h2>API Keys</h2>
-                <p>Manage your API keys for programmatic access.</p>
-                <button style={styles.primaryButton}>Generate New API Key</button>
-                <div style={styles.emptyState}>
-                  <p>No API keys created yet.</p>
+            {/* Admin: Approvals Tab */}
+            {role === 'admin' && activeTab === 'approvals' && (
+              <div>
+                <h2 className="text-3xl font-bold mb-6">承認管理</h2>
+                <div className="bg-slate-800 rounded-lg border border-purple-500 border-opacity-20 p-6">
+                  <p className="text-purple-300">Pending approvals will appear here...</p>
                 </div>
               </div>
             )}
 
-            {activeTab === 'settings' && (
-              <div style={styles.section}>
-                <h2>Settings</h2>
-                <div style={styles.settingsForm}>
-                  <div style={styles.formGroup}>
-                    <label style={styles.label}>Email:</label>
-                    <span style={styles.value}>{user?.email}</span>
-                  </div>
-                  <div style={styles.formGroup}>
-                    <label style={styles.label}>Role:</label>
-                    <span style={styles.value}>{user?.role}</span>
-                  </div>
-                  <div style={styles.formGroup}>
-                    <label style={styles.label}>Account Created:</label>
-                    <span style={styles.value}>Today</span>
+            {/* Admin: Users Tab */}
+            {role === 'admin' && activeTab === 'users' && (
+              <div>
+                <h2 className="text-3xl font-bold mb-6">ユーザー管理</h2>
+                <div className="bg-slate-800 rounded-lg border border-purple-500 border-opacity-20 overflow-hidden">
+                  <table className="w-full">
+                    <thead className="bg-slate-700 border-b border-purple-500 border-opacity-20">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-sm font-semibold">Email</th>
+                        <th className="px-6 py-3 text-left text-sm font-semibold">Role</th>
+                        <th className="px-6 py-3 text-left text-sm font-semibold">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-purple-500 border-opacity-10 hover:bg-slate-700">
+                        <td className="px-6 py-3">user@example.com</td>
+                        <td className="px-6 py-3 text-purple-300">Admin</td>
+                        <td className="px-6 py-3"><span className="px-3 py-1 bg-green-500 bg-opacity-20 text-green-300 rounded text-sm">Active</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Admin: Audit Log Tab */}
+            {role === 'admin' && activeTab === 'audit' && (
+              <div>
+                <h2 className="text-3xl font-bold mb-6">監査ログ</h2>
+                <div className="bg-slate-800 rounded-lg border border-purple-500 border-opacity-20 p-6">
+                  <p className="text-purple-300">Audit logs will appear here...</p>
+                </div>
+              </div>
+            )}
+
+            {/* Profile Tab */}
+            {activeTab === 'profile' && (
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Profile</h2>
+                <div className="bg-slate-800 rounded-lg border border-purple-500 border-opacity-20 p-8 max-w-2xl">
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-purple-300 mb-1">Name</label>
+                      <p className="text-lg">{user?.name}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-purple-300 mb-1">Email</label>
+                      <p className="text-lg">{user?.email}</p>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-purple-300 mb-1">Role</label>
+                      <p className="text-lg capitalize">{role}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
     </>
   );
-}
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    backgroundColor: '#f5f5f5',
-  },
-  header: {
-    backgroundColor: '#333',
-    color: 'white',
-    padding: '20px',
-    borderBottom: '3px solid #667eea',
-  },
-  headerContent: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    maxWidth: '1400px',
-    margin: '0 auto',
-    width: '100%',
-  },
-  logo: {
-    margin: 0,
-    fontSize: '24px',
-    fontWeight: 'bold',
-  },
-  userSection: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '15px',
-  },
-  userInfo: {
-    fontSize: '14px',
-  },
-  role: {
-    backgroundColor: '#667eea',
-    padding: '4px 12px',
-    borderRadius: '20px',
-    fontSize: '12px',
-    fontWeight: 'bold',
-  },
-  logoutButton: {
-    padding: '8px 16px',
-    backgroundColor: '#ff6b6b',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '14px',
-  },
-  main: {
-    display: 'flex',
-    flex: 1,
-    overflow: 'hidden',
-  },
-  sidebar: {
-    backgroundColor: 'white',
-    borderRight: '1px solid #ddd',
-    width: '250px',
-    padding: '20px',
-    overflowY: 'auto',
-  },
-  nav: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  navButton: {
-    padding: '12px 16px',
-    backgroundColor: '#f5f5f5',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    textAlign: 'left',
-    fontSize: '14px',
-    color: '#333',
-    transition: 'all 0.2s',
-  },
-  navButtonActive: {
-    backgroundColor: '#667eea',
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  content: {
-    flex: 1,
-    padding: '30px',
-    overflowY: 'auto',
-  },
-  section: {
-    backgroundColor: 'white',
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-  },
-  statsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-    gap: '20px',
-    marginTop: '20px',
-  },
-  statCard: {
-    backgroundColor: '#f9f9f9',
-    padding: '20px',
-    borderRadius: '8px',
-    border: '1px solid #eee',
-  },
-  statNumber: {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    color: '#667eea',
-    margin: '10px 0 0 0',
-  },
-  emptyState: {
-    textAlign: 'center',
-    padding: '40px',
-    color: '#999',
-  },
-  primaryButton: {
-    padding: '10px 20px',
-    backgroundColor: '#667eea',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '14px',
-    marginTop: '20px',
-  },
-  settingsForm: {
-    marginTop: '20px',
-  },
-  formGroup: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '15px',
-    paddingBottom: '15px',
-    borderBottom: '1px solid #eee',
-  },
-  label: {
-    fontWeight: '600',
-    minWidth: '120px',
-    color: '#333',
-  },
-  value: {
-    color: '#666',
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#667eea',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  loadingContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f5f5f5',
-  },
-  spinner: {
-    width: '40px',
-    height: '40px',
-    border: '4px solid #f3f3f3',
-    borderTop: '4px solid #667eea',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite',
-  },
-  errorContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f5f5f5',
-  },
 };
+
+export default Dashboard;
