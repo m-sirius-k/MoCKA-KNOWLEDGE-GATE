@@ -272,4 +272,129 @@ if (require.main === module) {
   
   console.log('\n=== Review Board Status ===');
   console.log(JSON.stringify(checker.getReviewBoardStatus(), null, 2));
+
+  // ===== DRB Integration: Auto-Escalation & Unified Audit Logging =====
+
+class DRBIntegration {
+  constructor(config = {}) {
+    this.config = config;
+    this.escalation_log = [];
+    this.unified_audit_log = [];
+    this.decision_cache = new Map();
+  }
+
+  // Auto-escalation on high divergence
+  autoEscalate(divergence_result, pjl_signoff_decision) {
+    const escalation_id = `ESC-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    const escalation_decision = {
+      escalation_id,
+      decision_id: divergence_result.decision_id,
+      divergence_score: divergence_result.divergence_score,
+      risk_level: divergence_result.risk_level,
+      requires_escalation: divergence_result.divergence_score > this.config.escalation_threshold || false,
+      escalation_type: this._determineEscalationType(divergence_result),
+      assigned_reviewers: this._assignReviewers(divergence_result),
+      timestamp: new Date().toISOString(),
+      original_pjl_decision: pjl_signoff_decision,
+      escalation_reason: this._generateEscalationReason(divergence_result)
+    };
+
+    if (escalation_decision.requires_escalation) {
+      this.escalation_log.push(escalation_decision);
+      this._logUnifiedAudit('ESCALATION_TRIGGERED', escalation_decision);
+    }
+
+    return escalation_decision;
+  }
+
+  _determineEscalationType(divergence_result) {
+    const score = divergence_result.divergence_score;
+    if (score >= 90) return 'CRITICAL';
+    if (score >= 80) return 'HIGH';
+    if (score >= 70) return 'MEDIUM';
+    return 'LOW';
+  }
+
+  _assignReviewers(divergence_result) {
+    const risk = divergence_result.risk_level;
+    const base_reviewers = ['Ethics-AI-01', 'Compliance-AI-01'];
+    
+    if (risk === 'HIGH') {
+      base_reviewers.push('Domain-Expert-AI', 'Security-AI-01');
+    }
+    if (divergence_result.novelty_factor > 80) {
+      base_reviewers.push('Innovation-Review-AI');
+    }
+    return base_reviewers;
+  }
+
+  _generateEscalationReason(divergence_result) {
+    const reasons = [];
+    if (divergence_result.divergence_score > 80) {
+      reasons.push('High divergence score from historical precedents');
+    }
+    if (divergence_result.novelty_factor > 80) {
+      reasons.push('Novel cross-disciplinary approach detected');
+    }
+    if (divergence_result.risk_level === 'HIGH') {
+      reasons.push('High risk assessment');
+    }
+    return reasons.join(' | ');
+  }
+
+  // Unified audit logging for compliance
+  _logUnifiedAudit(action, details) {
+    const audit_entry = {
+      id: `AUDIT-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      action,
+      details,
+      timestamp: new Date().toISOString(),
+      system_version: '2.0-DRB-Integration',
+      actor_agents: ['Ethics-Compliance-AI', 'DRB-Integration']
+    };
+    
+    this.unified_audit_log.push(audit_entry);
+    
+    // Log to console for monitoring
+    console.log(`[UNIFIED-AUDIT] ${action}:`, JSON.stringify(audit_entry, null, 2));
+    
+    return audit_entry;
+  }
+
+  // Get unified audit trail across both systems
+  getUnifiedAuditTrail(filters = {}) {
+    let trail = this.unified_audit_log;
+    
+    if (filters.action) {
+      trail = trail.filter(e => e.action === filters.action);
+    }
+    if (filters.start_date) {
+      trail = trail.filter(e => new Date(e.timestamp) >= new Date(filters.start_date));
+    }
+    if (filters.end_date) {
+      trail = trail.filter(e => new Date(e.timestamp) <= new Date(filters.end_date));
+    }
+    
+    return trail;
+  }
+
+  // Get escalation statistics
+  getEscalationStats() {
+    const critical = this.escalation_log.filter(e => e.escalation_type === 'CRITICAL').length;
+    const high = this.escalation_log.filter(e => e.escalation_type === 'HIGH').length;
+    const medium = this.escalation_log.filter(e => e.escalation_type === 'MEDIUM').length;
+    const low = this.escalation_log.filter(e => e.escalation_type === 'LOW').length;
+    
+    return {
+      total_escalations: this.escalation_log.length,
+      by_type: { CRITICAL: critical, HIGH: high, MEDIUM: medium, LOW: low },
+      last_escalation: this.escalation_log[this.escalation_log.length - 1] || null
+    };
+  }
+}
+
+// Export DRB Integration for use in MoCKA system
+module.exports.DRBIntegration = DRBIntegration;
+module.exports.DivergenceScoreChecker = DivergenceScoreChecker;
 }
