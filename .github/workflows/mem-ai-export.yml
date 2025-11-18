@@ -1,0 +1,39 @@
+name: Mem.ai to GitHub Export
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Run daily at 2 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  export-mems:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Export Mem.ai notes to GitHub
+        env:
+          MEM_API_KEY: ${{ secrets.MEM_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MEM_COLLECTION_ID: ${{ secrets.MEM_COLLECTION_ID }}
+          GITHUB_OWNER: ${{ github.repository_owner }}
+          GITHUB_REPO: ${{ github.event.repository.name }}
+        run: node scripts/integration/mem-ai-export.js
+        
+      - name: Commit exported files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add exported-mems/ || true
+          git diff-index --quiet HEAD -- || git commit -m "[Bot] Export Mem.ai notes - $(date '+%Y-%m-%d %H:%M:%S')"
+          
+      - name: Push changes
+        run: git push
