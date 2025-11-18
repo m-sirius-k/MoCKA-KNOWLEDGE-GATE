@@ -1,0 +1,14 @@
+{
+  "simulations": [
+    {
+      "simulation_id": "518b1447-e2ec-4b04-9b42-10e3d58af463",
+      "rod_number": "ROD-002",
+      "timestamp": "2025-11-18T06:44:45.467Z",
+      "model": "claude-3-sonnet-20250219",
+      "file": "ROD-002/simulation_2025-11-18_06-44-45.json",
+      "result_status": "completed"
+    }
+  ],
+  "last_updated": "2025-11-18T06:44:45.468Z",
+  "total_simulations": 1
+}

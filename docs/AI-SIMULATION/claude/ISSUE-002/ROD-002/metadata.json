@@ -1,0 +1,15 @@
+{
+  "metadata_version": "1.0",
+  "issue_id": "ISSUE-002",
+  "rod_number": "ROD-002",
+  "model_provider": "claude",
+  "model_name": "claude-3-sonnet-20250219",
+  "simulation_id": "518b1447-e2ec-4b04-9b42-10e3d58af463",
+  "timestamp": "2025-11-18T06:44:45.467Z",
+  "simulation_version": "v1.0",
+  "execution_time_ms": 0,
+  "parameters": {},
+  "result_status": "completed",
+  "confidence_score": 0.95,
+  "error": null
+}
