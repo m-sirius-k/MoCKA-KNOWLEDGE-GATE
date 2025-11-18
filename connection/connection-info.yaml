@@ -1,0 +1,31 @@
+repository: nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+
+access:
+  - protocol: REST
+    endpoint: /api/v1/share
+    description: REST API for AI-SHARE data exchange
+  - protocol: GraphQL
+    endpoint: /graphql
+    description: GraphQL API for structured queries
+
+authentication:
+  - method: token
+    description: JWT token-based authentication
+  - method: invite-code
+    description: Invite code-based access
+  - method: rod-number
+    description: Rod-number validation
+
+logging:
+  enabled: true
+  audit: true
+  retention: 90 days
+
+data_format: JSON/YAML
+mandatory_fields:
+  - ISSUE-ID
+  - rod-number
+  - TRUST_SCORE
+
+status: active
+last_updated: 2025-11-18
