@@ -194,6 +194,161 @@ async function getSimulationResults(issueId, rodNumber, modelProvider) {
   return simulations;
 }
 
+
+                           /**
+ * PHASE 2: Enhanced Storage Backend
+ * - Firestore integration for distributed storage
+ * - Redis cache layer for performance optimization
+ * - Multi-region replication support (AI-SHARE-005, 006)
+ */
+
+// Firestore adapter class
+class FirestoreAdapter {
+  constructor(config = {}) {
+    this.projectId = config.projectId || process.env.GCP_PROJECT_ID;
+    this.firestoreEnabled = config.enabled !== false;
+    this.db = null;
+    this.collection = 'ai_simulations';
+    this.initializeFirestore();
+  }
+
+  initializeFirestore() {
+    if (!this.firestoreEnabled) return;
+    try {
+      const admin = require('firebase-admin');
+      if (!admin.apps.length) {
+        admin.initializeApp();
+      }
+      this.db = admin.firestore();
+      console.log('[Firestore] Initialized successfully');
+    } catch (error) {
+      console.warn('[Firestore] Initialization skipped:', error.message);
+      this.firestoreEnabled = false;
+    }
+  }
+
+  async saveToFirestore(issueId, rodNumber, simulationData) {
+    if (!this.firestoreEnabled || !this.db) return null;
+    try {
+      const docRef = this.db.collection(this.collection).doc(`${issueId}_${rodNumber}`);
+      const docData = {
+        issue_id: issueId,
+        rod_number: rodNumber,
+        simulation_id: simulationData.metadata.simulation_id,
+        timestamp: new Date(),
+        data: simulationData,
+        replicated_regions: [],
+        created_at: simulationData.metadata.timestamp
+      };
+      await docRef.set(docData, { merge: true });
+      console.log(`[Firestore] Saved: ${issueId}/${rodNumber}`);
+      return docData;
+    } catch (error) {
+      console.error('[Firestore] Save failed:', error);
+      return null;
+    }
+  }
+}
+
+// Redis cache adapter class
+class RedisCache {
+  constructor(config = {}) {
+    this.cacheEnabled = config.enabled !== false;
+    this.ttl = config.ttl || 3600;
+    this.redis = null;
+    this.initializeRedis();
+  }
+
+  initializeRedis() {
+    if (!this.cacheEnabled) return;
+    try {
+      const redis = require('redis');
+      this.redis = redis.createClient({
+        host: process.env.REDIS_HOST || 'localhost',
+        port: process.env.REDIS_PORT || 6379,
+        password: process.env.REDIS_PASSWORD
+      });
+      this.redis.on('error', (err) => console.warn('[Redis] Error:', err));
+      console.log('[Redis] Cache initialized');
+    } catch (error) {
+      console.warn('[Redis] Initialization skipped:', error.message);
+      this.cacheEnabled = false;
+    }
+  }
+
+  async getCached(key) {
+    if (!this.cacheEnabled || !this.redis) return null;
+    try {
+      const cached = await this.redis.getAsync(key);
+      return cached ? JSON.parse(cached) : null;
+    } catch (error) {
+      console.warn('[Redis] Get failed:', error);
+      return null;
+    }
+  }
+
+  async setCached(key, value, ttl = null) {
+    if (!this.cacheEnabled || !this.redis) return false;
+    try {
+      const expiry = ttl || this.ttl;
+      await this.redis.setexAsync(key, expiry, JSON.stringify(value));
+      return true;
+    } catch (error) {
+      console.warn('[Redis] Set failed:', error);
+      return false;
+    }
+  }
+}
+
+// Multi-region replication manager
+class MultiRegionReplication {
+  constructor(config = {}) {
+    this.regions = config.regions || ['us-east', 'eu-west', 'asia-southeast'];
+    this.replicationEnabled = config.enabled !== false;
+    this.replicationLog = [];
+  }
+
+  async replicateToRegions(issueId, rodNumber, simulationData) {
+    if (!this.replicationEnabled) return { status: 'skipped' };
+    const replicationTask = {
+      id: `REPL-${Date.now()}`,
+      issue_id: issueId,
+      rod_number: rodNumber,
+      timestamp: new Date().toISOString(),
+      regions: {},
+      status: 'initiated'
+    };
+    for (const region of this.regions) {
+      replicationTask.regions[region] = {
+        status: 'pending',
+        attempted_at: null,
+        completed_at: null
+      };
+    }
+    this.replicationLog.push(replicationTask);
+    console.log(`[Replication] Task initiated: ${replicationTask.id}`);
+    return replicationTask;
+  }
+}
+
+// Extended module.exports
+module.exports = {
+  saveSimulationResult,
+  getSimulationResults,
+  validateIssueId,
+  validateRodNumber,
+  createMetadata,
+  // Phase 2 additions
+  FirestoreAdapter,
+  RedisCache,
+  MultiRegionReplication,
+  // Convenience initialization
+  initializeStorage: (config = {}) => ({
+    firestore: new FirestoreAdapter(config.firestore),
+    cache: new RedisCache(config.cache),
+    replication: new MultiRegionReplication(config.replication)
+  })
+};
 module.exports = {
   saveSimulationResult,
   getSimulationResults,
