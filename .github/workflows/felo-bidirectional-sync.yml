@@ -1,0 +1,225 @@
+name: Felo Bidirectional Sync
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Run every 5 minutes
+  push:
+    branches:
+      - main
+    paths:
+      - 'connection/**'
+      - 'docs/**'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync-to-felo:
+    runs-on: ubuntu-latest
+    name: Sync Knowledge Gate to Felo
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install axios yaml
+
+      - name: Load Felo configuration
+        run: |
+          cat connection/connection-info.yaml | grep -A 100 'felo_integration:'
+
+      - name: Prepare data for Felo sync
+        run: |
+          node -e "
+          const fs = require('fs');
+          const yaml = require('yaml');
+          
+          const config = yaml.parse(fs.readFileSync('connection/connection-info.yaml', 'utf8'));
+          const feloConfig = config.felo_integration;
+          
+          console.log('Felo Integration Configuration:');
+          console.log(JSON.stringify(feloConfig, null, 2));
+          "
+
+      - name: Sync knowledge data to Felo API
+        env:
+          FELO_API_TOKEN: ${{ secrets.FELO_API_TOKEN }}
+          FELO_API_ENDPOINT: https://api.felo.ai/v1
+        run: |
+          node -e "
+          const axios = require('axios');
+          const fs = require('fs');
+          const yaml = require('yaml');
+          
+          const config = yaml.parse(fs.readFileSync('connection/connection-info.yaml', 'utf8'));
+          const feloConfig = config.felo_integration;
+          const apiToken = process.env.FELO_API_TOKEN;
+          const apiEndpoint = process.env.FELO_API_ENDPOINT;
+          
+          // Prepare payload from connection-info.yaml
+          const payload = {
+            sync_timestamp: new Date().toISOString(),
+            sync_protocol: feloConfig.sync_protocol,
+            data_mappings: feloConfig.data_mapping.knowledge_gate_to_felo,
+            knowledge_metadata: {
+              ISSUE_ID: 'auto-generated',
+              TRUST_SCORE: 100,
+              rod_number: 'MOCKA-PENTAD-SYNC'
+            }
+          };
+          
+          console.log('Sending sync payload:', JSON.stringify(payload, null, 2));
+          
+          // POST to Felo API
+          axios.post(
+            \`\${apiEndpoint}\${feloConfig.data_exchange[0].endpoint}\",
+            payload,
+            {
+              headers: {
+                'Authorization': \`Bearer \${apiToken}\",
+                'Content-Type': 'application/json'
+              }
+            }
+          ).then(response => {
+            console.log('Sync to Felo successful:', response.status);
+            fs.appendFileSync('sync_log.txt', \`[TO_FELO] \${new Date().toISOString()}: SUCCESS\\n\");
+          }).catch(error => {
+            console.error('Sync to Felo failed:', error.message);
+            fs.appendFileSync('sync_log.txt', \`[TO_FELO] \${new Date().toISOString()}: FAILED - \${error.message}\\n\");
+            process.exit(1);
+          });
+          "
+
+  sync-from-felo:
+    runs-on: ubuntu-latest
+    name: Fetch enriched data from Felo
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install axios yaml
+
+      - name: Fetch data from Felo API
+        env:
+          FELO_API_TOKEN: ${{ secrets.FELO_API_TOKEN }}
+          FELO_API_ENDPOINT: https://api.felo.ai/v1
+        run: |
+          node -e "
+          const axios = require('axios');
+          const fs = require('fs');
+          const yaml = require('yaml');
+          
+          const config = yaml.parse(fs.readFileSync('connection/connection-info.yaml', 'utf8'));
+          const feloConfig = config.felo_integration;
+          const apiToken = process.env.FELO_API_TOKEN;
+          const apiEndpoint = process.env.FELO_API_ENDPOINT;
+          
+          // GET from Felo API
+          axios.get(
+            \`\${apiEndpoint}\${feloConfig.data_exchange[1].endpoint}\",
+            {
+              headers: {
+                'Authorization': \`Bearer \${apiToken}\",
+                'Content-Type': 'application/json'
+              }
+            }
+          ).then(response => {
+            console.log('Fetch from Felo successful');
+            const enrichedData = response.data;
+            
+            // Map Felo response back to knowledge gate format
+            const enrichedMetadata = {
+              felo_search_results: enrichedData,
+              sync_timestamp: new Date().toISOString(),
+              data_mappings: feloConfig.data_mapping.felo_to_knowledge_gate
+            };
+            
+            fs.writeFileSync('docs/felo-enriched-data.json', JSON.stringify(enrichedMetadata, null, 2));
+            fs.appendFileSync('sync_log.txt', \`[FROM_FELO] \${new Date().toISOString()}: SUCCESS\\n\");
+            console.log('Enriched data saved to docs/felo-enriched-data.json');
+          }).catch(error => {
+            console.error('Fetch from Felo failed:', error.message);
+            fs.appendFileSync('sync_log.txt', \`[FROM_FELO] \${new Date().toISOString()}: FAILED - \${error.message}\\n\");
+          });
+          "
+
+      - name: Commit and push enriched data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Felo Sync Bot"
+          git add docs/felo-enriched-data.json sync_log.txt || true
+          git commit -m "[Auto] Update enriched data from Felo" || true
+          git push || true
+
+  webhook-notification:
+    runs-on: ubuntu-latest
+    name: Notify Felo webhook
+    needs: [sync-to-felo, sync-from-felo]
+    if: always()
+    steps:
+      - name: Send webhook to Felo
+        env:
+          FELO_WEBHOOK_URL: ${{ secrets.FELO_WEBHOOK_URL }}
+        run: |
+          curl -X POST "${FELO_WEBHOOK_URL}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "event": "repository-sync-complete",
+              "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'",
+              "repository": "nsjpkimura-del/MoCKA-KNOWLEDGE-GATE",
+              "sync_status": "completed"
+            }'
+
+  health-check:
+    runs-on: ubuntu-latest
+    name: Verify Felo integration health
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install axios yaml
+
+      - name: Check Felo API health
+        env:
+          FELO_API_TOKEN: ${{ secrets.FELO_API_TOKEN }}
+          FELO_API_ENDPOINT: https://api.felo.ai/v1
+        run: |
+          node -e "
+          const axios = require('axios');
+          const apiToken = process.env.FELO_API_TOKEN;
+          const apiEndpoint = process.env.FELO_API_ENDPOINT;
+          
+          axios.get(
+            \`\${apiEndpoint}/health\",
+            {
+              headers: {
+                'Authorization': \`Bearer \${apiToken}\"
+              }
+            }
+          ).then(response => {
+            console.log('Felo API health status:', response.data);
+            if (response.data.status !== 'healthy') {
+              process.exit(1);
+            }
+          }).catch(error => {
+            console.error('Felo API health check failed:', error.message);
+            process.exit(1);
+          });
+          "
