@@ -1,0 +1,36 @@
+handshake:
+  - step1: AI sends ISSUE-ID
+    description: Initial request with unique issue identifier
+  - step2: Gate validates rod-number
+    description: Server validates rod-number credential
+  - step3: Gate returns constitution excerpt
+    description: Server returns relevant AI-SHARE constitution sections
+  - step4: AI adjusts settings based on excerpts
+    description: Client applies configuration from returned data
+
+data_exchange:
+  format: JSON/YAML
+  request_format: JSON
+  response_format: JSON/YAML
+
+mandatory_fields:
+  - ISSUE-ID
+  - rod-number
+  - TRUST_SCORE
+  - timestamp
+  - source_ai
+
+error_handling:
+  invalid_issue_id: Return HTTP 400 Bad Request
+  invalid_rod_number: Return HTTP 401 Unauthorized
+  missing_mandatory_field: Return HTTP 422 Unprocessable Entity
+
+retry_policy:
+  max_retries: 3
+  backoff_strategy: exponential
+  initial_delay_ms: 1000
+
+rate_limiting:
+  enabled: true
+  requests_per_minute: 60
+  burst_size: 10
