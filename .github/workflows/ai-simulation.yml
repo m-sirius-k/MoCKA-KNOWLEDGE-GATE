@@ -159,6 +159,12 @@ jobs:
       - name: Send Failure Notification
         if: failure()
         run: |
+                    echo "❌ AI Simulation failed"
+                                echo "Issue ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}"
+            echo "ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}"
+            echo "Timestamp: $(date -u +'%Y-%m-%d %H:%M:%S')"
+            echo "Error Log: Check GitHub Actions logs for details"
+            exit 1
 
             # Step 13: 成果物管理システムに登録
     - name: Register Algorithm Deliverable
@@ -235,50 +241,20 @@ Deliverable Details:
 
           
 
-      # Step 16: Webhook - Colab通知 (Final版昇格の自動通知)
-      - name: Trigger Auto-Promotion Webhook
-        if: success()
-        run: |
-          curl -X POST http://localhost:3000/api/webhook-handler \
-            -H "Content-Type: application/json" \
-            -d '{
-              "eventType": "algorithm_promoted",
-              "source": "automated-promotion",
-              "payload": {
-                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
-                "version": "${{ steps.auto_promotion.outputs.FINAL_VERSION }}",
-                "metrics": ${{ steps.auto_promotion.outputs.METRICS }}
-              }
-            }'
-
-      # Step 17: Webhook - Colab同期通知
-      - name: Trigger Colab Sync Webhook
-        if: success()
-        run: |
-          curl -X POST http://localhost:3000/api/webhook-handler \
-            -H "Content-Type: application/json" \
-            -d '{
-              "eventType": "colab_sync",
-              "source": "colab-integration",
-              "payload": {
-                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
-                "executionData": ${{ steps.colab_sync.outputs.EXECUTION_DATA }}
-              }
-            }'
-
-      # Step 18: Webhook - GitHub同期通知
-      - name: Trigger GitHub Sync Webhook
-        if: success()
-        run: |
-          curl -X POST http://localhost:3000/api/webhook-handler \
-            -H "Content-Type: application/json" \
-            -d '{
-              "eventType": "github_commit",
-              "source": "github-sync",
-              "payload": {
-                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
-                "issueId": "${{ steps.generate_ids.outputs.ISSUE_ID }}",
-                "rodNumber": "${{ steps.generate_ids.outputs.ROD_NUMBER }}",
-                "commitRef": "${{ github.sha }}"
-              }
-            }'
+          # Step 16: Webhook - AI Simulation Completion Notification
+    - name: Trigger Simulation Completion Webhook
+      if: always()
+      run: |
+        curl -X POST http://localhost:3000/api/webhook-handler \
+          -H "Content-Type: application/json" \
+          -d '{
+            "eventType": "ai_simulation_completed",
+            "source": "github-actions",
+            "payload": {
+              "issueId": "${{ steps.generate_ids.outputs.ISSUE_ID }}",
+              "rodNumber": "${{ steps.generate_ids.outputs.ROD_NUMBER }}",
+              "workflowRun": "${{ github.run_number }}",
+              "timestamp": "'$(date -u +\'%Y-%m-%dT%H:%M:%SZ\')'",
+              "status": "${{ job.status }}"
+            }
+          }' || echo "Webhook notification attempted"
