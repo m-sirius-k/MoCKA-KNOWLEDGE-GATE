@@ -159,6 +159,75 @@ jobs:
       - name: Send Failure Notification
         if: failure()
         run: |
+
+            # Step 13: 成果物管理システムに登録
+    - name: Register Algorithm Deliverable
+      id: register_deliverable
+      run: |
+        mkdir -p data/deliverables
+        cat > /tmp/deliverable-payload.json <<EOF
+        {
+          "algorithmName": "AI Simulation Result",
+          "colabUrl": "${{ github.server_url }}/${{ github.repository }}",
+          "issueId": "${{ steps.generate_ids.outputs.ISSUE_ID }}",
+          "rodNumber": "${{ steps.generate_ids.outputs.ROD_NUMBER }}",
+          "description": "Automated simulation from GitHub Actions",
+          "tags": ["automated", "ci-cd", "simulation"]
+        }
+        EOF
+        # POST to deliverable API
+        curl -X POST http://localhost:3000/api/algorithm-deliverables \
+          -H "Content-Type: application/json" \
+          -d @/tmp/deliverable-payload.json \
+          -o /tmp/deliverable-response.json || echo "Deliverable registration attempted"
+        cat /tmp/deliverable-response.json | jq '.' > data/deliverables/${{ steps.generate_ids.outputs.ISSUE_ID }}.json || true
+        echo "ALGORITHM_ID=$(jq -r '.algorithmId' /tmp/deliverable-response.json)" >> $GITHUB_OUTPUT
+
+    # Step 14: Colab同期（実行メトリクス）
+    - name: Sync to Colab Integration
+      id: sync_colab
+      run: |
+        mkdir -p data/colab-sessions
+        cat > /tmp/colab-sync.json <<EOF
+        {
+          "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
+          "colabUrl": "${{ github.server_url }}/${{ github.repository }}",
+          "executionData": {
+            "workflowRun": "${{ github.run_id }}",
+            "runNumber": "${{ github.run_number }}",
+            "branch": "${{ github.ref_name }}",
+            "commit": "${{ github.sha }}"
+          },
+          "metrics": {
+            "status": "completed",
+            "executionTime": "$(date +%s)"
+          }
+        }
+        EOF
+        curl -X POST http://localhost:3000/api/colab-integration \
+          -H "Content-Type: application/json" \
+          -d @/tmp/colab-sync.json \
+          -o /tmp/colab-response.json || echo "Colab sync attempted"
+        cat /tmp/colab-response.json | jq '.' > data/colab-sessions/${{ steps.generate_ids.outputs.ISSUE_ID }}.json || true
+
+    # Step 15: 成果物をコミット（Draft版として記録）
+    - name: Commit Deliverable Records
+      run: |
+        if [ -d "data/deliverables" ] && [ -n "$(ls -A data/deliverables)" ]; then
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions Bot - Deliverables"
+          git add data/deliverables/ data/colab-sessions/
+          git commit -m "Register algorithm deliverable: ${{ steps.generate_ids.outputs.ISSUE_ID }} - ${{ steps.generate_ids.outputs.ROD_NUMBER }}
+
+Deliverable Details:
+- Algorithm ID: ${{ steps.register_deliverable.outputs.ALGORITHM_ID }}
+- ISSUE-ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}
+- ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}
+- Status: Draft (registered)
+- Workflow: ${{ github.run_number }}
+- Commit: ${{ github.sha }}" || true
+          git push origin ${{ github.ref_name }} || echo "No changes to push"
+        fi
           echo "❌ AI Simulation failed"
           echo "Issue ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}"
           echo "ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}"
