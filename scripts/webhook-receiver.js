@@ -214,4 +214,221 @@ process.on('SIGTERM', () => {
   process.exit(0);
 });
 
+// ===== Event Sourcing & Dead Letter Queue Pattern =====
+
+// Event Store for replaying historical events
+class EventStore {
+  constructor(logDir = LOG_DIR) {
+    this.logDir = logDir;
+    this.eventLog = path.join(logDir, 'event-store.log');
+    this.dlqLog = path.join(logDir, 'dead-letter-queue.log');
+  }
+
+  // Append event to event store (Event Sourcing)
+  appendEvent(event) {
+    const storedEvent = {
+      id: crypto.randomUUID(),
+      timestamp: new Date().toISOString(),
+      version: 1,
+      ...event
+    };
+    fs.appendFileSync(this.eventLog, JSON.stringify(storedEvent) + '\n');
+    return storedEvent;
+  }
+
+  // Replay events from store
+  replayEvents(filters = {}) {
+    if (!fs.existsSync(this.eventLog)) {
+      return [];
+    }
+    const lines = fs.readFileSync(this.eventLog, 'utf8').split('\n').filter(l => l);
+    return lines
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch (e) {
+          return null;
+        }
+      })
+      .filter(event => event && this.matchesFilters(event, filters));
+  }
+
+  matchesFilters(event, filters) {
+    if (filters.eventType && event.eventType !== filters.eventType) return false;
+    if (filters.startTime && new Date(event.timestamp) < new Date(filters.startTime)) return false;
+    if (filters.endTime && new Date(event.timestamp) > new Date(filters.endTime)) return false;
+    return true;
+  }
+}
+
+// Dead Letter Queue for failed events
+class DeadLetterQueue {
+  constructor(logDir = LOG_DIR) {
+    this.dlqLog = path.join(logDir, 'dead-letter-queue.log');
+    this.maxRetries = 3;
+  }
+
+  // Add event to DLQ with retry metadata
+  addFailedEvent(event, error, retryCount = 0) {
+    const dlqEntry = {
+      id: event.id || crypto.randomUUID(),
+      originalEvent: event,
+      error: error.message,
+      errorStack: error.stack,
+      retryCount,
+      failedAt: new Date().toISOString(),
+      nextRetryAt: this.calculateNextRetry(retryCount),
+      status: retryCount >= this.maxRetries ? 'dead' : 'pending_retry'
+    };
+    fs.appendFileSync(this.dlqLog, JSON.stringify(dlqEntry) + '\n');
+    return dlqEntry;
+  }
+
+  calculateNextRetry(retryCount) {
+    // Exponential backoff: 5s, 25s, 125s
+    const delays = [5, 25, 125];
+    const delay = delays[Math.min(retryCount, delays.length - 1)];
+    return new Date(Date.now() + delay * 1000).toISOString();
+  }
+
+  // Get pending retry events
+  getPendingRetries() {
+    if (!fs.existsSync(this.dlqLog)) return [];
+    const lines = fs.readFileSync(this.dlqLog, 'utf8').split('\n').filter(l => l);
+    return lines
+      .map(line => {
+        try {
+          return JSON.parse(line);
+        } catch (e) {
+          return null;
+        }
+      })
+      .filter(entry => entry && entry.status === 'pending_retry' && new Date() >= new Date(entry.nextRetryAt));
+  }
+}
+
+// Initialize event sourcing components
+const eventStore = new EventStore();
+const dlq = new DeadLetterQueue();
+
+// Enhanced webhook endpoint with event sourcing
+app.post('/webhook/felo/sourced', (req, res) => {
+  try {
+    // Verify signature
+    if (process.env.VERIFY_SIGNATURE !== 'false') {
+      if (!verifyWebhookSignature(req)) {
+        return res.status(401).json({ error: 'Invalid signature' });
+      }
+    }
+
+    const event = {
+      eventType: req.body.event || 'unknown',
+      eventId: req.body.event_id || crypto.randomUUID(),
+      payload: req.body
+    };
+
+    // Store event in event log (Event Sourcing)
+    const storedEvent = eventStore.appendEvent(event);
+
+    // Log the event
+    logWebhookEvent(event.eventType, req.body);
+
+    // Process event with error handling
+    try {
+      switch (event.eventType) {
+        case 'data-update':
+          handleDataUpdate(req.body);
+          break;
+        case 'sync-status':
+          handleSyncStatus(req.body);
+          break;
+        case 'error-occurred':
+          handleError(req.body);
+          break;
+      }
+    } catch (error) {
+      console.error('Event processing failed:', error);
+      dlq.addFailedEvent(storedEvent, error, 0);
+      return res.status(202).json({
+        success: false,
+        eventId: storedEvent.id,
+        message: 'Event queued for retry',
+        status: 'pending_retry'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      eventId: storedEvent.id,
+      message: 'Event processed and stored successfully',
+      eventSourceId: storedEvent.id
+    });
+  } catch (error) {
+    console.error('Webhook processing error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Event replay endpoint
+app.get('/events/replay', (req, res) => {
+  const filters = {
+    eventType: req.query.type,
+    startTime: req.query.from,
+    endTime: req.query.to
+  };
+  const events = eventStore.replayEvents(filters);
+  res.status(200).json({
+    count: events.length,
+    events,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// DLQ status endpoint
+app.get('/dlq/status', (req, res) => {
+  const pending = dlq.getPendingRetries();
+  res.status(200).json({
+    pendingRetries: pending.length,
+    nextRetries: pending.slice(0, 5),
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Manual retry endpoint
+app.post('/dlq/retry/:eventId', (req, res) => {
+  const { eventId } = req.params;
+  const dlqEntries = dlq.getPendingRetries();
+  const entry = dlqEntries.find(e => e.id === eventId);
+  
+  if (!entry) {
+    return res.status(404).json({ error: 'Event not found in DLQ' });
+  }
+
+  try {
+    const event = entry.originalEvent;
+    switch (event.eventType) {
+      case 'data-update':
+        handleDataUpdate(event.payload);
+        break;
+      case 'sync-status':
+        handleSyncStatus(event.payload);
+        break;
+      case 'error-occurred':
+        handleError(event.payload);
+        break;
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Event retried successfully',
+      eventId
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Retry failed',
+      message: error.message
+    });
+  }
+});
+
+
 module.exports = app;
