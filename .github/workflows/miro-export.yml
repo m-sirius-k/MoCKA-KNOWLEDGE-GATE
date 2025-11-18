@@ -1,0 +1,53 @@
+name: Miro Export to GitHub
+on:
+  schedule:
+      - cron: '0 3 * * *'
+        workflow_dispatch:
+
+        jobs:
+          export:
+              runs-on: ubuntu-latest
+                  timeout-minutes: 30
+                      steps:
+                            - name: Checkout repository
+                                    uses: actions/checkout@v4
+                                            with:
+                                                      fetch-depth: 0
+
+                                                            - name: Set up Node.js
+                                                                    uses: actions/setup-node@v4
+                                                                            with:
+                                                                                      node-version: '18'
+                                                                                                cache: 'npm'
+
+                                                                                                      - name: Install dependencies
+                                                                                                              run: npm install
+                                                                                                              
+                                                                                                                    - name: Run Miro export
+                                                                                                                            env:
+                                                                                                                                      MIRO_CLIENT_ID: ${{ secrets.MIRO_CLIENT_ID }}
+                                                                                                                                                MIRO_CLIENT_SECRET: ${{ secrets.MIRO_CLIENT_SECRET }}
+                                                                                                                                                          MIRO_BOARD_ID: ${{ secrets.MIRO_BOARD_ID }}
+                                                                                                                                                                  run: node scripts/miro-export.js
+                                                                                                                                                                  
+                                                                                                                                                                        - name: Commit and push changes
+                                                                                                                                                                                run: |
+                                                                                                                                                                                          git config --local user.email "action@github.com"
+                                                                                                                                                                                                    git config --local user.name "GitHub Action"
+                                                                                                                                                                                                              if [[ -n $(git status -s) ]]; then
+                                                                                                                                                                                                                          git add miro_export/
+                                                                                                                                                                                                                                      git commit -m "chore: Miro export sync"
+                                                                                                                                                                                                                                                  git push
+                                                                                                                                                                                                                                                            else
+                                                                                                                                                                                                                                                                        echo "No changes to commit"
+                                                                                                                                                                                                                                                                                  fi
+                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                        - name: Upload artifacts
+                                                                                                                                                                                                                                                                                                if: always()
+                                                                                                                                                                                                                                                                                                        uses: actions/upload-artifact@v4
+                                                                                                                                                                                                                                                                                                                with:
+                                                                                                                                                                                                                                                                                                                          name: miro-export-logs
+                                                                                                                                                                                                                                                                                                                                    path: |
+                                                                                                                                                                                                                                                                                                                                                miro_export/
+                                                                                                                                                                                                                                                                                                                                                            logs/
+                                                                                                                                                                                                                                                                                                                                                                      retention-days: 7
