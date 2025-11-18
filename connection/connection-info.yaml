@@ -29,3 +29,90 @@ mandatory_fields:
 
 status: active
 last_updated: 2025-11-18
+
+
+# Felo AI Search Integration Configuration
+felo_integration:
+  enabled: true
+  service_name: Felo AI Search
+  api_endpoint: https://api.felo.ai/v1
+  sync_protocol: bidirectional
+  sync_interval: 300
+  sync_interval_unit: seconds
+  data_exchange:
+    - endpoint: /api/v1/share
+      method: POST
+      description: Send knowledge data to Felo
+      payload_format: JSON
+    - endpoint: /api/v1/fetch
+      method: GET
+      description: Fetch enriched data from Felo
+      payload_format: JSON
+  webhook_config:
+    inbound:
+      - event: data-update
+        endpoint: /webhook/felo/data-update
+        description: Receives data updates from Felo
+      - event: sync-status
+        endpoint: /webhook/felo/sync-status
+        description: Receives sync status notifications
+    outbound:
+      - event: repository-push
+        target_url: https://webhook.felo.ai/repository-update
+        description: Sends repository changes to Felo
+      - event: content-modified
+        target_url: https://webhook.felo.ai/content-sync
+        description: Notifies Felo of content modifications
+  authentication:
+    method: oauth2
+    scopes:
+      - read:knowledge
+      - write:knowledge
+      - read:metadata
+      - write:metadata
+    token_endpoint: https://auth.felo.ai/oauth/token
+  data_mapping:
+    knowledge_gate_to_felo:
+      - source_field: ISSUE-ID
+        target_field: knowledge_id
+        transform: identity
+      - source_field: TRUST_SCORE
+        target_field: confidence_score
+        transform: normalize_0_to_1
+      - source_field: rod-number
+        target_field: reference_id
+        transform: identity
+    felo_to_knowledge_gate:
+      - source_field: search_result_id
+        target_field: ISSUE-ID
+        transform: identity
+      - source_field: relevance_score
+        target_field: TRUST_SCORE
+        transform: normalize_0_to_100
+  cache:
+    enabled: true
+    ttl: 3600
+    ttl_unit: seconds
+    storage_backend: redis
+  error_handling:
+    retry_attempts: 3
+    retry_backoff: exponential
+    max_retry_delay: 300
+    max_retry_delay_unit: seconds
+    fallback_mode: readonly
+  logging:
+    felo_sync_logs: true
+    debug_mode: false
+    log_level: info
+  monitoring:
+    enabled: true
+    metrics_endpoint: /metrics/felo-sync
+    health_check_interval: 60
+    health_check_interval_unit: seconds
+  compliance:
+    data_retention: 90
+    data_retention_unit: days
+    pii_handling: encrypt
+    gdpr_compliant: true
+felo_integration_status: active
+felo_last_sync: 2025-11-18T14:00:00Z
