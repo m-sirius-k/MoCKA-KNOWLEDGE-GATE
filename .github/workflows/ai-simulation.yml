@@ -232,3 +232,53 @@ Deliverable Details:
           echo "Issue ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}"
           echo "ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}"
           echo "Check the logs for details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          
+
+      # Step 16: Webhook - Colab通知 (Final版昇格の自動通知)
+      - name: Trigger Auto-Promotion Webhook
+        if: success()
+        run: |
+          curl -X POST http://localhost:3000/api/webhook-handler \
+            -H "Content-Type: application/json" \
+            -d '{
+              "eventType": "algorithm_promoted",
+              "source": "automated-promotion",
+              "payload": {
+                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
+                "version": "${{ steps.auto_promotion.outputs.FINAL_VERSION }}",
+                "metrics": ${{ steps.auto_promotion.outputs.METRICS }}
+              }
+            }'
+
+      # Step 17: Webhook - Colab同期通知
+      - name: Trigger Colab Sync Webhook
+        if: success()
+        run: |
+          curl -X POST http://localhost:3000/api/webhook-handler \
+            -H "Content-Type: application/json" \
+            -d '{
+              "eventType": "colab_sync",
+              "source": "colab-integration",
+              "payload": {
+                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
+                "executionData": ${{ steps.colab_sync.outputs.EXECUTION_DATA }}
+              }
+            }'
+
+      # Step 18: Webhook - GitHub同期通知
+      - name: Trigger GitHub Sync Webhook
+        if: success()
+        run: |
+          curl -X POST http://localhost:3000/api/webhook-handler \
+            -H "Content-Type: application/json" \
+            -d '{
+              "eventType": "github_commit",
+              "source": "github-sync",
+              "payload": {
+                "algorithmId": "${{ steps.register_deliverable.outputs.ALGORITHM_ID }}",
+                "issueId": "${{ steps.generate_ids.outputs.ISSUE_ID }}",
+                "rodNumber": "${{ steps.generate_ids.outputs.ROD_NUMBER }}",
+                "commitRef": "${{ github.sha }}"
+              }
+            }'
