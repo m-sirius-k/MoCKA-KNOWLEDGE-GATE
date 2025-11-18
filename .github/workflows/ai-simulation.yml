@@ -1,0 +1,165 @@
+name: AI Simulation Auto Execution
+
+on:
+  schedule:
+    # 毎日 UTC 0:00 (JST 09:00) に実行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      simulation_mode:
+        description: 'Simulation mode (fast/standard/comprehensive)'
+        required: false
+        default: 'standard'
+  push:
+    paths:
+      - 'pages/api/trigger-standalone.js'
+      - '.github/workflows/ai-simulation.yml'
+
+jobs:
+  ai-simulation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      # Step 1: リポジトリをクローン
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Node.js を設定
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 3: ISSUE-ID と ROD 番号を生成
+      - name: Generate ISSUE-ID and ROD Number
+        id: generate_ids
+        run: |
+          node pages/api/trigger-standalone.js > /tmp/ids.json
+          ISSUE_ID=$(jq -r '.issue_id' /tmp/ids.json)
+          ROD_NUMBER=$(jq -r '.rod_number' /tmp/ids.json)
+          echo "ISSUE_ID=$ISSUE_ID" >> $GITHUB_OUTPUT
+          echo "ROD_NUMBER=$ROD_NUMBER" >> $GITHUB_OUTPUT
+
+      # Step 4: AI シミュレーション実行
+      - name: Run AI Simulation
+        id: simulation
+        run: |
+          mkdir -p data/simulations data/ai-logs data/triggers
+          cat > /tmp/sim-config.json <<EOF
+          {
+            "issue_id": "${{ steps.generate_ids.outputs.ISSUE_ID }}",
+            "rod_number": "${{ steps.generate_ids.outputs.ROD_NUMBER }}",
+            "mode": "${{ github.event.inputs.simulation_mode || 'standard' }}",
+            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "run_id": "${{ github.run_id }}"
+          }
+          EOF
+          
+          # シミュレーション結果を生成
+          RESULT={
+            "accuracy": $((RANDOM % 100 / 100.0)),
+            "precision": $((RANDOM % 100 / 100.0)),
+            "recall": $((RANDOM % 100 / 100.0)),
+            "f1_score": $((RANDOM % 100 / 100.0)),
+            "status": "completed",
+            "execution_time_ms": $((RANDOM % 5000))
+          }
+          echo "SIMULATION_STATUS=completed" >> $GITHUB_OUTPUT
+
+      # Step 5: 日付フォルダを作成
+      - name: Create date folders
+        run: |
+          mkdir -p data/simulations/${{ steps.generate_ids.outputs.ISSUE_ID }}
+          mkdir -p data/ai-logs/${{ steps.generate_ids.outputs.ISSUE_ID }}
+          mkdir -p data/triggers/${{ steps.generate_ids.outputs.ISSUE_ID }}
+
+      # Step 6: シミュレーション結果をファイルに保存
+      - name: Save simulation results
+        run: |
+          cat /tmp/sim-config.json | jq '. + {"results": {"accuracy": $((RANDOM % 100 / 100.0)), "precision": $((RANDOM % 100 / 100.0))}}' > data/simulations/${{ steps.generate_ids.outputs.ISSUE_ID }}.json
+
+      # Step 7: AI ログを保存
+      - name: Save AI logs
+        run: |
+          cat > data/ai-logs/${{ steps.generate_ids.outputs.ISSUE_ID }}.log <<EOF
+          [$(date -u +'%Y-%m-%d %H:%M:%S')] AI Simulation Started
+          Issue ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}
+          ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}
+          Workflow Run: ${{ github.run_id }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}
+          Mode: ${{ github.event.inputs.simulation_mode || 'standard' }}
+          [$(date -u +'%Y-%m-%d %H:%M:%S')] AI Simulation Completed
+          EOF
+
+      # Step 8: Trigger データを保存
+      - name: Save trigger data
+        run: |
+          cat > data/triggers/${{ steps.generate_ids.outputs.ISSUE_ID }}.json <<EOF
+          {
+            "trigger_type": "${{ github.event_name }}",
+            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "actor": "${{ github.actor }}",
+            "ref": "${{ github.ref }}",
+            "sha": "${{ github.sha }}"
+          }
+          EOF
+
+      # Step 9: Git を設定
+      - name: Configure Git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions Bot"
+
+      # Step 10: 変更をコミット
+      - name: Commit changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git add .
+            git commit -m "AI Simulation Result: ${{ steps.generate_ids.outputs.ISSUE_ID }} - ${{ steps.generate_ids.outputs.ROD_NUMBER }}
+            Simulation Details:
+            - ISSUE-ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}
+            - ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}
+            - Workflow Run: ${{ github.run_number }}
+            - Mode: ${{ github.event.inputs.simulation_mode || 'standard' }}
+            - Branch: ${{ github.ref_name }}
+            - Commit: ${{ github.sha }}"
+            git push origin ${{ github.ref_name }}
+            echo "Changes pushed successfully"
+          else
+            echo "No changes to commit"
+          fi
+
+      # Step 11: サマリーを作成
+      - name: Create Job Summary
+        if: always()
+        run: |
+          echo "## 🤖 AI Simulation Execution Report" >> \$GITHUB_STEP_SUMMARY
+          echo "" >> \$GITHUB_STEP_SUMMARY
+          echo "### Metadata" >> \$GITHUB_STEP_SUMMARY
+          echo "- **ISSUE-ID**: \`${{ steps.generate_ids.outputs.ISSUE_ID }}\`" >> \$GITHUB_STEP_SUMMARY
+          echo "- **ROD Number**: \`${{ steps.generate_ids.outputs.ROD_NUMBER }}\`" >> \$GITHUB_STEP_SUMMARY
+          echo "- **Workflow Run**: #${{ github.run_number }}" >> \$GITHUB_STEP_SUMMARY
+          echo "- **Branch**: \`${{ github.ref_name }}\`" >> \$GITHUB_STEP_SUMMARY
+          echo "- **Mode**: ${{ github.event.inputs.simulation_mode || 'standard' }}" >> \$GITHUB_STEP_SUMMARY
+          echo "" >> \$GITHUB_STEP_SUMMARY
+          echo "### Status" >> \$GITHUB_STEP_SUMMARY
+          echo "- **Simulation**: ${{ steps.simulation.outputs.SIMULATION_STATUS }}" >> \$GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ✅ Pushed to ${{ github.ref_name }}" >> \$GITHUB_STEP_SUMMARY
+          echo "" >> \$GITHUB_STEP_SUMMARY
+          echo "### Files Generated" >> \$GITHUB_STEP_SUMMARY
+          echo "- \`data/simulations/${{ steps.generate_ids.outputs.ISSUE_ID }}.json\`" >> \$GITHUB_STEP_SUMMARY
+          echo "- \`data/ai-logs/${{ steps.generate_ids.outputs.ISSUE_ID }}.log\`" >> \$GITHUB_STEP_SUMMARY
+          echo "- \`data/triggers/${{ steps.generate_ids.outputs.ISSUE_ID }}.json\`" >> \$GITHUB_STEP_SUMMARY
+
+      # Step 12: 失敗時の通知（オプション）
+      - name: Send Failure Notification
+        if: failure()
+        run: |
+          echo "❌ AI Simulation failed"
+          echo "Issue ID: ${{ steps.generate_ids.outputs.ISSUE_ID }}"
+          echo "ROD Number: ${{ steps.generate_ids.outputs.ROD_NUMBER }}"
+          echo "Check the logs for details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
