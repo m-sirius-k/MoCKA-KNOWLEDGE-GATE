@@ -1,0 +1,31 @@
+name: GitHub to Mem.ai Import
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - 'README.md'
+  workflow_dispatch
+
+jobs:
+  import-to-memiai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+          
+      - name: Import GitHub content to Mem.ai
+        env:
+          MEM_API_KEY: ${{ secrets.MEM_API_KEY }}
+          MEM_COLLECTION_ID: ${{ secrets.MEM_COLLECTION_ID }}
+          SOURCE_DIR: docs
+        run: python3 scripts/integration/mem-ai-import.py
