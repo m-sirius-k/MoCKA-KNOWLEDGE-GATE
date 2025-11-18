@@ -290,4 +290,75 @@ class SystemHealthKPI extends EventEmitter {
   }
 }
 
+/**
+ * PHASE 2: DR Workload Auto-Calculation & SLA Auto-Remediation
+ * - Automated DR workload index calculation
+ * - SLA violation auto-remediation
+ * - Proposal priority auto-adjustment (AI-SHARE-001, 026, 028)
+ */
+
+class DRWorkloadCalculator {
+  constructor(config = {}) {
+    this.historyWindow = config.historyWindow || 24 * 60 * 60 * 1000;
+    this.metrics = [];
+  }
+
+  calculateWorkloadIndex(approvalDays, pendingCount, cycleTimeDays) {
+    const approvalFactor = Math.min(approvalDays / 10, 1.0);
+    const pendingFactor = Math.min(pendingCount / 20, 1.0);
+    const cycleFactor = Math.min(cycleTimeDays / 30, 1.0);
+    const workloadIndex = (approvalFactor * 0.40) + (pendingFactor * 0.35) + (cycleFactor * 0.25);
+    
+    this.metrics.push({
+      timestamp: new Date().toISOString(),
+      approval_days: approvalDays,
+      pending_count: pendingCount,
+      cycle_time_days: cycleTimeDays,
+      workload_index: workloadIndex
+    });
+    
+    const cutoffTime = Date.now() - this.historyWindow;
+    this.metrics = this.metrics.filter(m => new Date(m.timestamp).getTime() > cutoffTime);
+    return Math.round(workloadIndex * 100) / 100;
+  }
+
+  getTrendAnalysis() {
+    if (this.metrics.length < 2) return { trend: 'insufficient_data' };
+    const recent = this.metrics.slice(-5);
+    const indices = recent.map(m => m.workload_index);
+    const avg = indices.reduce((a, b) => a + b, 0) / indices.length;
+    const trend = indices[indices.length - 1] > indices[0] ? 'increasing' : 'decreasing';
+    return { trend, current: indices[indices.length - 1], average: Math.round(avg * 100) / 100 };
+  }
+}
+
+class SLAAutoRemediator {
+  constructor(config = {}) {
+    this.remediationLog = [];
+  }
+
+  checkSLAViolations(healthMetrics) {
+    const violations = [];
+    if (healthMetrics.approval_turnaround_days > 4) violations.push({ type: 'approval_sla_violated', severity: 'high' });
+    if (healthMetrics.pending_proposals > 7) violations.push({ type: 'pending_sla_violated', severity: 'high' });
+    if (healthMetrics.cycle_time_days > 25) violations.push({ type: 'cycle_time_sla_violated', severity: 'medium' });
+    return violations;
+  }
+
+  applyAutoRemediation(violations, proposalQueue) {
+    const actions = [];
+    for (const v of violations) {
+      if (v.type === 'approval_sla_violated') actions.push({ type: 'escalate_approvers', affected: 5 });
+      if (v.type === 'pending_sla_violated') actions.push({ type: 'auto_deprioritize_low' });
+      if (v.type === 'cycle_time_sla_violated') actions.push({ type: 'enable_batch_review' });
+    }
+    this.remediationLog.push({ timestamp: new Date().toISOString(), actions_count: actions.length, actions });
+    return actions;
+  }
+}
+
+module.exports = SystemHealthKPI;
+module.exports.DRWorkloadCalculator = DRWorkloadCalculator;
+module.exports.SLAAutoRemediator = SLAAutoRemediator;
+
 module.exports = SystemHealthKPI;
