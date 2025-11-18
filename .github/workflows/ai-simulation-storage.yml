@@ -1,0 +1,119 @@
+name: AI Simulation Results Storage
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_id:
+        description: 'GitHub Issue ID (e.g., ISSUE-001)'
+        required: true
+      rod_number:
+        description: 'Rod Number (e.g., ROD-001)'
+        required: true
+      model_provider:
+        description: 'AI Model Provider'
+        required: true
+        type: choice
+        options:
+          - claude
+          - openai
+      model_name:
+        description: 'Specific Model Name'
+        required: true
+        default: 'claude-3-sonnet-20250219'
+      simulation_input:
+        description: 'Simulation Input (JSON)'
+        required: true
+      simulation_output:
+        description: 'Simulation Output (JSON)'
+        required: true
+      confidence_score:
+        description: 'Confidence Score (0.0-1.0)'
+        required: false
+        default: '0.95'
+
+jobs:
+  store-simulation:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate ISSUE-ID format
+        run: |
+          if ! [[ "${{ github.event.inputs.issue_id }}" =~ ^ISSUE-[0-9]{3,}$ ]]; then
+            echo "Invalid ISSUE-ID format. Use format: ISSUE-XXX"
+            exit 1
+          fi
+
+      - name: Validate rod-number format
+        run: |
+          if ! [[ "${{ github.event.inputs.rod_number }}" =~ ^ROD-[0-9]{3,}$ ]]; then
+            echo "Invalid rod-number format. Use format: ROD-XXX"
+            exit 1
+          fi
+
+      - name: Store simulation result
+        env:
+          ISSUE_ID: ${{ github.event.inputs.issue_id }}
+          ROD_NUMBER: ${{ github.event.inputs.rod_number }}
+          MODEL_PROVIDER: ${{ github.event.inputs.model_provider }}
+          MODEL_NAME: ${{ github.event.inputs.model_name }}
+          SIMULATION_INPUT: ${{ github.event.inputs.simulation_input }}
+          SIMULATION_OUTPUT: ${{ github.event.inputs.simulation_output }}
+          CONFIDENCE_SCORE: ${{ github.event.inputs.confidence_score }}
+        run: |
+          node -e "
+          const storageModule = require('./scripts/simulation-storage.js');
+          
+          (async () => {
+            try {
+              const result = await storageModule.saveSimulationResult({
+                issueId: process.env.ISSUE_ID,
+                rodNumber: process.env.ROD_NUMBER,
+                modelProvider: process.env.MODEL_PROVIDER,
+                modelName: process.env.MODEL_NAME,
+                input: JSON.parse(process.env.SIMULATION_INPUT),
+                output: JSON.parse(process.env.SIMULATION_OUTPUT),
+                confidenceScore: parseFloat(process.env.CONFIDENCE_SCORE),
+              });
+              console.log('Simulation stored successfully:', result);
+            } catch (error) {
+              console.error('Error storing simulation:', error.message);
+              process.exit(1);
+            }
+          })();
+          "
+
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add docs/AI-SIMULATION/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Store simulation result: ${{ github.event.inputs.issue_id }}-${{ github.event.inputs.rod_number }}"
+            git push
+          fi
+
+      - name: Create workflow summary
+        run: |
+          echo "# Simulation Storage Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Issue ID**: ${{ github.event.inputs.issue_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Rod Number**: ${{ github.event.inputs.rod_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Model Provider**: ${{ github.event.inputs.model_provider }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Model Name**: ${{ github.event.inputs.model_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Confidence Score**: ${{ github.event.inputs.confidence_score }}" >> $GITHUB_STEP_SUMMARY
