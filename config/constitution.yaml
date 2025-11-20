@@ -1,0 +1,88 @@
+# MoCKA Constitution - PJL Knowledge Sovereignty
+# Version: 2.0
+# Updated: 2025-11-20
+
+version: "2.0"
+
+# === ROLES AND PERMISSIONS ===
+roles:
+  PJL:
+    name: "Project Lead"
+    permissions:
+      - "read_all"
+      - "write_all"
+      - "audit_all"
+      - "override"
+    description: "Project Lead holds complete sovereignty over all knowledge assets"
+  
+  AI:
+    name: "Artificial Intelligence"
+    permissions:
+      - "read_public"
+      - "read_restricted_if_assigned"
+      - "write_own"
+      - "append_logs"
+    description: "AI agents can read public/assigned content and write declarations"
+
+# === CLASSIFICATION LEVELS ===
+classification:
+  levels:
+    - name: "Public"
+      read: ["PJL", "AI"]
+      write: ["PJL"]
+      description: "Accessible to all roles"
+    
+    - name: "Restricted"
+      read: ["PJL", "AI_assigned"]
+      write: ["PJL"]
+      description: "Accessible only to PJL and assigned AI agents"
+    
+    - name: "Confidential"
+      read: ["PJL"]
+      write: ["PJL"]
+      description: "Accessible only to PJL"
+
+# === NAMING CONVENTIONS ===
+naming:
+  declaration_format: "{ai_name}{seq}-{date}"
+  # Example: Copilot00-20251120
+  date_format: "YYYYMMDD"
+  seq_width: 2
+  
+  folders:
+    base: "docs/AI-SHARE-LOGS"
+    per_ai: "docs/AI-SHARE-LOGS/{ai_name}/"
+    meeting_logs_sheet: "議事録"
+    revision_log_file: "docs/AI-SHARE-LOGS/revision-log.yaml"
+    audit_log_file: "docs/AUDIT/audit-log.jsonl"
+
+# === PJL OVERRIDE CONFIGURATION ===
+pjl_override:
+  enabled: true
+  conditions:
+    - "All requests with role=PJL bypass classification gates"
+    - "PJL decisions are immediately logged to audit trail"
+    - "No approval process required for PJL actions"
+
+# === AUDIT CONFIGURATION ===
+audit:
+  enabled: true
+  store: "docs/AUDIT/audit-log.jsonl"
+  fields:
+    - "timestamp"
+    - "actor"
+    - "role"
+    - "action"
+    - "target"
+    - "classification"
+    - "trust_score"
+    - "result"
+    - "notes"
+  
+  actions:
+    - "DECLARATION_CREATE"
+    - "DECLARATION_UPDATE"
+    - "REVISION_APPEND"
+    - "ACCESS_GRANTED"
+    - "ACCESS_DENIED"
+    - "OVERRIDE_INVOKED"
