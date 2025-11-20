@@ -1,0 +1,49 @@
+name: Phase 1 Pipeline - PILS to Colab/NotebookLM
+
+on:
+  push:
+    paths:
+      - 'AI-SHARE-LOGS/PILS/*.json'
+  workflow_dispatch:
+
+jobs:
+  phase1-process:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyyaml
+      
+      - name: Run Phase 1 Pipeline
+        env:
+          NOTEBOOKLM_API_BASE: ${{ secrets.NOTEBOOKLM_API_BASE }}
+          NOTEBOOKLM_API_KEY: ${{ secrets.NOTEBOOKLM_API_KEY }}
+          COLAB_API_BASE: ${{ secrets.COLAB_API_BASE }}
+          COLAB_API_KEY: ${{ secrets.COLAB_API_KEY }}
+          COLAB_TEMPLATE_ID: ${{ secrets.COLAB_TEMPLATE_ID }}
+          AUDIT_ACTOR_DEFAULT: ${{ secrets.AUDIT_ACTOR_DEFAULT }}
+          DEBUG_MODE: ${{ secrets.DEBUG_MODE }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          cd src/phase1
+          python pipeline.py
+      
+      - name: Commit audit logs
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add AUDIT/audit-log.jsonl 2>/dev/null || true
+          git commit -m "chore: Phase 1 audit log update" || true
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
