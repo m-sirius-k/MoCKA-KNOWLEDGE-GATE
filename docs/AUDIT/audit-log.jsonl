@@ -1,0 +1,5 @@
+{"timestamp":"2025-11-20T16:00:00Z","actor":"PJL","role":"PJL","action":"SYSTEM_INIT","target":"MoCKA_AUDIT_LOG","classification":"Confidential","trust_score":5.0,"result":"success","notes":"Audit log initialized for MoCKA system governance"}
+{"timestamp":"2025-11-20T16:05:00Z","actor":"Copilot","role":"AI","action":"DECLARATION_CREATE","target":"Copilot00-20251120","classification":"Restricted","trust_score":3.8,"result":"success","notes":"AI declaration created and saved"}
+{"timestamp":"2025-11-20T16:10:00Z","actor":"Gemini","role":"AI","action":"DECLARATION_CREATE","target":"Gemini00-20251120","classification":"Public","trust_score":4.2,"result":"success","notes":"Public declaration from Gemini"}
+{"timestamp":"2025-11-20T16:15:00Z","actor":"PJL","role":"PJL","action":"REVISION_APPEND","target":"REV-2025-11-20-01","classification":"Confidential","trust_score":4.2,"result":"success","notes":"Governance framework revision recorded"}
+{"timestamp":"2025-11-20T16:20:00Z","actor":"PJL","role":"PJL","action":"OVERRIDE_INVOKED","target":"Copilot00-20251120","classification":"Restricted","trust_score":5.0,"result":"success","notes":"PJL accessed restricted content"}
