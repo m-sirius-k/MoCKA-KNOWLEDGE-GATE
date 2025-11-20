@@ -1,0 +1,23 @@
+# AI共有宣言改訂ログ
+# 日付: 2025-11-20
+# 説明: AI共有宣言の制度変更・改訂の履歴
+
+---
+revisions:
+  - id: "REV-001"
+    date: "2025-11-20"
+    action: "declaration_system_initialized"
+    title: "AI共有宣言保存構造の初期化"
+    description: |
+      AI共有宣言システムの保存構造を初期化しました。
+      - AI-SHARE-LOGS ディレクトリを作成
+      - Copilot, Gemini, Perplexity 用の個別ディレクトリを配置
+      - 命名形式: {AI_NAME}{SERIAL}-{YYYYMMDD}
+      - 目的: AIごとの宣言の透明性と履歴管理
+    affected_ais: ["Copilot", "Gemini", "Perplexity"]
+    status: "completed"
+    committed_by: "nsjpkimura-del"
+    related_files:
+      - "docs/AI-SHARE-LOGS/Copilot"
+      - "docs/AI-SHARE-LOGS/Gemini"
+      - "docs/AI-SHARE-LOGS/Perplexity"
