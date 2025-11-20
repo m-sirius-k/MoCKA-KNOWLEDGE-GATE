@@ -1,0 +1,25 @@
+# Copilot AI共有宣言 (00) - 2025-11-20
+
+ai_name: Copilot
+serial: 0
+date: "20251120"
+fileName: "Copilot00-20251120"
+summary: "Copilot AI共有システム初期実装完了"
+shared_by: "Copilot Team"
+
+---
+details: |
+  CopilotをCopilotとして初めてAI共有システムを成力感で実装しました。
+  
+  実装内容：
+  - AI-SHARE-LOGSディレクトリ構造完成
+  - 各AI用ディレクトリ配置
+  - 改訂ログシステム確立
+  - 宣言テンプレートスキーマ定義
+  
+  次ステップ：
+  - 実装ガイドの拠筆
+  - APIエンドポイント実装
+
+created_at: "2025-11-20T13:00:00Z"
+updated_at: "2025-11-20T13:00:00Z"
