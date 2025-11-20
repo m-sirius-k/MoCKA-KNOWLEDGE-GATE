@@ -1,0 +1,78 @@
+# AI共有宣言保存構造 YAMLスキーマ
+# 日付: 2025-11-20
+# 説明: AI名 + 連番 + 日付形式で自動保存
+
+---
+# AI共有宣言購歴構造
+ai_share_declarations:
+  structure:
+    root: /ai-share-logs
+    format: "{AI_NAME}{SERIAL}-{YYYYMMDD}"
+  
+  directory_layout: |
+    /ai-share-logs
+      ├── Copilot/
+      │   ├── Copilot00-20251120.yaml
+      │   ├── Copilot01-20251121.yaml
+      └── ...
+      ├── Gemini/
+      │   ├── Gemini00-20251120.yaml
+      └── ...
+      ├── Perplexity/
+      │   ├── Perplexity00-20251119.yaml
+      └── ...
+  
+  declaration_file_schema:
+    ai_name: string
+    serial: integer
+    date: string  # YYYYMMDD
+    fileName: string  # AI_NAME + serial (00-99) + date
+    summary: string
+    details: string
+    shared_by: string
+    created_at: timestamp
+    updated_at: timestamp
+
+# 改訂ログ構造
+revision_logs:
+  structure:
+    root: /revision-logs
+    
+  revision_log_schema:
+    id: string  # UUID
+    action: string  # declaration_created | declaration_updated | declaration_deleted
+    date: string  # ISO8601 (YYYY-MM-DD)
+    aiName: string
+    fileName: string
+    summary: string
+    details: string
+    timestamp: timestamp
+
+# 例: Copilotが2025年ᄓ11月1日に初めて宏模延を宣言
+copilot_declaration_example:
+  api_endpoint: POST /api/ai-share-declarations
+  request_body:
+    aiName: Copilot
+    summary: "Copilot Model Execution Framework Release"
+    details: |
+      We have completed development of the Copilot Model Execution 
+      Framework v1.0. This framework enables standardized model outputs 
+      and integration with MoCKA systems.
+  
+  response:
+    status: success
+    fileName: "Copilot00-20251101"
+    docId: "Copilot/Copilot00-20251101"
+
+# 例: Geminiが同日、複数回の宏模延を宣言
+gemini_declaration_example:
+  api_endpoint: POST /api/ai-share-declarations
+  request_body:
+    aiName: Gemini
+    summary: "Gemini Reasoning & Analysis Suite"
+    details: "Release of advanced reasoning algorithms..."
+  
+  response:
+    status: success
+    fileName: "Gemini00-20251101"
+    docId: "Gemini/Gemini00-20251101"
