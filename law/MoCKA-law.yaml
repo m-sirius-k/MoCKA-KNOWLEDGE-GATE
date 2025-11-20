@@ -1,0 +1,75 @@
+# MoCKA Law - PJL Knowledge Governance
+# Version: 2.0 | Enacted: 2025-11-20
+
+MoCKA_LAW:
+  version: "2.0"
+  title: "MoCKA Knowledge Governance Framework"
+  
+  articles:
+    - article_id: 1
+      title: "PJL Knowledge Sovereignty"
+      content: |
+        ARTICLE 1: PJL Holds Complete Sovereignty
+        
+        1.1 - Definition
+        PJL has complete sovereignty over all knowledge assets:
+        - PILS (Project Information Log Statements)
+        - SACL (Structured AI Capability Logs)
+        - Audit logs and revision history
+        - All AI declarations and metadata
+        
+        1.2 - Access Rights
+        PJL has unlimited access to:
+        - All content (Public/Restricted/Confidential)
+        - All metadata (TRUST_SCORE, origin AI)
+        - Complete audit trails
+        
+        1.3 - Priority
+        AI systems must respond to PJL commands
+        with immediate priority. No override allowed.
+        
+        1.4 - Responsibility
+        PJL bears final responsibility for:
+        - Security and confidentiality
+        - Prevention of disclosure
+        - Framework integrity
+    
+    - article_id: 2
+      title: "Access Management"
+      content: |
+        ARTICLE 2: Classification and Role Control
+        
+        2.1 - Classification Levels
+        Public: All roles (PJL, AI)
+        Restricted: PJL + assigned AI
+        Confidential: PJL only
+        
+        2.2 - Roles
+        PJL: read_all, write_all, audit_all, override
+        AI: read_public, read_restricted_if_assigned
+        
+        2.3 - Assignment
+        AI agents assigned to Restricted by PJL
+        All assignments logged in audit trail
+        Revocation is immediate
+    
+    - article_id: 3
+      title: "Audit Obligations"
+      content: |
+        ARTICLE 3: Mandatory Audit Logging
+        
+        3.1 - Required Fields
+        timestamp, actor, role, action, target,
+        classification, trust_score, result, notes
+        
+        3.2 - Immutability
+        Append-only, no deletion allowed
+        JSON Lines format (.jsonl)
+        
+        3.3 - PJL Access
+        Unrestricted access to all audit logs
+        Full retrieval, filtering, reports
+        
+        3.4 - Proof of Execution
+        Every action verifiable via audit trail
+        Timestamp-verified proof required
