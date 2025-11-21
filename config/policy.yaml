@@ -1,18 +1,62 @@
+# MoCKA 2.0 Policy Configuration (PJL-Aligned)
+# Last Updated: 2025-11-21 Phase 4 Go-Live
+# Purpose: Governance gates for task execution with PJL oversight
+
 consent:
+  # ✅ PJL要件: 全タスク実行には明示的同意(consent.approved=true)が必須
   require_explicit: true
-  allowed_actions:
-    Perplexity: ["ingest", "notebooklm_save"]
-    Gemini: ["semantic_index", "embedding_prepare"]
-    Copilot: ["protocol_check", "policy_validate"]
+  comment: "Phase 4 本番運用: PJLによる明示的承認を全タスク実行前に必須化"
+  delegation:
+    - role: "PJLi"
+      authority: "Task execution approval (can delegate to Auditor)"
+    - role: "Auditor"
+      authority: "Consent verification only (read-only)"
+
+allowed_actions:
+  # ✅ ロール別許可アクション (policy.yaml で厳格管理)
+  Perplexity:
+    - "ingest"
+    - "notebooklm_save"
+  Gemini:
+    - "semantic_index"
+    - "embedding_prepare"
+  Copilot:
+    - "protocol_check"
+    - "policy_validate"
+
 roles:
-  PJL:
+  # ✅ PJLi: Project Leadership Lv.i (最高権限)
+  PJLi:
     can_assign: ["Perplexity", "Gemini", "Copilot"]
-    overrides: true
+    overrides_sla: true
+  # ✅ Auditor: 監査・検証専用 (読み取り権限のみ)
   Auditor:
     can_view: ["Results", "AUDIT"]
+    can_verify_consent: true
+
+# ✅ SLA: Service Level Agreement
 sla:
   default_due_days: 2
   required_task_fields: ["task_id", "title", "objective", "assigned", "inputs"]
+
+# ⚠️ SAFETY: 並列実行上限 (Phase 4 本番運用で重要)
 safety:
+  # 🔴 重要: max_parallel_per_ai は "3" に固定
+  # PJL判定: Phase 4ブートでは2タスク同時まで推奨
+  # 複数タスク投入時は PJL に事前確認を求める
   max_parallel_per_ai: 3
+  parallel_limit_reason: "Resource constraint: 3AI × 3 parallel = max 9 concurrent executors"
+  
+  # Phase 4 初回運用での並列実行タスク数
+  phase_4_boot:
+    recommended_parallel: 1  # 初回はシングルタスク推奨
+    max_allowed: 2          # 2タスクまでは許可 (PJL approval needed)
+    absolute_limit: 3       # 3つ以上は要・PJL特別承認
+  
   debug_mode_env_key: "DEBUG_MODE"
+  dry_run_only_env_key: "DRY_RUN"
+
+# 📋 Consent Gate: Task に consent.approved=true がなければ Blocked
+# 📋 Role Gate: assigned role が allowed_actions に登録されていることが必須
+# 📋 Idempotency: 重複タスク投入は IDEMPOTENT_SKIP で二重実行防止
+# 📋 Audit Trail: 全タスク実行は AUDIT/audit-log.jsonl に append-only で記録
