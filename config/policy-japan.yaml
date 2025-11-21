@@ -1,0 +1,82 @@
+# MoCKA 2.0 Phase 9 - APPI Compliance Policy
+# Act on the Protection of Personal Information (APPI) - Japan
+
+policy_name: "APPI-Compliance"
+region: "Japan"
+effective_date: "2025-11-21"
+
+data_retention:
+  audit_logs: "12 months"
+  results: "6 months"
+  personal_data: "3 months"
+  consent_records: "36 months"
+  business_records: "7 years"
+
+rights:
+  # Japanese Personal Information Protection Rights
+  access: true
+  correction: true
+  deletion: true
+  cessation: true
+  transmission: true
+
+consent:
+  require_consent: true
+  purpose_notification: true
+  consent_documentation: true
+  withdrawal_allowed: true
+  scope_limitation: true
+
+security_measures:
+  encryption: "AES-256"
+  anonymization: true
+  pseudonymization: true
+  access_control: "Role-based"
+  employee_training: "Annual"
+  security_audit: "Annual"
+  incident_notification: "Within reasonable time"
+
+audit:
+  log_format: "JSONL"
+  retention: "12 months"
+  external_review: "Claude-Auditor-Global"
+  transparency: true
+  frequency: "Quarterly"
+
+sla:
+  request_response_days: 30
+  compliance_check: "monthly"
+  escalation: "Personal Information Protection Manager"
+  audit_review_days: 14
+
+data_handler_obligations:
+  safety_measures: true
+  purpose_limitation: true
+  appropriate_management: true
+  employee_supervision: true
+  contractor_supervision: true
+
+breach_response:
+  notification_required: true
+  notification_timeline: "Without delay"
+  documentation: true
+  ppc_notification: true
+  remedial_measures: true
+
+purpose_specification:
+  clear_purpose: true
+  narrow_scope: true
+  no_secondary_use: true
+  exception_documentation: true
+
+notes:
+  - "APPI applies to organizations handling personal information of Japanese residents"
+  - "Cookies and device identifiers treated as personal information under APPI"
+  - "All personal data handling requires documented consent"
+  - "Annual security audits and employee training required"
+  - "Personal Information Protection Manager must oversee compliance"
+  - "Contractors must be properly supervised and managed"
+
+template_version: "1.0"
+last_updated: "2025-11-21"
+maintained_by: "MoCKA Governance Team"
