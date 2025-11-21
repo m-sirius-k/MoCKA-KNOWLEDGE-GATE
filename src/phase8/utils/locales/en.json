@@ -1,0 +1,12 @@
+{
+  "task_completion_rate": "Task Completion Rate",
+  "sla_compliance_rate": "SLA Compliance Rate",
+  "improvement_proposals": "Improvement Proposals",
+  "average_trust_score": "Average Trust Score",
+  "requeue_rate": "Requeue Rate",
+  "governance": "Governance",
+  "audit_status": "Audit Status",
+  "compliance_score": "Compliance Score",
+  "documentation": "Documentation",
+  "version": "Version"
+}
