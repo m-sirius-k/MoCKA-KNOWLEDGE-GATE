@@ -1,0 +1,165 @@
+name: MoCKA 2.0 Task Execution Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run mode (distribution only, no execution)'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+env:
+  MOCKA_MODE: ${{ github.event.inputs.dry_run == 'true' && 'DRY-RUN' || 'PRODUCTION' }}
+  DEBUG_MODE: ${{ github.event.inputs.dry_run == 'true' && 'true' || 'false' }}
+
+jobs:
+  distribute:
+    name: Task Distribution (Phase 1)
+    runs-on: ubuntu-latest
+    outputs:
+      task_ids: ${{ steps.tasks.outputs.ids }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Inject sample tasks
+        id: tasks
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          python src/phase2/create_sample_task.py
+          echo "ids=TASK-2025-11-21-DRYRUN-001,TASK-2025-11-21-PROD-001" >> $GITHUB_OUTPUT
+
+      - name: Verify Queues distribution
+        run: |
+          ls -la AI-SHARE-LOGS/Queues/ || echo "Queues directory pending creation"
+
+  execute-perplexity:
+    name: Execute Perplexity Tasks
+    runs-on: ubuntu-latest
+    needs: distribute
+    if: github.event.inputs.dry_run != 'true'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute Perplexity executor
+        env:
+          DEBUG_MODE: ${{ env.DEBUG_MODE }}
+        run: python src/phase1/executor_perplexity.py
+
+      - name: Commit execution results
+        run: |
+          git config user.name "MoCKA-BOT"
+          git config user.email "mocka@system"
+          git add AI-SHARE-LOGS/Results/
+          git commit -m "ci: Perplexity task execution results" || echo "No changes to commit"
+          git push
+
+  execute-gemini:
+    name: Execute Gemini Tasks
+    runs-on: ubuntu-latest
+    needs: distribute
+    if: github.event.inputs.dry_run != 'true'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute Gemini executor
+        env:
+          DEBUG_MODE: ${{ env.DEBUG_MODE }}
+        run: python src/phase1/executor_gemini.py
+
+      - name: Commit execution results
+        run: |
+          git config user.name "MoCKA-BOT"
+          git config user.email "mocka@system"
+          git add AI-SHARE-LOGS/Results/
+          git commit -m "ci: Gemini task execution results" || echo "No changes to commit"
+          git push
+
+  execute-copilot:
+    name: Execute Copilot Tasks
+    runs-on: ubuntu-latest
+    needs: distribute
+    if: github.event.inputs.dry_run != 'true'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Execute Copilot executor
+        env:
+          DEBUG_MODE: ${{ env.DEBUG_MODE }}
+        run: python src/phase1/executor_copilot.py
+
+      - name: Commit execution results
+        run: |
+          git config user.name "MoCKA-BOT"
+          git config user.email "mocka@system"
+          git add AI-SHARE-LOGS/Results/
+          git commit -m "ci: Copilot task execution results" || echo "No changes to commit"
+          git push
+
+  audit-trail:
+    name: Generate Audit Trail
+    runs-on: ubuntu-latest
+    needs: [distribute, execute-perplexity, execute-gemini, execute-copilot]
+    if: always()
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate audit record
+        env:
+          MOCKA_MODE: ${{ env.MOCKA_MODE }}
+          DEBUG_MODE: ${{ env.DEBUG_MODE }}
+        run: |
+          python src/utils/audit.py --mode=$MOCKA_MODE --debug=$DEBUG_MODE
+          git config user.name "MoCKA-BOT"
+          git config user.email "mocka@system"
+          git add AI-SHARE-LOGS/Audit/
+          git commit -m "ci: MoCKA audit trail record ($MOCKA_MODE)" || echo "No changes to commit"
+          git push
