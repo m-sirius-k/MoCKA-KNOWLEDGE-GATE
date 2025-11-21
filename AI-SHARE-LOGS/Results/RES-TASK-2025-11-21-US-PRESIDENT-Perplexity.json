@@ -1,0 +1,17 @@
+{
+  "task_id": "TASK-2025-11-21-US-PRESIDENT",
+  "title": "US President Information",
+  "content": "Current United States President Information",
+  "data": {
+    "president_number": 47,
+    "president_jp": "統不是第47代",
+    "president_en": "The current US President is the 47th",
+    "status": "active",
+    "display_message": "現在のアメリカ大統領は第47代"
+  },
+  "meta": {
+    "created_at": "2025-11-21T20:50:00Z",
+    "source": "MoCKA 2.0 Knowledge Base",
+    "version": "1.0"
+  }
+}
