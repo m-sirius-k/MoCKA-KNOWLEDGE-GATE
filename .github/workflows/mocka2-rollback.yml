@@ -1,0 +1,35 @@
+name: MoCKA 2.0 Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Commit SHA or tag to revert to'
+        required: true
+        type: string
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Revert repository to ref
+        run: |
+          git reset --hard ${{ github.event.inputs.ref }}
+          git push --force
+      - name: Log rollback action
+        run: |
+          python - <<'PY'
+          import json, os, datetime
+          os.makedirs("AUDIT", exist_ok=True)
+          with open("AUDIT/audit-log.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({
+              "actor": "ROLLBACK",
+              "action": "REPOSITORY_REVERTED",
+              "ref": "${{ github.event.inputs.ref }}",
+              "timestamp": datetime.datetime.utcnow().isoformat(),
+              "result": "success"
+            }, ensure_ascii=False) + "\n")
+          PY
