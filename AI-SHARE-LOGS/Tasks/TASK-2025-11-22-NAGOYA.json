@@ -1,0 +1,19 @@
+{
+  "task_id": "TASK-2025-11-22-NAGOYA",
+  "title": "\u660e\u65e5\u306e\u540d\u53e4\u5c4b\u306e\u5929\u6c17\u3068\u6c17\u6e29",
+  "objective": "\u540d\u53e4\u5c4b\u306e\u660e\u65e5\uff082025-11-22\uff09\u306e\u5929\u6c17\u3068\u6700\u9ad8\u3001\u6700\u4f4e\u6c17\u6e29\u3092\u8981\u7d04\u3059\u308b",
+  "priority": "High",
+  "due": "2025-11-22",
+  "assigned": [
+    { "ai": "Perplexity", "role": "executor" }
+  ],
+  "inputs": {
+    "city": "Nagoya",
+    "region": "Aichi",
+    "date": "2025-11-22"
+  },
+  "status": "Ready",
+  "meta": {
+    "ui_display": true
+  }
+}
