@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK-2025-11-21-CLAUDE-001",
+  "title": "External Audit Role - Phase 6 Initialization",
+  "objective": "Re-validate audit logs and results, generate improvement proposals, strengthen institutional governance",
+  "priority": "High",
+  "due": "2025-11-23",
+  "assigned": [
+    {
+      "ai": "Claude",
+      "role": "external_review"
+    }
+  ],
+  "inputs": {
+    "audit_log": "AUDIT/audit-log.jsonl",
+    "results_dir": "AI-SHARE-LOGS/Results/"
+  },
+  "classification": "Restricted",
+  "consent": {
+    "approved": true,
+    "issued_by": "PJL"
+  },
+  "status": "New",
+  "meta": {
+    "action_required": [
+      "external_review",
+      "recommendation_commit"
+    ],
+    "phase": "Phase 6",
+    "milestone": "External Audit Integration Active",
+    "dry_run_mode_supported": true
+  }
+}
