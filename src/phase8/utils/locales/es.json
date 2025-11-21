@@ -1,0 +1,12 @@
+{
+  "task_completion_rate": "Tasa de Finalización de Tareas",
+  "sla_compliance_rate": "Tasa de Cumplimiento de SLA",
+  "improvement_proposals": "Propuestas de Mejora",
+  "average_trust_score": "Puntuación de Confianza Promedio",
+  "requeue_rate": "Tasa de Reencola",
+  "governance": "Gobernanza",
+  "audit_status": "Estado de Auditía",
+  "compliance_score": "Puntuación de Cumplimiento",
+  "documentation": "Documentación",
+  "version": "Versión"
+}
