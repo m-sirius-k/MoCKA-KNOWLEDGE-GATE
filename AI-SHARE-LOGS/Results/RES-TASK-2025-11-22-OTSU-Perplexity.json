@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK-2025-11-22-OTSU",
+  "executor": "Perplexity",
+  "status": "completed",
+  "result_data": {
+    "city": "Otsu",
+    "region": "Shiga",
+    "date": "2025-11-22",
+    "weather": "云\u308a (云 - Cloudy)",
+    "temperature": {
+      "max_celsius": 12,
+      "min_celsius": 6,
+      "max_fahrenheit": 54,
+      "min_fahrenheit": 43
+    },
+    "humidity": "62%",
+    "wind_speed_kmh": 11
+  },
+  "timestamp": "2025-11-21T20:30:00+09:00",
+  "display_ready": true
+}
