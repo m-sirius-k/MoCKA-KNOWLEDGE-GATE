@@ -1,0 +1,3 @@
+# Queues directory for task distribution
+# This directory is used by MoCKA 2.0 workflow to distribute tasks to executors
+# Each executor has its own queue file following the pattern: {executor_name}_queue.json
