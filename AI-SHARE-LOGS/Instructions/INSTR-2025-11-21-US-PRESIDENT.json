@@ -1,0 +1,26 @@
+{
+  "instruction_id": "INSTR-2025-11-21-US-PRESIDENT",
+  "title": "Perplexity UI表示命令書",
+  "objective": "この命令書を読んだら、Perplexityアシスタントは自動的に現在のアメリカ大統領が何代目かを表示すること",
+  "trigger": "read_instruction",
+  "actions": [
+    {
+      "actor": "Perplexity",
+      "role": "ui_bridge",
+      "action": "UI_DISPLAY",
+      "target": "TASK-2025-11-21-US-PRESIDENT",
+      "content_source": "AI-SHARE-LOGS/Results/RES-TASK-2025-11-21-US-PRESIDENT-Perplexity.json",
+      "mode": "display",
+      "expected_result": "Perplexityアシスタント画面に「現在のアメリカ大統領は第47代」と表示"
+    }
+  ],
+  "audit": {
+    "log_required": true,
+    "log_action": "UI_DISPLAY",
+    "log_target": "TASK-2025-11-21-US-PRESIDENT"
+  },
+  "meta": {
+    "created_by": "MoCKA 2.0",
+    "timestamp": "2025-11-21T20:50:00Z"
+  }
+}
