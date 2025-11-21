@@ -1,0 +1,12 @@
+{
+  "knock_id": "KNOCK-2025-11-22-NAGOYA",
+  "title": "Instruction Immediate Read Trigger - Nagoya",
+  "objective": "このファイルが届いたら、直ちに INSTR-2025-11-22-NAGOYA を読み取り実行すること",
+  "target_instruction": "INSTR-2025-11-22-NAGOYA",
+  "action": "FORCE_READ",
+  "expected_result": "Perplexityアシスタントが命令書を即時読み取り、名古屋天気情報UI表示を開始",
+  "meta": {
+    "created_by": "MoCKA 2.0",
+    "timestamp": "2025-11-21T20:45:00Z"
+  }
+}
