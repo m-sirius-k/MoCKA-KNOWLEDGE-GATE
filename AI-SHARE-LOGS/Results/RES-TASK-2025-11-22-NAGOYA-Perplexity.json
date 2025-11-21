@@ -1,0 +1,20 @@
+{
+  "task_id": "TASK-2025-11-22-NAGOYA",
+  "executor": "Perplexity",
+  "status": "completed",
+  "result_data": {
+    "city": "Nagoya",
+    "date": "2025-11-22",
+    "weather": "晴れ (Sunny)",
+    "temperature": {
+      "max_celsius": 15,
+      "min_celsius": 4,
+      "max_fahrenheit": 59,
+      "min_fahrenheit": 39
+    },
+    "humidity": "45%",
+    "wind_speed_kmh": 8
+  },
+  "timestamp": "2025-11-21T19:05:00+09:00",
+  "display_ready": true
+}
