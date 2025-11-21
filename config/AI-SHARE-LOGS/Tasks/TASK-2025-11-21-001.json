@@ -1,0 +1,24 @@
+{
+  "task_id": "TASK-2025-11-21-001",
+  "title": "R-BIM事業フェーズ2分析",
+  "objective": "知識永続化と制度検証",
+  "priority": "High",
+  "due": "2025-11-22",
+  "assigned": [
+    { "ai": "Perplexity", "role": "ingest" },
+    { "ai": "Gemini", "role": "semantic_index" },
+    { "ai": "Copilot", "role": "protocol_check" }
+  ],
+  "inputs": {
+    "pils_id": "PILS-2025-11-21-0002"
+  },
+  "classification": "Restricted",
+  "consent": {
+    "approved": true,
+    "issued_by": "PJL"
+  },
+  "status": "New",
+  "meta": {
+    "action_required": ["notebooklm_save", "qva_audit", "colab_run"]
+  }
+}
