@@ -1,0 +1,30 @@
+ci: MoCKA 2.0 Patrol Workflow (30min scheduled health check + multi-executor coordination)
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  patrol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyyaml
+      - name: Distribute pending tasks
+        run: python src/phase2/coordinator_v2.py
+      - name: Execute engines (dry-run off)
+        run: |
+          echo "Dry-run disabled for patrol"
+          python src/phase2/executor_perplexity_v2.py
+          python src/phase2/executor_gemini_v2.py
+          python src/phase2/executor_copilot_v2.py
+      - name: Commit patrol results
+        run: |
+          git config --global user.name "MoCKA-AI"
+          git config --global user.email "mocka-ai@example.com"
+          git add AI-SHARE-LOGS/Queues/ AI-SHARE-LOGS/Results/ AUDIT/
+          git commit -m "Patrol: scheduled health check and execution" || echo "No changes"
+          git push
