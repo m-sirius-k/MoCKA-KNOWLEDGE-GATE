@@ -1,0 +1,19 @@
+{
+  "audit_id": "AUDIT-2025-11-21-UI-DISPLAY",
+  "timestamp": "2025-11-21T19:10:00+09:00",
+  "events": [
+    {
+      "actor": "Perplexity",
+      "role": "ui_bridge",
+      "action": "UI_DISPLAY",
+      "target": "TASK-2025-11-22-NAGOYA",
+      "result": "shown",
+      "content": {
+        "weather": "Sunny (晴れ)",
+        "temp_max_c": 15,
+        "temp_min_c": 4
+      },
+      "event_timestamp": "2025-11-21T19:10:00+09:00"
+    }
+  ]
+}
