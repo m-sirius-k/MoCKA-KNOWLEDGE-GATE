@@ -1,0 +1,45 @@
+{
+  "audit_id": "AUDIT-2025-11-21-OTSU-UI-EXECUTION",
+  "instruction_id": "INSTR-2025-11-22-OTSU",
+  "timestamp": "2025-11-21T20:35:00+09:00",
+  "execution_status": "SUCCESS",
+  "events": [
+    {
+      "sequence": 1,
+      "action": "INSTRUCTION_READ",
+      "target": "INSTR-2025-11-22-OTSU.json",
+      "result": "success",
+      "details": "Instruction file read and parsed"
+    },
+    {
+      "sequence": 2,
+      "action": "TRIGGER_FIRE",
+      "target": "read_instruction",
+      "result": "success",
+      "details": "Trigger condition met"
+    },
+    {
+      "sequence": 3,
+      "actor": "Perplexity",
+      "role": "ui_bridge",
+      "action": "UI_DISPLAY",
+      "target": "TASK-2025-11-22-OTSU",
+      "result": "shown",
+      "content_source": "RES-TASK-2025-11-22-OTSU-Perplexity.json",
+      "displayed_content": {
+        "city": "\u5927\u6d25",
+        "weather": "\u4e91\u308a (Cloudy)",
+        "temp_max_c": 12,
+        "temp_min_c": 6,
+        "humidity": "62%",
+        "wind_speed_kmh": 11
+      },
+      "event_timestamp": "2025-11-21T20:35:00+09:00"
+    }
+  ],
+  "meta": {
+    "system": "MoCKA 2.0",
+    "version": "2.0.1",
+    "execution_mode": "autonomous_instruction_based"
+  }
+}
