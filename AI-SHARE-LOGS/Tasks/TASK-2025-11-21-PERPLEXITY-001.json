@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK-2025-11-21-PERPLEXITY-001",
+  "executor": "perplexity",
+  "dry_run": false,
+  "consent": {
+    "require_explicit": true,
+    "approved": true,
+    "timestamp": "2025-11-21T10:00:00Z",
+    "approver": "admin@mocka-knowledge-gate.com"
+  },
+  "role": {
+    "required": ["executor", "auditor"],
+    "user": ["executor", "auditor", "admin"],
+    "match": true
+  },
+  "sla": {
+    "timeout_seconds": 3600,
+    "max_retries": 3,
+    "retry_delay_seconds": 30
+  },
+  "parameters": {
+    "operation": "semantic_search",
+    "query": "MoCKA 2.0 システム設計の主要特性",
+    "knowledge_base": "mocka-knowledge-gate",
+    "max_results": 5
+  },
+  "metadata": {
+    "created_at": "2025-11-21T10:00:00Z",
+    "source": "manual_submission",
+    "priority": "high"
+  }
+}
