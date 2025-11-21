@@ -1,0 +1,12 @@
+{
+  "task_completion_rate": "任务完成率",
+  "sla_compliance_rate": "SLA合规率",
+  "improvement_proposals": "改进建议",
+  "average_trust_score": "平均信任分数",
+  "requeue_rate": "重新排队率",
+  "governance": "治理",
+  "audit_status": "审计状态",
+  "compliance_score": "合规分数",
+  "documentation": "文档",
+  "version": "版本"
+}
