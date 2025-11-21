@@ -1,0 +1,18 @@
+consent:
+  require_explicit: true
+  allowed_actions:
+    Perplexity: ["ingest", "notebooklm_save"]
+    Gemini: ["semantic_index", "embedding_prepare"]
+    Copilot: ["protocol_check", "policy_validate"]
+roles:
+  PJL:
+    can_assign: ["Perplexity", "Gemini", "Copilot"]
+    overrides: true
+  Auditor:
+    can_view: ["Results", "AUDIT"]
+sla:
+  default_due_days: 2
+  required_task_fields: ["task_id", "title", "objective", "assigned", "inputs"]
+safety:
+  max_parallel_per_ai: 3
+  debug_mode_env_key: "DEBUG_MODE"
