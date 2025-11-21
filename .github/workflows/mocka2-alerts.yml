@@ -1,0 +1,39 @@
+name: MoCKA 2.0 Alerts (Audit-driven)
+
+on:
+  workflow_run:
+    workflows: ["MoCKA 2.0 Task Execution", "MoCKA 2.0 Patrol (Scheduled Health Check)"]
+    types: [completed]
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan audit for failures
+        run: |
+          python - <<'PY'
+          import json, re, os
+          audit = "AUDIT/audit-log.jsonl"
+          fails = []
+          if os.path.exists(audit):
+            for line in open(audit, "r", encoding="utf-8"):
+              try:
+                e = json.loads(line)
+                if e.get("result") in ["error", "warn"] and e.get("action") in ["TASK_BLOCKED", "NOTEBOOKLM_FAIL", "SLA_CHECK_ERROR"]:
+                  fails.append(e)
+              except:
+                pass
+          if fails:
+            with open("alert.md", "w", encoding="utf-8") as f:
+              f.write("# MoCKA Alerts\n\n")
+              f.write("重大な失敗が検出されました。\n\n")
+              f.write(json.dumps(fails, ensure_ascii=False, indent=2))
+          PY
+      - name: Create issue if alerts present
+        if: ${{ hashFiles('alert.md') != '' }}
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "MoCKA 2.0 Alert: Failures detected in last run"
+          content-file: alert.md
+          labels: failure, audit
