@@ -1,0 +1,69 @@
+# MoCKA 2.0 Phase 9 - GDPR Compliance Policy
+# EU General Data Protection Regulation (GDPR) Response Policy
+
+policy_name: "GDPR-Compliance"
+region: "EU"
+effective_date: "2025-11-21"
+
+data_retention:
+  audit_logs: "24 months"
+  results: "12 months"
+  personal_data: "6 months"
+  task_records: "18 months"
+
+rights:
+  access: true
+  rectification: true
+  erasure: true
+  portability: true
+  objection: true
+
+consent:
+  require_explicit: true
+  withdrawal_allowed: true
+  audit_required: true
+  documentation_required: true
+
+security_measures:
+  encryption: "AES-256"
+  anonymization: true
+  pseudonymization: true
+  breach_notification: "72h"
+  access_control: "Role-based"
+  logging: "Comprehensive"
+
+audit:
+  log_format: "JSONL"
+  retention: "24 months"
+  transparency: true
+  external_review: "Claude-Auditor-Global"
+  frequency: "Monthly"
+
+sla:
+  default_due_days: 2
+  compliance_check: "daily"
+  escalation: "Data Protection Officer"
+  audit_review_days: 7
+
+data_processing:
+  lawful_basis: "explicit_consent"
+  purpose_limitation: true
+  storage_limitation: true
+  integrity_confidentiality: true
+
+breaches:
+  notification_required: true
+  notification_timeline: "72h"
+  documentation: true
+  supervisory_authority: true
+  affected_data_subjects: true
+
+notes:
+  - "GDPR compliance requires explicit consent for all personal data processing"
+  - "Audit logs undergo external review by Claude-Auditor-Global"
+  - "Breach notification required within 72 hours"
+  - "Data Protection Officer assigned for oversight and member protection"
+
+template_version: "1.0"
+last_updated: "2025-11-21"
+maintained_by: "MoCKA Governance Team"
