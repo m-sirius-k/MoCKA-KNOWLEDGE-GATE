@@ -1,0 +1,44 @@
+name: MoCKA 2.0 Invite Verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'Firebase invite code to verify'
+        required: false
+        type: string
+        default: 'INVITE-BOOT-001'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify invite code
+        run: |
+          python - <<'PY'
+          import json, os, datetime
+          code = "${{ github.event.inputs.code }}"
+          os.makedirs("AUDIT", exist_ok=True)
+          
+          valid_codes = ["INVITE-BOOT-001", "INVITE-PHASE5-001"]
+          is_valid = code in valid_codes
+          
+          with open("AUDIT/audit-log.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps({
+              "actor": "INVITE-VERIFY",
+              "action": "INVITE_CODE_CHECK",
+              "code": code,
+              "result": "valid" if is_valid else "invalid",
+              "timestamp": datetime.datetime.utcnow().isoformat()
+            }, ensure_ascii=False) + "\n")
+          
+          if not is_valid:
+            print(f"ERROR: Invalid invite code '{code}'; blocking run.")
+            exit(1)
+          else:
+            print(f"OK: Invite code '{code}' verified successfully.")
+          PY
+      - name: Log verification result
+        if: always()
+        run: echo "Invite verification complete. Check AUDIT/audit-log.jsonl for details."
