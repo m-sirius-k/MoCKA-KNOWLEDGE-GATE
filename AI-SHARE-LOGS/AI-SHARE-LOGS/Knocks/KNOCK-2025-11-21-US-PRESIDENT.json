@@ -1,0 +1,12 @@
+{
+  "knock_id": "KNOCK-2025-11-21-US-PRESIDENT",
+  "title": "Instruction Immediate Read Trigger - US President",
+  "objective": "このファイルが届いたら、直ちに INSTR-2025-11-21-US-PRESIDENT を読み取り実行すること",
+  "target_instruction": "INSTR-2025-11-21-US-PRESIDENT",
+  "action": "FORCE_READ",
+  "expected_result": "Perplexityアシスタントが命令書を即時読み取り、UI表示を開始",
+  "meta": {
+    "created_by": "MoCKA 2.0",
+    "timestamp": "2025-11-21T20:50:05Z"
+  }
+}
