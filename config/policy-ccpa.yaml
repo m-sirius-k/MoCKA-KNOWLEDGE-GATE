@@ -1,0 +1,80 @@
+# MoCKA 2.0 Phase 9 - CCPA/CPRA Compliance Policy
+# California Consumer Privacy Act (CCPA) & California Privacy Rights Act (CPRA)
+
+policy_name: "CCPA-CPRA-Compliance"
+region: "California (US)"
+effective_date: "2025-11-21"
+
+data_retention:
+  audit_logs: "12 months"
+  results: "12 months"
+  personal_data: "36 months"
+  consumer_requests: "24 months"
+  transaction_records: "24 months"
+
+rights:
+  # California Consumer Rights
+  access: true
+  deletion: true
+  opt_out: true
+  right_to_know: true
+  right_to_delete: true
+  right_to_opt_out_sale: true
+  right_to_limit_use: true
+  right_to_correct: true
+
+consent_requirements:
+  opt_in_for_sale: true
+  opt_out_option: true
+  clear_disclosure: true
+  consumer_rights_notice: true
+  child_protection: true
+  child_age_limit: 13
+
+security_measures:
+  encryption: "AES-256"
+  data_minimization: true
+  access_controls: true
+  security_training: "Annual"
+  incident_response: "documented"
+  security_audit: "Annual"
+
+audit:
+  log_format: "JSONL"
+  retention: "24 months"
+  external_review: "Claude-Auditor-Global"
+  transparency: true
+  frequency: "Quarterly"
+
+sla:
+  request_response_days: 45
+  deletion_request_days: 45
+  opt_out_processing_days: "15 days"
+  compliance_check: "quarterly"
+  escalation: "Chief Privacy Officer"
+
+data_categories:
+  identifiers: true
+  commercial_info: true
+  biometric_data: true
+  internet_activity: true
+  geolocation_data: true
+  professional_info: true
+  education_info: true
+  inferences: true
+
+verification:
+  identity_verification: true
+  authorized_agent: true
+  documentation_required: true
+
+notes:
+  - "CCPA applies to for-profit organizations collecting California residents data"
+  - "CPRA (effective 2023) strengthens privacy rights and enforces penalties"
+  - "Consumers have right to access, delete, and opt-out of data sales"
+  - "Chief Privacy Officer responsible for policy enforcement"
+  - "Annual security audits required under CCPA"
+
+template_version: "1.0"
+last_updated: "2025-11-21"
+maintained_by: "MoCKA Governance Team"
