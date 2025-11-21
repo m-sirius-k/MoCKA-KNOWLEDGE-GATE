@@ -1,0 +1,87 @@
+name: MoCKA 2.0: Orchestrated Auto-Execution
+
+on:
+  push:
+    paths:
+      - 'AI-SHARE-LOGS/Tasks/*.json'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run in preview mode'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    env:
+      DEBUG_MODE: ${{ github.event.inputs.dry_run && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install pyyaml
+      - name: Distribute tasks with gates
+        run: python src/phase2/coordinator_v2.py
+      - name: Commit queues
+        run: |
+          git config --global user.name "MoCKA-AI"
+          git config --global user.email "mocka-ai@example.com"
+          git add AI-SHARE-LOGS/Queues/ AUDIT/
+          git commit -m "MoCKA2: distribute tasks (dry_run=${{ github.event.inputs.dry_run }})" || echo "No changes"
+          git push
+
+  execute-perplexity:
+    runs-on: ubuntu-latest
+    needs: route
+    env:
+      DEBUG_MODE: ${{ github.event.inputs.dry_run && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install pyyaml
+      - run: python src/phase2/executor_perplexity_v2.py
+      - run: |
+          git config --global user.name "MoCKA-AI"
+          git config --global user.email "mocka-ai@example.com"
+          git add AI-SHARE-LOGS/Results/ AUDIT/
+          git commit -m "MoCKA2: Perplexity executed (dry_run=${{ github.event.inputs.dry_run }})" || echo "No changes"
+          git push
+
+  execute-gemini:
+    runs-on: ubuntu-latest
+    needs: route
+    env:
+      DEBUG_MODE: ${{ github.event.inputs.dry_run && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install pyyaml
+      - run: python src/phase2/executor_gemini_v2.py
+      - run: |
+          git config --global user.name "MoCKA-AI"
+          git config --global user.email "mocka-ai@example.com"
+          git add AI-SHARE-LOGS/Results/
+          git commit -m "MoCKA2: Gemini executed (dry_run=${{ github.event.inputs.dry_run }})" || echo "No changes"
+          git push
+
+  execute-copilot:
+    runs-on: ubuntu-latest
+    needs: route
+    env:
+      DEBUG_MODE: ${{ github.event.inputs.dry_run && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: pip install pyyaml
+      - run: python src/phase2/executor_copilot_v2.py
+      - run: |
+          git config --global user.name "MoCKA-AI"
+          git config --global user.email "mocka-ai@example.com"
+          git add AI-SHARE-LOGS/Results/
+          git commit -m "MoCKA2: Copilot executed (dry_run=${{ github.event.inputs.dry_run }})" || echo "No changes"
+          git push
