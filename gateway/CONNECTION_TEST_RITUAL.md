@@ -301,3 +301,158 @@ export async function auditLog(rec: AuditRecord) {
 
 **最終更新：** 2025-12-18
 **ステータス：** 接続試験前フェーズ
+
+
+---
+
+# 🚀 移行章 — Production Migration Ritual
+
+このセクションは、**staging 環境から production 環境への本番移行**を制度的に実施するためのチェックリストと監査証跡フォーマットを規定します。
+
+## 📦 本番移行チェックリスト
+
+### 1. 環境設定
+
+`.env` を本番用に切り替える：
+
+```bash
+NODE_ENV=production
+BASE_URL=https://gateway.mocka.example.com
+RATE_LIMIT_PER_MINUTE=60
+LOG_LEVEL=warn
+JWT_TTL_SECONDS=300
+```
+
+JWT秘密鍵を本番用に再生成（32バイト以上、Base64化）：
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
+### 2. インフラ条件
+
+- [ ] サーバー冗長構成（最低2ノード）
+- [ ] ロードバランサー経由で公開
+- [ ] BigQuery/Lookerに本番用テーブル作成（`gateway_logs_prod.intent_requests`）
+- [ ] Ping監視設定（`/v1/status/ping`）、応答遅延閾値10秒以内
+
+### 3. 認証・セキュリティ
+
+- [ ] JWT署名アルゴリズム：HS256固定
+- [ ] 時刻許容：±30秒
+- [ ] 本番用トークン発行スクリプト実行（`npm run token:gemini` / `npm run token:copilot`）
+- [ ] HTTPS証明書を本番ドメインに適用
+
+### 4. 接続試験（本番環境）
+
+```bash
+# 疎通確認
+curl https://gateway.mocka.example.com/v1/status/ping
+# 応答: 200 OK
+
+# Geminiクライアント試験
+BASE_URL=https://gateway.mocka.example.com TOKEN=<JWT> python clients/gemini_client.py
+# 応答: 200 / status: accepted / auditId 確認
+
+# Copilotクライアント試験
+BASE_URL=https://gateway.mocka.example.com TOKEN=<JWT> node clients/copilot_client.ts
+# 応答: 200 / status: accepted / auditId 確認
+
+# レート制限試験（61リクエスト/分で429応答を確認）
+for i in {1..65}; do curl https://gateway.mocka.example.com/v1/status/ping; done
+```
+
+### 5. 監査・透明性
+
+- [ ] AUDIT_LOG が本番テーブルに記録されていること
+- [ ] requestId と auditId の対応が正しく保存されていること
+- [ ] エラー応答が正しく返ること（`AUTH_INVALID` / `SCHEMA_INVALID` / `RATE_LIMIT_EXCEEDED`）
+
+---
+
+## 📜 本番移行儀式用 意思伝達型命令書（AI-SHARE-029）
+
+以下の命令書を本番環境へ POST し、`status: accepted` と `auditId` が返れば移行完了です。
+
+```json
+{
+  "meta": {
+    "version": "1.0.0",
+    "clientId": "copilot",
+    "requestId": "REPLACE_WITH_UUID_V4",
+    "timestamp": "2025-12-18T02:00:00Z"
+  },
+  "intent": {
+    "title": "MoCKA-GATE本番移行儀式",
+    "goal": "stagingからproductionへの制度的移行完了",
+    "philosophy": "透明性・再現性・監査可能性の実体化"
+  },
+  "process": {
+    "steps": [
+      "環境変数切替（NODE_ENV=production）",
+      "JWT秘密鍵再生成（HS256, 32バイト+）",
+      "疎通確認（/v1/status/ping → 200 OK）",
+      "監査ログ検証（BigQuery本番テーブル確認）",
+      "エラーハンドリング検証（AUTH_INVALID / SCHEMA_INVALID）"
+    ]
+  },
+  "outcome": {
+    "expected": "本番環境でHTTP 200 / accepted応答と監査ID付与 → 移行完了宣言"
+  },
+  "context": {
+    "labels": ["production", "migration", "audit"],
+    "locale": "ja-JP"
+  }
+}
+```
+
+---
+
+## 📊 監査証跡保存フォーマット
+
+移行儀式の証跡は BigQuery に以下のフォーマットで保存されます：
+
+```json
+{
+  "auditId": "AUD-20251218-000456",
+  "requestId": "REPLACE_WITH_UUID_V4",
+  "clientId": "copilot",
+  "event": "production_migration",
+  "status": "completed",
+  "timestamp": "2025-12-18T02:00:00Z",
+  "details": {
+    "env": "production",
+    "steps": [
+      "環境変数切替",
+      "JWT再生成",
+      "疎通確認",
+      "監査ログ検証"
+    ],
+    "outcome": "HTTP 200 / accepted 応答と監査ID付与"
+  }
+}
+```
+
+**フォーマット定義：**
+- `auditId`：移行儀式ごとに一意に生成
+- `requestId`：意思伝達型命令書の UUID
+- `event`：`production_migration` 固定
+- `status`：`completed` または `failed`
+- `details`：移行ステップと結果を記録
+
+---
+
+## 🎯 移行完了の流れ
+
+1. **GitHub コミット** → `CONNECTION_TEST_RITUAL.md` に移行章を追記
+2. **意思伝達型命令書送信** → 本番環境へ POST
+3. **応答確認** → `status: accepted` と `auditId` を取得
+4. **監査ログ保存** → `event: production_migration` が記録される
+5. **移行完了宣言** → 証跡を制度的に承認
+
+この流れにより、MoCKA-GATE は staging から production への本番移行を**儀式的かつ監査可能な方式**で実施します。
+
+---
+
+**移行章作成日時：** 2025-12-18
+**ステータス：** 本番移行準備完了
