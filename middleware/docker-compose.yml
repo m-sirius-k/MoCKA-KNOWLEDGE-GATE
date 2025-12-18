@@ -1,0 +1,55 @@
+# MoCKA 2.0 器と道 Docker Compose Configuration
+# Suabase PostgreSQL + Python FastAPI Relay
+
+version: '3.8'
+
+services:
+  supabase-postgres:
+    image: postgres:16-alpine
+    container_name: mocka-postgres
+    environment:
+      POSTGRES_DB: ${SUPABASE_DB:-postgres}
+      POSTGRES_USER: ${SUPABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${SUPABASE_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mocka-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SUPABASE_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  relay-api:
+    build: .
+    container_name: mocka-relay-api
+    environment:
+      FIREBASE_CREDS_PATH: /app/firebase-key.json
+      SUPABASE_HOST: supabase-postgres
+      SUPABASE_PORT: 5432
+      SUPABASE_DB: ${SUPABASE_DB:-postgres}
+      SUPABASE_USER: ${SUPABASE_USER:-postgres}
+      SUPABASE_PASSWORD: ${SUPABASE_PASSWORD:-postgres}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./firebase-key.json:/app/firebase-key.json:ro
+      - ./server.py:/app/server.py:ro
+      - ./utils.py:/app/utils.py:ro
+    depends_on:
+      supabase-postgres:
+        condition: service_healthy
+    networks:
+      - mocka-network
+    command: python -m uvicorn server:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  postgres_data:
+
+networks:
+  mocka-network:
+    driver: bridge
