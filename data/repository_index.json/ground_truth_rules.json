@@ -1,0 +1,23 @@
+{
+  "ground_truth_id": "MoCKA_KNOWLEDGE_GATE_GT_v1",
+  "version": "1.0.0",
+  "description": "MoCKA 2.0 / AI-SHARE 統合リポジトリの公式参照定義",
+  "created_at": "2026-01-10T00:00:00+09:00",
+  "updated_at": "2026-01-10T15:00:00+09:00",
+  "priority_order": ["constitution", "implementation", "knowledge"],
+  "read_sequence": [
+    "README.md", "README-MOCKA2.md", "ARCHITECTURE.md", "MOCKA2-OPERATION-GUIDE.md",
+    "MOCKA-INTEGRATION-GUIDE.md", "PHASE5-GOLIVE-CHECKLIST.md", "TEST-SCENARIOS.md", "TROUBLESHOOTING.md"
+  ],
+  "rules": {
+    "do_not_override": [
+      "ARCHITECTURE.md", "MOCKA2-OPERATION-GUIDE.md", "mocka_api_spec.yaml", "firestore_schema.js"
+    ],
+    "ai_write_allowed": [
+      "AI-SHARE-LOGS/", "data/", "docs/", "philosophy/", "law/"
+    ],
+    "ai_must_treat_as_canonical": [
+      "README-MOCKA2.md", "ARCHITECTURE.md", "MOCKA2-OPERATION-GUIDE.md"
+    ]
+  }
+}
