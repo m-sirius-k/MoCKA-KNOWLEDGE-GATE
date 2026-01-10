@@ -1,0 +1,23 @@
+{
+  "rules": [
+    {
+      "name": "constitution",
+      "pattern": "^constitution/",
+      "description": "Constitution and founding principles"
+    },
+    {
+      "name": "implementation",
+      "pattern": "^implementation/",
+      "description": "Implementation details and specs"
+    },
+    {
+      "name": "knowledge_log",
+      "pattern": "^knowledge_log/",
+      "description": "Knowledge logs and learning records"
+    }
+  ],
+  "validation_rules": {
+    "required_fields": ["name", "pattern", "description"],
+    "max_depth": 3
+  }
+}
