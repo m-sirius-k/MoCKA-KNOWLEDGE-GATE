@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "repository": {
+    "name": "MoCKA-KNOWLEDGE-GATE",
+    "owner": "nsjpkimura-del",
+    "default_branch": "main",
+    "description": "MoCKA 2.0 knowledge gate and AI governance repository"
+  },
+  "last_updated": "2026-01-10T15:00:00+09:00",
+  "notes": "This file is the ground map of the repository for AI agents.",
+  "layers": {
+    "constitution": [
+      {"path": "ARCHITECTURE.md", "type": "file", "role": "architecture_spec", "priority": 1},
+      {"path": "MOCKA-INTEGRATION-GUIDE.md", "type": "file", "role": "integration_guide", "priority": 1},
+      {"path": "MOCKA2-OPERATION-GUIDE.md", "type": "file", "role": "operation_guide", "priority": 1},
+      {"path": "README-MOCKA2.md", "type": "file", "role": "mocks_root_readme", "priority": 1},
+      {"path": "README-MOCKA2-PHASE7.md", "type": "file", "role": "phase7_readme", "priority": 2},
+      {"path": "PHASE1-API-VERIFICATION.md", "type": "file", "role": "phase1_log", "priority": 2},
+      {"path": "PHASE4-COMPLETION-SUMMARY.md", "type": "file", "role": "phase4_summary", "priority": 2},
+      {"path": "PHASE5-GOLIVE-CHECKLIST.md", "type": "file", "role": "go_live_checklist", "priority": 1},
+      {"path": "TEST-SCENARIOS.md", "type": "file", "role": "test_scenarios", "priority": 2},
+      {"path": "TROUBLESHOOTING.md", "type": "file", "role": "troubleshooting_guide", "priority": 2},
+      {"path": "MOCKA-AI-EVENTDRIVEN-INTEGRATION-JP.md", "type": "file", "role": "event_driven_integration", "priority": 2},
+      {"path": "README.md", "type": "file", "role": "root_readme", "priority": 1}
+    ],
+    "implementation": [
+      {"path": "firestore_schema.js", "type": "file", "role": "firestore_schema", "priority": 1},
+      {"path": "mocka_api_spec.yaml", "type": "file", "role": "openapi_spec", "priority": 1},
+      {"path": "package.json", "type": "file", "role": "node_project_manifest", "priority": 2},
+      {"path": "package-lock.json", "type": "file", "role": "dependency_lock", "priority": 3},
+      {"path": "run_perplexity_workflow.sh", "type": "file", "role": "shell_script", "priority": 2},
+      {"path": "config/", "type": "dir", "role": "config_root", "priority": 2},
+      {"path": "connection/", "type": "dir", "role": "connection_config", "priority": 2},
+      {"path": "gateway/", "type": "dir", "role": "gateway_impl", "priority": 2},
+      {"path": "middleware/", "type": "dir", "role": "middleware_impl", "priority": 2},
+      {"path": "src/", "type": "dir", "role": "app_source", "priority": 1},
+      {"path": "tests/", "type": "dir", "role": "test_source", "priority": 2},
+      {"path": ".github/", "type": "dir", "role": "github_ci_cd", "priority": 3}
+    ],
+    "knowledge": [
+      {"path": "AI-SHARE-LOGS/", "type": "dir", "role": "ai_share_logs", "priority": 1},
+      {"path": "docs/", "type": "dir", "role": "docs_root", "priority": 1},
+      {"path": "data/", "type": "dir", "role": "data_root", "priority": 2},
+      {"path": "law/", "type": "dir", "role": "legal_knowledge", "priority": 1},
+      {"path": "philosophy/", "type": "dir", "role": "philosophy_knowledge", "priority": 1},
+      {"path": "pages/", "type": "dir", "role": "ui_pages", "priority": 2}
+    ]
+  }
+}
