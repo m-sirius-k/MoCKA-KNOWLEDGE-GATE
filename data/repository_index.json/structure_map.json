@@ -1,0 +1,49 @@
+{
+  "system": "MoCKA-KNOWLEDGE-GATE",
+  "source": {
+    "type": "github",
+    "repository": "nsjpkimura-del/MoCKA-KNOWLEDGE-GATE",
+    "branch": "main"
+  },
+  "watch_targets": [
+    {
+      "path": "ARCHITECTURE.md",
+      "category": "constitution",
+      "on_change": ["sync_to_gcs", "notify_ai_share"]
+    },
+    {
+      "path": "MOCKA2-OPERATION-GUIDE.md",
+      "category": "constitution",
+      "on_change": ["sync_to_gcs", "update_notebooklm_groundtruth"]
+    },
+    {
+      "path": "mocka_api_spec.yaml",
+      "category": "implementation",
+      "on_change": ["sync_to_gcs", "trigger_cloud_functions_redeploy"]
+    },
+    {
+      "path": "firestore_schema.js",
+      "category": "implementation",
+      "on_change": ["sync_to_gcs"]
+    },
+    {
+      "path": "AI-SHARE-LOGS/",
+      "category": "knowledge_log",
+      "on_change": ["archive_to_gcs"]
+    }
+  ],
+  "targets": {
+    "gcs": {
+      "bucket": "mocka-knowledge-gate-public",
+      "base_path": "repo_mirror/"
+    },
+    "cloud_functions": {
+      "function_name": "mirror_github_to_gcs",
+      "region": "asia-northeast1"
+    },
+    "notebooklm": {
+      "usage": "ground_truth",
+      "notes": "Use key MoCKA_GATE_REPO_INDEX as root"
+    }
+  }
+}
