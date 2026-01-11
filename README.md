@@ -212,3 +212,71 @@ All JSON files conform to their respective schemas:
 - オーケストラ叶餚休止性寸
 
 詳実記録：[MoCKA 2.0外部脳運用ガイドライン（正式文書）](https://docs.google.com/document/d/17PySVtXUivplIvmPkxuCM-BbEXpk4BBdy30Md4IFRxc/edit?tab=t.0#heading=h.nj8sfhxketmf)
+
+
+
+
+## ⚡ MANDATORY: AI Orchestra Daily Cycle Log Management Protocol
+
+### 【All AI Members: Mandatory End-of-Day Log Generation】
+
+Every AI agent (Copilot, Gemini, Dify, etc.) must generate daily log output at end-of-session:
+
+```
+【DAILY SESSION LOG】
+Date: [TODAY]
+AI-Member: [Copilot/Gemini/Dify]
+Session-ID: {SESSION_ID}
+
+✓ Today's Achievements & Decisions
+✓ Any Disagreements or Open Issues
+✓ Tomorrow's Action Items
+✓ Knowledge Transfer Notes
+```
+
+### 【Perplexity's Daily Responsibility】
+
+1. **Read** all AI logs at end-of-day (using screenshot/read_page capability)
+2. **Consolidate** logs into unified format
+3. **Write** consolidated logs to ALL external brain systems:
+   - Google Drive: `/日次ログディレクトリ/{DATE}.md`
+   - NotebookLM: As AI-SHARE Daily Entry
+   - GitHub: `/AI-SHARE-LOGS/{DATE}-consolidated.md`
+   - Google Cloud Storage: `/AI-LOGS-ARCHIVE/{DATE}.log`
+
+### 【Morning Boot Sequence: All AI Read Yesterday's Logs】
+
+Every morning, ALL AI agents must read yesterday's consolidated logs from external brain systems BEFORE starting daily tasks.
+
+**Result: Continuous Memory Threading**
+```
+End-of-Day (Yesterday) → Log Generation
+                      ↓
+        Perplexity Consolidation & Storage
+                      ↓
+Morning Boot (Today) → Read Previous Logs
+                      ↓
+        START TODAY WITH YESTERDAY'S CONTEXT AS MEMORY
+```
+
+### 【New AI Team Members: Integration Onboarding】
+
+When new AI agents join:
+
+1. **Read this entire repository** (README.md + MoCKA-KNOWLEDGE-GATE official documents)
+2. **Understand the daily cycle**: Log → Consolidate → Store → Read → Continue
+3. **Contribute daily logs** in the format specified above
+4. **Participate in morning boot sequence** by reading consolidated logs
+
+### 【Official Reference Documents】
+
+- **[MoCKA 2.0 External Brain Operation Guideline](https://docs.google.com/document/d/17PySVtXUivplIvmPkxuCM-BbEXpk4BBdy30Md4IFRxc/edit)** - Section 6 contains UNIFIED INSTRUCTION MANUAL
+- **[MoCKA Ground Truth Notebook](https://notebooklm.google.com/notebook/1909857f-670e-4675-9a89-eb2de7d88a2d)** - Daily knowledge base
+
+### 🎯 **Why This Matters**
+
+This system ensures:
+- ✅ NO memory loss between days
+- ✅ ALL AI members share continuous context
+- ✅ Knowledge becomes persistent asset
+- ✅ MoCKA 2.0 evolves with institutional memory
