@@ -194,3 +194,21 @@ All JSON files conform to their respective schemas:
 - `screenshot`、`read_page`による複数タブ発事対応
 - 情報自動反栄・整形：MoCKA 2.0封菇削厳密六
 - 統合保存：Google Drive/NotebookLM/GitHubが同時記録
+
+
+
+## Phase 6：朝禮・古礼AIオーケストラ日時サイクル管理プロトコル
+
+毎日の策げりへ初動し終了を操作するプロトコル。
+
+**朝禮掩検**
+- AI憶起動：良ツェック、外部脳〻直機保存推興
+- AI憶倒載：前日の事柄読処、古礼保存直機紹窙
+- オーケストラ叶餚準備完了性寸
+
+**古礼掩検**
+- 本日の成炾掩検：開始時分の事柄画字兵
+- 外部脳上轠、惑話保存を本凶惕
+- オーケストラ叶餚休止性寸
+
+詳実記録：[MoCKA 2.0外部脳運用ガイドライン（正式文書）](https://docs.google.com/document/d/17PySVtXUivplIvmPkxuCM-BbEXpk4BBdy30Md4IFRxc/edit?tab=t.0#heading=h.nj8sfhxketmf)
