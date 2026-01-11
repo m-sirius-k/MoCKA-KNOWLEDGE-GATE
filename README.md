@@ -160,3 +160,14 @@ All JSON files conform to their respective schemas:
 > "The journey is not waste. It is an asset for the future."
 
 **Next Phase:** Phase 6 Daily Cycle Automation & External Brain Synchronization
+
+
+
+## MoCKA 2.0 運用ガイドライン
+
+### 正式文書符参照
+
+本リポジトリの管理およびMoCKA 2.0稼動の機能化を与える『 MoCKA 2.0 外部脳運用ガイドライン（正式文書）』を以下の情報資源に管理しています。
+
+- **Google Drive**: [MoCKA 2.0 外部脳運用ガイドライン（正式文書）](https://docs.google.com/document/d/17PySVtXUivplIvmPkxuCM-BbEXpk4BBdy30Md4IFRxc/edit?tab=t.0)
+- **NotebookLM 知識ベース**: [MoCKA Ground Truth Notebook](https://notebooklm.google.com/notebook/1909857f-670e-4675-9a89-eb2de7d88a2d)
