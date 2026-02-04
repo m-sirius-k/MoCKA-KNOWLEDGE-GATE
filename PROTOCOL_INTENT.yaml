@@ -1,0 +1,37 @@
+version: 1.0.0
+description: >
+  MoCKA External Brain - Intent Script Protocol.
+  INTENT_SCRIPT は「記録された知識から導かれた、実行可能な行動スクリプト」を表す。
+
+intent_script:
+  source_pils_id: "notion-page-id-or-url"
+  created_at: "2026-02-04T21:00:00+09:00"
+  created_by: "Perplexity+Claude"
+
+  reasoning_summary: >
+    起点レコードを読み取り、現状・課題・望ましい結果を3行以内で記述する。
+
+  executor: "browser-use"
+  safety_level: "readonly"
+
+  actions:
+    - id: "step-1"
+      type: "open"
+      target: "https://example.com"
+      params:
+        selector: null
+        text: null
+        wait_ms: 1000
+      expected_result: "ページが正常に表示されていること"
+
+    - id: "step-2"
+      type: "click"
+      target: "button#login"
+      params:
+        selector: "button#login"
+        text: null
+        wait_ms: 500
+      expected_result: "ログインフォームが表示される"
+
+  notes: >
+    追加の注意点や、人間のレビューコメントなど。
