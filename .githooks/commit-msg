@@ -1,0 +1,15 @@
+#!/bin/sh
+MSGFILE="$1"
+
+# Require Event_ID: EV-YYYYMMDD-NNNN anywhere in message
+if ! grep -Eq 'EV-[0-9]{8}-[0-9]{4}' "$MSGFILE"; then
+  echo "ERROR: Commit message must include Event_ID like EV-YYYYMMDD-NNNN" 1>&2
+  echo "Example: EV-20260218-0007: sheets permission fix" 1>&2
+  exit 1
+fi
+
+# Store latest Event_ID into git config mocka.eventId
+EV=$(grep -Eo 'EV-[0-9]{8}-[0-9]{4}' "$MSGFILE" | head -n 1)
+git config mocka.eventId "$EV" >/dev/null 2>&1
+
+exit 0
