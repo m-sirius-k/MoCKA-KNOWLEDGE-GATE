@@ -1,4 +1,6 @@
-﻿# MoCKA Knowledge Gate
+﻿[Whitepaper v0.1](https://github.com/nsjpkimura-del/mocka-civilization/blob/main/WHITEPAPER_v0.1.md)
+
+# MoCKA Knowledge Gate
 ## Institutional Memory Layer
 
 MoCKA Knowledge Gate is the Institutional Memory Layer of the MoCKA architecture.
@@ -44,4 +46,5 @@ AIの試行錯誤を歴史化することである。
 ---
 Part of the MoCKA Deterministic Governance Architecture.
 See Civilization layer for full structural doctrine.
+
 
