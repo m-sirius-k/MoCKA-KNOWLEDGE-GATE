@@ -1,0 +1,46 @@
+﻿MoCKA Series SSOT
+Generated: 2026-02-17
+Base: C:\Users\sirok
+
+Series Units
+1) mocka-knowledge-gate
+   Role: process and governance core
+   Canonical manifest (project-root level):
+   - middleware\requirements.txt
+   Canonical env:
+   - gateway\.env
+   Example env:
+   - gateway\.env.example
+
+2) mocka-pythonbridge
+   Role: external brain and browser experiments
+   Canonical manifests (project-root level):
+   - browser-use-api\ (missing manifest at root level)
+   - browser-use-poc\requirements.txt
+   - mocka_orchestrator\requirements.txt
+   Canonical env:
+   - mocka_orchestrator\.env
+   Allowed env (explicit load only):
+   - browser-use-api\.env
+   - browser-use-poc\.env.poc
+   Forbidden by default:
+   - mocka-pythonbridge\.env at repo root, unless explicitly sanctioned
+   Canonical venv dirs (allowed):
+   - browser-use-api\.venv
+   - browser-use-poc\.venv
+   - mocka_orchestrator\.venv
+   Notes:
+   - Any additional venv such as ".venv311" must be removed or whitelisted.
+
+3) mocka-infield
+   Role: infield worker attempts
+   Canonical manifest (project-root level):
+   - (missing manifest at root level)
+   Canonical entrypoint:
+   - define inside repo SSOT
+
+Rules
+- No dotenv auto-discovery. Entrypoints must load env by explicit path.
+- No activate-based execution. Entrypoints must call venv python directly.
+- Series gate fails on forbidden env or unexpected venv.
+- Only project-root manifests are considered canonical (no deep scans).
