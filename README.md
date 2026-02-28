@@ -1,5 +1,7 @@
 ﻿[Whitepaper v0.1](https://github.com/nsjpkimura-del/mocka-civilization/blob/main/WHITEPAPER_v0.1.md)
 
+Structured institutional memory layer.
+
 # MoCKA Knowledge Gate
 ## Institutional Memory Layer
 
