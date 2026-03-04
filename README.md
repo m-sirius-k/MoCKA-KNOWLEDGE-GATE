@@ -123,3 +123,5 @@ Webhook receiver
 
 .github/WEBHOOK-RECEIVER.md
 '@ | Set-Content -Encoding UTF8 ".\README.md"
+## Role
+Primary Role: Institutional Memory
