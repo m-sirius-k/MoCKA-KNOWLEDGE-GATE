@@ -125,3 +125,7 @@ Webhook receiver
 '@ | Set-Content -Encoding UTF8 ".\README.md"
 ## Role
 Primary Role: Institutional Memory
+
+## Research Map
+See: RESEARCH_MAP.md
+
