@@ -1,99 +1,90 @@
-﻿# MoCKA Knowledge Gate
+﻿# MoCKA Ecosystem
 
-MoCKA Knowledge Gate is the institutional memory layer of the MoCKA Ecosystem.
-It preserves reasoning traces, hypothesis evolution, and governance artifacts as structured, reproducible evidence.
+## EN — Overview
 
-This repository is not a documentation store.
-It is a canonical trace registry.
+MoCKA is a verifiable AI governance architecture designed for deterministic decision systems.
 
-## Architecture Overview
+The ecosystem separates operational domains into **Infield** and **Outfield** to ensure:
 
-Knowledge Gate operates between execution (MoCKA) and transparency layers.
-It ensures that state transitions and reasoning artifacts remain durable and verifiable.
+• deterministic orchestration  
+• cryptographic auditability  
+• institutional memory preservation  
+• public transparency and verification  
 
-![MoCKA Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+Every artifact inside the ecosystem is designed to be **reproducible, verifiable, and auditable**.
 
-## Security Model
+Architecture Overview
 
-Threat assumptions:
+![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
 
-- Historical rewrite (retroactive alteration of records)
-- Selective memory deletion
-- Drift between public proof and internal state
-- Loss of hypothesis evolution trail
 
-Controls:
+## JP — 概要
 
-- Deterministic indexing of artifacts
-- Hash chaining for structural continuity
-- Separation between canonical state and export state
-- Cryptographic signing for governance artifacts
+MoCKA は、決定論的 AI システムのための  
+**検証可能な統治アーキテクチャ**です。
 
-The Knowledge Gate does not modify history.
-It anchors it.
+システムは **Infield / Outfield** の領域分離によって
 
-## Repository Responsibility
+・決定論的オーケストレーション  
+・暗号学的監査可能性  
+・制度的記憶の保存  
+・公開検証による透明性  
 
-This repository focuses on:
+を実現します。
 
-- Structured storage of reasoning traces
-- Indexing of phase artifacts
-- Maintaining cross-reference integrity
-- Enabling reproducible historical inspection
+本エコシステム内の成果物はすべて
 
-## Relationship to Ecosystem
+**再現可能・検証可能・監査可能**
 
-- MoCKA: produces deterministic artifacts
-- Transparency: publishes verifiable extracts
-- Civilization: defines governance doctrine
-- External Brain: connects auxiliary knowledge sources
+であることを前提として設計されています。
+
+Architecture Overview
+
+![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+
 
 ---
 
-# MoCKA Knowledge Gate（日本語）
+## Repository Position
 
-MoCKA Knowledge Gate は、MoCKA エコシステムの制度的記憶層です。
-推論痕跡・仮説進化・統治成果物を、再現可能な証拠として構造保存します。
+EN  
+This repository represents one component of the MoCKA ecosystem.
 
-これは単なるドキュメント保存庫ではありません。
-「正本痕跡レジストリ」です。
+JP  
+このリポジトリは MoCKA エコシステムの構成要素の一つです。
 
-## Architecture Overview（全体図）
 
-Knowledge Gate は実行層（MoCKA）と透明性層の間に位置します。
-状態遷移と推論成果物を、耐久かつ検証可能な形で保持します。
+---
 
-![MoCKA Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+## MoCKA Ecosystem
 
-## Security Model（脅威と対策）
+| Repository | Role |
+|---|---|
+| MoCKA | Deterministic orchestration core |
+| MoCKA-KNOWLEDGE-GATE | Institutional memory layer |
+| mocka-civilization | Governance doctrine |
+| mocka-transparency | Public verification layer |
+| mocka-external-brain | External interoperability |
+| mocka-core-private | Sovereign canonical domain |
 
-想定脅威：
 
-- 履歴の書き換え
-- 選択的な記録削除
-- 公開証拠と内部状態の乖離
-- 仮説進化履歴の喪失
+---
 
-対策：
+## Security Model
 
-- 成果物の決定的インデックス化
-- ハッシュ連鎖による構造的連続性維持
-- 正本状態と公開状態の分離
-- 統治成果物への暗号署名
+EN  
+MoCKA enforces deterministic behavior and verifiable state transitions using:
 
-Knowledge Gate は履歴を書き換えません。
-履歴を固定します。
+• cryptographic signatures  
+• hash chains  
+• reproducible artifacts  
+• governance constraints  
 
-## 本リポジトリの責務
+JP  
+MoCKA は以下により決定論的挙動と検証可能状態遷移を保証します。
 
-- 推論痕跡の構造保存
-- フェーズ成果物の索引管理
-- 参照整合性の維持
-- 再現可能な歴史検証の実現
+・暗号署名  
+・ハッシュ連鎖  
+・再現可能アーティファクト  
+・統治制約
 
-## エコシステム関係
-
-- MoCKA：決定成果物を生成
-- Transparency：公開検証を実施
-- Civilization：統治定義を策定
-- External Brain：補助知識接続
