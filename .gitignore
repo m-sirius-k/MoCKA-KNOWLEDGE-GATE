@@ -163,3 +163,4 @@ cython_debug/
 
 # npm dependencies
 node_modules/
+.backup/
