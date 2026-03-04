@@ -1,276 +1,116 @@
-﻿# MoCKA Ecosystem
+﻿cd C:\Users\sirok\mocka-ecosystem\MoCKA-KNOWLEDGE-GATE
 
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Architecture](https://img.shields.io/badge/architecture-deterministic-black)
-![Governance](https://img.shields.io/badge/governance-verifiable-green)
-![Audit](https://img.shields.io/badge/audit-cryptographic-orange)
+@'
+MoCKA Knowledge Gate
 
----
 
-## EN — Verifiable AI Governance Architecture
+Role
 
-MoCKA is a deterministic governance architecture designed for verifiable AI systems.
+MoCKA Knowledge Gate is the institutional memory layer of the MoCKA ecosystem.
 
-The ecosystem enforces reproducibility and auditability through:
+It preserves reasoning traces, decision context, and verification-relevant documentation as reproducible artifacts.
 
-• deterministic orchestration  
-• cryptographic hash chains  
-• institutional memory preservation  
-• public verification infrastructure  
 
-Architecture Overview
+What You Can Do Here
 
-![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+Understand the governance and memory model used across the MoCKA ecosystem.
 
----
+Navigate canonical documentation and integration documents.
 
-## JP — 検証可能AI統治アーキテクチャ
+Follow verification and transparency workflows.
 
-MoCKA は **検証可能な AI 統治システム** のための決定論的アーキテクチャです。
 
-本エコシステムは以下によって再現性と監査可能性を保証します。
+Canonical Documentation
 
-・決定論的オーケストレーション  
-・暗号ハッシュ連鎖  
-・制度的記憶保存  
-・公開検証基盤  
+Canonical docs are maintained in the ecosystem root documentation directory.
 
-Architecture Overview
+C:\Users\sirok\mocka-ecosystem\_canon\docs
 
-![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+Key documents
 
----
+SYSTEM_OVERVIEW.md
+MOCKA_ARCHITECTURE_DIAGRAM.md
+MOCKA_ECOSYSTEM_DIAGRAM.md
+MOCKA_REPOSITORY_MAP.md
+VERIFICATION_QUICKSTART.md
+INTEGRITY_TRANSPARENCY_MODEL.md
+RESEARCH_POSITIONING.md
+AI_GOVERNANCE_REFERENCE_ARCHITECTURE.md
 
-## Ecosystem Map
 
-| Repository | Role |
-|---|---|
-| MoCKA | Deterministic orchestration core |
-| MoCKA-KNOWLEDGE-GATE | Institutional memory |
-| mocka-civilization | Governance doctrine |
-| mocka-transparency | Public verification |
-| mocka-external-brain | External interoperability |
-| mocka-core-private | Sovereign canonical domain |
+Repository Documents
 
----
+Integration overview
 
-# MoCKA Ecosystem
+docs/INTEGRATION-SUMMARY.md
 
-## EN — Overview
+Monitoring dashboard
 
-MoCKA is a verifiable AI governance architecture designed for deterministic decision systems.
+scripts/docs/MONITORING-DASHBOARD.md
 
-The ecosystem separates operational domains into **Infield** and **Outfield** to ensure:
+Secrets configuration
 
-• deterministic orchestration  
-• cryptographic auditability  
-• institutional memory preservation  
-• public transparency and verification  
+.github/SECRETS-CONFIGURATION.md
 
-Every artifact inside the ecosystem is designed to be **reproducible, verifiable, and auditable**.
+Webhook receiver
 
-Architecture Overview
+.github/WEBHOOK-RECEIVER.md
 
-![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
 
+Design Notes
 
-## JP — 概要
+This repository intentionally emphasizes documentation and traceability.
 
-MoCKA は、決定論的 AI システムのための  
-**検証可能な統治アーキテクチャ**です。
+It is not only a code repository.
 
-システムは **Infield / Outfield** の領域分離によって
+It is an institutional layer for long-term verification and governance continuity.
 
-・決定論的オーケストレーション  
-・暗号学的監査可能性  
-・制度的記憶の保存  
-・公開検証による透明性  
 
-を実現します。
+日本語説明
 
-本エコシステム内の成果物はすべて
 
-**再現可能・検証可能・監査可能**
+MoCKA Knowledge Gate は MoCKA エコシステムの制度的記憶層である。
 
-であることを前提として設計されています。
+判断過程
 
-Architecture Overview
+推論痕跡
 
-![Architecture Overview](docs/architecture/mocka_architecture_overview.png)
+検証に必要な文脈
 
+を再現可能な成果物として保存する。
 
----
 
-## Repository Position
+ここでできること
 
-EN  
-This repository represents one component of the MoCKA ecosystem.
+MoCKA のガバナンスと記憶モデルを理解する。
 
-JP  
-このリポジトリは MoCKA エコシステムの構成要素の一つです。
+正本ドキュメントと運用ドキュメントへ最短で到達する。
 
+検証と透明性のワークフローを追跡する。
 
----
 
-## MoCKA Ecosystem
+正本ドキュメント
 
-| Repository | Role |
-|---|---|
-| MoCKA | Deterministic orchestration core |
-| MoCKA-KNOWLEDGE-GATE | Institutional memory layer |
-| mocka-civilization | Governance doctrine |
-| mocka-transparency | Public verification layer |
-| mocka-external-brain | External interoperability |
-| mocka-core-private | Sovereign canonical domain |
+正本は ecosystem ルートの canonical docs にある。
 
+C:\Users\sirok\mocka-ecosystem\_canon\docs
 
----
 
-## Security Model
+このリポジトリ内のドキュメント
 
-EN  
-MoCKA enforces deterministic behavior and verifiable state transitions using:
+統合概要
 
-• cryptographic signatures  
-• hash chains  
-• reproducible artifacts  
-• governance constraints  
+docs/INTEGRATION-SUMMARY.md
 
-JP  
-MoCKA は以下により決定論的挙動と検証可能状態遷移を保証します。
+監視ダッシュボード
 
-・暗号署名  
-・ハッシュ連鎖  
-・再現可能アーティファクト  
-・統治制約
+scripts/docs/MONITORING-DASHBOARD.md
 
+Secrets 設定
 
+.github/SECRETS-CONFIGURATION.md
 
----
+Webhook receiver
 
-## EN — Keywords
-
-verifiable AI  
-AI governance  
-deterministic systems  
-cryptographic audit  
-reproducible infrastructure  
-AI transparency  
-institutional memory  
-AI verification
-
----
-
-## JP — キーワード
-
-検証可能AI  
-AI統治  
-決定論的システム  
-暗号監査  
-再現可能インフラ  
-AI透明性  
-制度的記憶  
-AI検証
-
----
-
----
-
-## EN Verification Quickstart
-
-Clone the repository and verify commit signatures.
-
-git clone https://github.com/nsjpkimura-del/MoCKA.git
-cd MoCKA
-git log --show-signature
-
-Verify artifact integrity if hashes are provided.
-
-sha256sum <artifact>
-
-MoCKA repositories are designed to support deterministic builds and verifiable artifacts.
-
-
----
-
-## JP 検証クイックスタート
-
-リポジトリを取得し、コミット署名を確認します。
-
-git clone https://github.com/nsjpkimura-del/MoCKA.git
-cd MoCKA
-git log --show-signature
-
-成果物にハッシュがある場合は完全性を確認します。
-
-sha256sum <artifact>
-
-MoCKA リポジトリは決定論的ビルドと検証可能アーティファクトを前提に設計されています。
-
----
-
-
----
-
-EN Docs Entry
-See docs/INDEX.md for the documentation entry point.
-
-JP Docs 入口
-ドキュメント入口は docs/INDEX.md を参照。
-
----
-
----
-
-EN Document Standard
-
-See _canon/docs/MOCKA_DOCUMENT_STANDARD.md for the official documentation format.
-
-JP 文書規格
-
-公式文書フォーマットは _canon/docs/MOCKA_DOCUMENT_STANDARD.md を参照。
-
----
-
----
-
-EN Architecture Paper
-
-The MoCKA architecture paper is available in
-
-_canon/docs/MOCKA_ARCHITECTURE_PAPER.md
-
-JP アーキテクチャ論文
-
-MoCKA アーキテクチャ論文は以下にある
-
-_canon/docs/MOCKA_ARCHITECTURE_PAPER.md
-
----
-
----
-
-EN Whitepaper
-
-MoCKA Whitepaper
-
-_canon/docs/MOCKA_WHITEPAPER.md
-
-JP ホワイトペーパー
-
-MoCKA ホワイトペーパー
-
-_canon/docs/MOCKA_WHITEPAPER.md
-
----
-
----
-
-## Architecture Overview
-
-See architecture diagram
-
-docs/ARCHITECTURE.md
-
----
-
+.github/WEBHOOK-RECEIVER.md
+'@ | Set-Content -Encoding UTF8 ".\README.md"
