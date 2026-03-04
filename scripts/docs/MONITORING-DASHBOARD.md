@@ -1,4 +1,4 @@
-# Felo AI Search - Monitoring Dashboard
+﻿# Felo AI Search - Monitoring Dashboard
 
 ## Overview
 
@@ -200,8 +200,9 @@ The monitoring dashboard can be configured by modifying the following in `monito
 
 ## Related Documentation
 
-- [Secrets Configuration Guide](../SECRETS-CONFIGURATION.md)
-- [Integration Setup](../FELO-INTEGRATION-SETUP.md)
+- [Secrets Configuration Guide](../../.github/SECRETS-CONFIGURATION.md)
+- [Integration Setup](../../.github/FELO-INTEGRATION-SETUP.md)
 - [Webhook Receiver Documentation](../scripts/webhook-receiver.js)
 - [Data Transformer Documentation](../scripts/data-transformer.js)
 - [Test Suite Documentation](../scripts/test-felo-sync.js)
+
