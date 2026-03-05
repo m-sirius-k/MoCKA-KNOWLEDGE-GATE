@@ -1,91 +1,90 @@
-﻿MoCKA Knowledge Gate
+﻿# MoCKA Knowledge Gate
 
-Institutional Memory Layer of the MoCKA Ecosystem
+## Institutional Memory Layer of the MoCKA Ecosystem
 
-MoCKA Knowledge Gate is the institutional memory layer of the MoCKA ecosystem.
+> The repository that preserves the reasoning of the MoCKA civilization.
+
+MoCKA Knowledge Gate is the **institutional memory layer** of the MoCKA ecosystem.
 
 It preserves reasoning traces, research artifacts, governance documentation, and decision context required to reproduce AI governance research.
 
-MoCKA Knowledge Gate は、MoCKA エコシステムにおける制度的記憶レイヤーです。
+MoCKA Knowledge Gate は **MoCKA エコシステムの制度的記憶レイヤー** です。
+
 研究過程、意思決定の背景、設計思想、検証履歴を構造化して保存します。
 
-Architecture Position
+---
 
-MoCKA is composed of several functional layers.
+# Architecture Position
 
-Knowledge Gate is responsible for institutional memory preservation.
+MoCKA is composed of several functional layers.  
+Knowledge Gate maintains the **memory of the ecosystem**.
 
-                     MoCKA Core
-                 Research Execution
-                         │
-                         │
-        ┌────────────────┼────────────────┐
-        │                │                │
- Knowledge Gate     Transparency      External Brain
-   Memory Layer        Audit Layer      Knowledge Layer
-        │
-        │
-     Civilization
- Governance Philosophy
+![Knowledge Gate Architecture](docs/images/knowledge_gate_architecture.svg)
 
-Layer roles
+---
 
-MoCKA Core
-Research execution and verification engine.
+# Layer Roles
 
-Knowledge Gate
-Institutional reasoning archive and documentation memory.
+| Layer | Function |
+|------|------|
+| **MoCKA Core** | Research execution and verification |
+| **Knowledge Gate** | Institutional reasoning archive |
+| **Transparency** | Public audit and verification |
+| **External Brain** | External knowledge integration |
+| **Civilization** | Governance philosophy |
 
-Transparency
-Public verification and audit infrastructure.
+---
 
-External Brain
-External knowledge integration layer.
+# Why Knowledge Gate Exists
 
-Civilization
-Governance philosophy and institutional design.
+Modern AI governance research is complex.
 
-Why Knowledge Gate Exists
+Without institutional memory, research collapses into fragmentation.
 
-Complex research ecosystems must preserve decision context.
+### Typical failure modes
 
-Without institutional memory, the following problems occur.
+- Loss of reasoning traces  
+- Loss of governance context  
+- Irreproducible research results  
+- Institutional knowledge fragmentation  
 
-Loss of reasoning traces
-Loss of governance context
-Irreproducible research results
-Institutional knowledge fragmentation
+Knowledge Gate prevents these failures.
 
-Knowledge Gate prevents these failures by preserving structured research artifacts.
+It acts as the **memory infrastructure of the MoCKA ecosystem**.
 
-The repository acts as the memory infrastructure of the MoCKA ecosystem.
+---
 
-Knowledge Preservation Architecture
+# Knowledge Preservation Architecture
 
-Knowledge Gate converts research artifacts into institutional memory.
+Research artifacts are converted into institutional memory.
 
+```
 Research Artifact
-       │
-       ▼
+      │
+      ▼
 Knowledge Gate Documentation
-       │
-       ▼
+      │
+      ▼
 Traceable Institutional Memory
+```
 
-Artifacts preserved include
+### Stored artifacts
 
-architecture documentation
-research maps
-decision context
-governance documentation
-verification reports
+- architecture documentation  
+- research maps  
+- decision context  
+- governance documents  
+- verification reports  
 
 These artifacts ensure research results remain reconstructable.
 
-Knowledge Workflow
+---
 
-Research knowledge moves through the following lifecycle.
+# Knowledge Workflow
 
+Knowledge flows through the research lifecycle.
+
+```
 Experiment
      │
      ▼
@@ -99,70 +98,119 @@ Knowledge Gate Archival
      │
      ▼
 Institutional Memory
+```
 
-日本語
+### 日本語
 
+```
 実験
-↓
+ ↓
 実験登録
-↓
+ ↓
 Research Gate 検証
-↓
+ ↓
 Knowledge Gate 保存
-↓
+ ↓
 制度的記憶
+```
 
-Guarantees Provided by Knowledge Gate
+---
 
-Knowledge Gate ensures several critical properties of the MoCKA ecosystem.
+# Knowledge Artifact Map
 
-Traceability
+Knowledge Gate organizes institutional memory into structured artifacts.
+
+```
+                Research Process
+                       │
+                       ▼
+               Research Artifacts
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+ Architecture      Research Map   Governance Docs
+ Documentation     Registry       Institutional Design
+        │              │              │
+        └──────────────┼──────────────┘
+                       │
+                       ▼
+                Knowledge Gate
+              Institutional Memory
+                       │
+                       ▼
+                Civilization Layer
+```
+
+---
+
+# Guarantees Provided by Knowledge Gate
+
+### Traceability
+
 Research reasoning can be reconstructed.
 
-Institutional continuity
+### Institutional Continuity
+
 Knowledge survives beyond individual researchers.
 
-Governance transparency
+### Governance Transparency
+
 Decision context remains visible.
 
-Reproducibility
+### Reproducibility
+
 Research artifacts allow experiments to be reproduced.
 
-Repository Contents
+---
 
-Knowledge Gate contains documentation required to reconstruct research reasoning and governance decisions.
+# Repository Contents
 
-Typical materials include
+Knowledge Gate contains documentation required to reconstruct research reasoning.
 
-system architecture documentation
-research maps
-governance documentation
-institutional design records
-verification documentation
+Typical contents include
 
-These artifacts form the institutional memory of the MoCKA ecosystem.
+- system architecture documentation  
+- research maps  
+- governance design documents  
+- institutional design records  
+- verification documentation  
 
-Relationship to Other Repositories
-Layer	Role	Repository
-MoCKA Core	Research gate and execution	https://github.com/nsjpkimura-del/MoCKA
+These materials form the **institutional memory of the MoCKA ecosystem**.
 
-Knowledge Gate	Institutional memory	https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+---
 
-Transparency	Audit and public proof	https://github.com/nsjpkimura-del/mocka-transparency
+# Relationship to Other Repositories
 
-External Brain	External knowledge integration	https://github.com/nsjpkimura-del/mocka-external-brain
+| Layer | Repository |
+|------|------------|
+| MoCKA Core | https://github.com/nsjpkimura-del/MoCKA |
+| Knowledge Gate | https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE |
+| Transparency | https://github.com/nsjpkimura-del/mocka-transparency |
+| External Brain | https://github.com/nsjpkimura-del/mocka-external-brain |
+| Civilization | https://github.com/nsjpkimura-del/mocka-civilization |
 
-Civilization	Governance philosophy	https://github.com/nsjpkimura-del/mocka-civilization
-Design Principle
+---
 
-Knowledge Gate emphasizes documentation and reasoning traceability.
+# Design Principle
 
-The repository intentionally prioritizes structured knowledge preservation over executable code.
+Knowledge Gate prioritizes **structured knowledge preservation**.
 
-This ensures the MoCKA ecosystem retains long-term institutional memory.
+The repository focuses on
 
-Summary
+- documentation integrity  
+- reasoning traceability  
+- institutional continuity  
 
-MoCKA Knowledge Gate serves as the institutional memory infrastructure of the MoCKA ecosystem.
+This ensures MoCKA retains **long-term institutional memory**.
 
-It preserves the reasoning artifacts that make AI governance systems transparent, traceable, and reproducible.
+---
+
+# Summary
+
+MoCKA Knowledge Gate functions as the **memory infrastructure of the MoCKA ecosystem**.
+
+It preserves the reasoning artifacts that make AI governance systems
+
+- transparent  
+- traceable  
+- reproducible
