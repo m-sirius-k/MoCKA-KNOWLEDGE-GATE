@@ -1,4 +1,4 @@
-﻿# MoCKA Series SSOT
+# MoCKA Series SSOT
 Generated: 2026-02-17T18:18:54
 Base: C:\Users\sirok
 

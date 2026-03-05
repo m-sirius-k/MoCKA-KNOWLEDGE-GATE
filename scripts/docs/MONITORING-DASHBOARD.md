@@ -1,4 +1,4 @@
-﻿# Felo AI Search - Monitoring Dashboard
+# Felo AI Search - Monitoring Dashboard
 
 ## Overview
 

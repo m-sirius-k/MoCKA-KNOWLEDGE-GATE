@@ -37,11 +37,11 @@ RESULT: Phase 1 infrastructure complete
 
 ### 3. Closed-Loop Traceability Established
 Every action now follows the pattern:
-1. **Action Occurs** → System performs operation
-2. **INTENT_SCRIPT Generated** → Structured command documentation
-3. **Activity Console Record** → Single-point logging
-4. **PILS Reference** → Context linkage
-5. **Artifact Preservation** → GitHub commit/URL
+1. **Action Occurs** ↁESystem performs operation
+2. **INTENT_SCRIPT Generated** ↁEStructured command documentation
+3. **Activity Console Record** ↁESingle-point logging
+4. **PILS Reference** ↁEContext linkage
+5. **Artifact Preservation** ↁEGitHub commit/URL
 
 This creates complete end-to-end traceability.
 

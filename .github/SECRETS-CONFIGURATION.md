@@ -88,19 +88,18 @@ Secret: https://webhook.example.com/felo/webhook
 
 ### Verify Secrets Are Set:
 
-1. Go to **Settings** → **Secrets and variables** → **Actions**
+1. Go to **Settings** ↁE**Secrets and variables** ↁE**Actions**
 2. Confirm both secrets appear in the list:
-   - ✅ `FELO_API_TOKEN`
-   - ✅ `FELO_WEBHOOK_URL`
+   - ✁E`FELO_API_TOKEN`
+   - ✁E`FELO_WEBHOOK_URL`
 
 ### Run Workflow to Test:
 
 1. Go to **Actions** tab
 2. Select **Felo Bidirectional Sync**
-3. Click **Run workflow** → **main branch**
+3. Click **Run workflow** ↁE**main branch**
 4. Monitor the execution:
-   - Check for green checkmarks ✅
-   - Review logs for errors
+   - Check for green checkmarks ✁E   - Review logs for errors
 
 ## Step 5: Troubleshooting
 
@@ -132,18 +131,18 @@ error: Failed to connect to webhook URL
 ## Step 6: Security Best Practices
 
 ### Do's:
-- ✅ Use strong, random tokens
-- ✅ Rotate tokens every 90 days
-- ✅ Use HTTPS for webhook URLs
-- ✅ Enable webhook signature verification
-- ✅ Monitor secret access logs
+- ✁EUse strong, random tokens
+- ✁ERotate tokens every 90 days
+- ✁EUse HTTPS for webhook URLs
+- ✁EEnable webhook signature verification
+- ✁EMonitor secret access logs
 
 ### Don'ts:
-- ❌ Commit secrets to repository
-- ❌ Share tokens via email or chat
-- ❌ Use test tokens in production
-- ❌ Hardcode URLs in code
-- ❌ Log sensitive data
+- ❁ECommit secrets to repository
+- ❁EShare tokens via email or chat
+- ❁EUse test tokens in production
+- ❁EHardcode URLs in code
+- ❁ELog sensitive data
 
 ## Step 7: Testing Integration
 

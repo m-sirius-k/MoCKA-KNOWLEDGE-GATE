@@ -1,4 +1,4 @@
-﻿# Experiment: Bootstrap Presence
+# Experiment: Bootstrap Presence
 
 ## Purpose
 Satisfy minimum research experiment coverage gate.

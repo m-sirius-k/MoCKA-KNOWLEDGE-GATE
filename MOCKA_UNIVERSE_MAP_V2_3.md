@@ -12,7 +12,7 @@
 
 ## 2. AI Organ Model (Brain Functions)
 
-### 前頭葉 (Think & Judge)
+### 前頭葁E(Think & Judge)
 - **Perplexity**: Exploration, synthesis, and deep research.
 - **Gemini**: Consensus building, mediation, and high-level strategy.
 - **Claude**: Logical analysis, code auditing, and structure validation.
@@ -24,7 +24,7 @@
 - **GitHub**: Canonical artifacts, "Source of Truth" (Seiten).
 - **NotebookLM**: Knowledge crystallization and semantic search.
 
-### 運動野 (Action & Execution)
+### 運動釁E(Action & Execution)
 - **browser-use**: Web-based UI automation and navigation.
 - **Zapier/Dify**: Multi-app synchronization and RAG-hub orchestration.
 
@@ -36,13 +36,13 @@
 
 ## 3. PILS Operational Protocols
 
-### Reference Priority (参照優先順位)
+### Reference Priority (参�E優先頁E��E
 When retrieving past context, MoCKA must follow this order:
 1. **PILS (Notion)** - Current operational truth.
 2. **GitHub** - Established specifications.
 3. **Drive** - Raw historical data.
 
-### Negative Knowledge (失敗の系譜)
+### Negative Knowledge (失敗�E系譁E
 All failures must be tagged in PILS to prevent recurrence:
 - `failure_case`: General logic or execution failure.
 - `blocked_by_policy`: Policy or safety constraints.

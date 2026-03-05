@@ -42,20 +42,13 @@ The MoCKA-KNOWLEDGE-GATE system provides a unified integration platform for mana
 
 ```
 1. GitHub Actions Trigger (scheduled or manual)
-   ↓
-2. Generate ISSUE-ID and ROD-NUMBER metadata
-   ↓
-3. Run AI simulation in specified mode
-   ↓
-4. Log output to MoCKA API endpoint
-   ↓
-5. Record metadata to Firestore
-   ↓
-6. Sync results across platforms
-   ↓
-7. Auto-commit results to main branch
-   ↓
-8. Trigger webhook notifications
+   ↁE2. Generate ISSUE-ID and ROD-NUMBER metadata
+   ↁE3. Run AI simulation in specified mode
+   ↁE4. Log output to MoCKA API endpoint
+   ↁE5. Record metadata to Firestore
+   ↁE6. Sync results across platforms
+   ↁE7. Auto-commit results to main branch
+   ↁE8. Trigger webhook notifications
 ```
 
 ## Metadata Specification

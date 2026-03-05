@@ -60,12 +60,12 @@ RESULT: [outcome]
 ### 5. Closed-Loop Automation Workflow
 **Function**: `run_automation_loop()`
 **Complete Workflow**:
-1. **Read** → Check PILS/Notion for new INTENT_SCRIPTS
-2. **Parse** → Validate and structure command
-3. **Execute** → Run browser automation
-4. **Capture** → Get execution results
-5. **Log** → Write to Activity Console
-6. **Update** → Mark PILS entry as complete
+1. **Read** ↁECheck PILS/Notion for new INTENT_SCRIPTS
+2. **Parse** ↁEValidate and structure command
+3. **Execute** ↁERun browser automation
+4. **Capture** ↁEGet execution results
+5. **Log** ↁEWrite to Activity Console
+6. **Update** ↁEMark PILS entry as complete
 
 This creates autonomous, traceable, closed-loop execution.
 
@@ -75,18 +75,12 @@ Phase 3 establishes the "前頭前野" (prefrontal cortex) of MoCKA:
 
 ```
 PILS/Notion (Intention Storage)
-    ↓
-INTENT_SCRIPT (Command Format)
-    ↓
-Browser Automation Engine (Execution)
-    ↓
-Result Capture (Observation)
-    ↓
-Activity Console (Memory)
-    ↓
-PILS Update (Completion)
-    ↓
-[CLOSED LOOP]
+    ↁEINTENT_SCRIPT (Command Format)
+    ↁEBrowser Automation Engine (Execution)
+    ↁEResult Capture (Observation)
+    ↁEActivity Console (Memory)
+    ↁEPILS Update (Completion)
+    ↁE[CLOSED LOOP]
 ```
 
 ## Test Execution Results
@@ -108,11 +102,11 @@ RESULT: Automation test successful
 ## Integration Points
 
 ### Current Status
-1. ✅ PROTOCOL_INTENT.yaml (canonical specification)
-2. ✅ Activity Console (Google Sheets monitoring)
-3. ✅ Zapier automation framework (configured)
-4. ✅ Browser automation engine (implemented)
-5. ✅ Closed-loop pattern (tested)
+1. ✁EPROTOCOL_INTENT.yaml (canonical specification)
+2. ✁EActivity Console (Google Sheets monitoring)
+3. ✁EZapier automation framework (configured)
+4. ✁EBrowser automation engine (implemented)
+5. ✁EClosed-loop pattern (tested)
 
 ### Ready for Production
 - Install dependencies: `selenium`, `notion-client`, `gspread`
@@ -122,7 +116,7 @@ RESULT: Automation test successful
 
 ## What This Achieves
 
-### "鉄壁の構え" (Iron Fortress) Complete
+### "鉁E���E構え" (Iron Fortress) Complete
 - Every action is automatically logged
 - Every error is traced to source
 - Every intent is documented
@@ -163,9 +157,7 @@ Phase 3 completes the foundational external brain. Future enhancements:
 **PILS Database**: https://www.notion.so/b057e278835245669b59d9fae38338de
 
 ## Status
-**Phase 3: COMPLETE** ✅
-**MoCKA External Brain: OPERATIONAL** ✅
-**Date**: 2026-02-04 18:10 JST
+**Phase 3: COMPLETE** ✁E**MoCKA External Brain: OPERATIONAL** ✁E**Date**: 2026-02-04 18:10 JST
 
 ---
 

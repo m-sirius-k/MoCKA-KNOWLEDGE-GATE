@@ -11,19 +11,19 @@ AI-SIMULATION/
 ├── README.md
 ├── SCHEMA.md
 ├── claude/
-│   └── [ISSUE-ID]
-│       ├── [rod-number]/
-│       │   ├── simulation_[timestamp].json
-│       │   ├── metadata.json
-│       │   └── results_summary.md
-│       └── index.json
+━E  └── [ISSUE-ID]
+━E      ├── [rod-number]/
+━E      ━E  ├── simulation_[timestamp].json
+━E      ━E  ├── metadata.json
+━E      ━E  └── results_summary.md
+━E      └── index.json
 ├── openai/
-│   └── [ISSUE-ID]
-│       ├── [rod-number]/
-│       │   ├── simulation_[timestamp].json
-│       │   ├── metadata.json
-│       │   └── results_summary.md
-│       └── index.json
+━E  └── [ISSUE-ID]
+━E      ├── [rod-number]/
+━E      ━E  ├── simulation_[timestamp].json
+━E      ━E  ├── metadata.json
+━E      ━E  └── results_summary.md
+━E      └── index.json
 └── index.json
 ```
 

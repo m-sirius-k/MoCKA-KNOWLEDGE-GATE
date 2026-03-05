@@ -10,7 +10,7 @@ This guide walks through the setup and configuration of bidirectional integratio
 
 ## Step 1: Configure Repository Secrets
 
-Navigate to your repository Settings → Secrets and variables → Actions, and add the following secrets:
+Navigate to your repository Settings ↁESecrets and variables ↁEActions, and add the following secrets:
 
 ### Required Secrets
 
@@ -82,28 +82,28 @@ If syncs fail:
 
 ## Data Synchronization Details
 
-### Knowledge Gate → Felo
+### Knowledge Gate ↁEFelo
 **Endpoint:** `/api/v1/share` (POST)
 **Frequency:** Every 5 minutes (configurable)
 **Data Mapped:**
-- ISSUE-ID → knowledge_id
-- TRUST_SCORE → confidence_score (0-1 scale)
-- rod-number → reference_id
+- ISSUE-ID ↁEknowledge_id
+- TRUST_SCORE ↁEconfidence_score (0-1 scale)
+- rod-number ↁEreference_id
 
-### Felo → Knowledge Gate
+### Felo ↁEKnowledge Gate
 **Endpoint:** `/api/v1/fetch` (GET)
 **Frequency:** Every 5 minutes (configurable)
 **Data Mapped:**
-- search_result_id → ISSUE-ID
-- relevance_score → TRUST_SCORE (0-100 scale)
+- search_result_id ↁEISSUE-ID
+- relevance_score ↁETRUST_SCORE (0-100 scale)
 
 ## Webhook Events
 
-### Inbound Webhooks (Felo → GitHub)
+### Inbound Webhooks (Felo ↁEGitHub)
 - `data-update` - Data updated in Felo
 - `sync-status` - Sync status notification
 
-### Outbound Webhooks (GitHub → Felo)
+### Outbound Webhooks (GitHub ↁEFelo)
 - `repository-push` - Repository changes
 - `content-modified` - Content modifications
 - `repository-sync-complete` - Sync completed
@@ -168,11 +168,11 @@ For integration issues:
 
 ## Success Criteria
 
-✅ Secrets are configured in GitHub  
-✅ Workflow runs successfully (green checkmark)  
-✅ `sync_log.txt` shows [TO_FELO] SUCCESS and [FROM_FELO] SUCCESS  
-✅ `docs/felo-enriched-data.json` contains enriched data  
-✅ Webhook notifications received by Felo  
+✁ESecrets are configured in GitHub  
+✁EWorkflow runs successfully (green checkmark)  
+✁E`sync_log.txt` shows [TO_FELO] SUCCESS and [FROM_FELO] SUCCESS  
+✁E`docs/felo-enriched-data.json` contains enriched data  
+✁EWebhook notifications received by Felo  
 
 ## Next Steps
 

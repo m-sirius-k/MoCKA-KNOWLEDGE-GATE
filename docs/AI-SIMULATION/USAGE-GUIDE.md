@@ -91,13 +91,13 @@ Simulation results are automatically organized:
 ```
 docs/AI-SIMULATION/
 ├── claude/
-│   └── ISSUE-001/
-│       ├── ROD-001/
-│       │   ├── simulation_2025-11-18_15-30-00.json
-│       │   └── metadata.json
-│       └── index.json
-├─┐ openai/
-│   └── ISSUE-001/
+━E  └── ISSUE-001/
+━E      ├── ROD-001/
+━E      ━E  ├── simulation_2025-11-18_15-30-00.json
+━E      ━E  └── metadata.json
+━E      └── index.json
+├─━Eopenai/
+━E  └── ISSUE-001/
 ```
 
 ## File Descriptions
@@ -125,12 +125,12 @@ docs/AI-SIMULATION/
 Before submitting, ensure:
 
 1. **Issue ID Format**
-   - ✓ Valid: `ISSUE-001`, `ISSUE-123`, `ISSUE-9999`
-   - ✗ Invalid: `ISSUE-1`, `ISSUE-AB`, `ISSUE-123-456`
+   - ✁EValid: `ISSUE-001`, `ISSUE-123`, `ISSUE-9999`
+   - ✁EInvalid: `ISSUE-1`, `ISSUE-AB`, `ISSUE-123-456`
 
 2. **Rod Number Format**
-   - ✓ Valid: `ROD-001`, `ROD-456`, `ROD-9999`
-   - ✗ Invalid: `ROD-1`, `ROD-AB`, `ROD-123-456`
+   - ✁EValid: `ROD-001`, `ROD-456`, `ROD-9999`
+   - ✁EInvalid: `ROD-1`, `ROD-AB`, `ROD-123-456`
 
 3. **Model Provider**
    - Must be exactly: `claude` or `openai`

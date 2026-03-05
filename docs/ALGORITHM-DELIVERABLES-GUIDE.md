@@ -150,15 +150,15 @@ algorithm_deliverables/
   ALG-ISSUE-001-ROD-001/
     (main document)
     ├── versions/
-    │   ├── v1/ (Draft)
-    │   ├── v2/ (Final)
-    │   └── ...
+    ━E  ├── v1/ (Draft)
+    ━E  ├── v2/ (Final)
+    ━E  └── ...
     ├── colab_sessions/
-    │   ├── COLAB-ALG-ISSUE-001-ROD-001-1734584400000/
-    │   └── ...
+    ━E  ├── COLAB-ALG-ISSUE-001-ROD-001-1734584400000/
+    ━E  └── ...
     ├── promotion_requests/
-    │   ├── PROMO-ALG-ISSUE-001-ROD-001-1734584400000/
-    │   └── ...
+    ━E  ├── PROMO-ALG-ISSUE-001-ROD-001-1734584400000/
+    ━E  └── ...
     └── audit_log/
         ├── (action records)
         └── ...
@@ -168,11 +168,11 @@ algorithm_deliverables/
 
 Draft must meet ALL criteria to be eligible for promotion:
 
-- ✓ At least 1 Colab execution recorded
-- ✓ Execution metrics captured
-- ✓ Valid Colab URL provided
-- ✓ ISSUE-ID assigned
-- ✓ No pending errors
+- ✁EAt least 1 Colab execution recorded
+- ✁EExecution metrics captured
+- ✁EValid Colab URL provided
+- ✁EISSUE-ID assigned
+- ✁ENo pending errors
 
 ## Audit Trail
 

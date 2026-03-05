@@ -1,8 +1,8 @@
-# Mem.ai ↔ GitHub Setup Guide
+# Mem.ai ↁEGitHub Setup Guide
 
 ## Overview
 
-This guide provides step-by-step instructions for setting up the Mem.ai ↔ GitHub bidirectional integration.
+This guide provides step-by-step instructions for setting up the Mem.ai ↁEGitHub bidirectional integration.
 
 ## Prerequisites
 

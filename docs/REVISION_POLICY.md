@@ -1,4 +1,4 @@
-﻿MoCKA Revision Policy (Git Hook)
+MoCKA Revision Policy (Git Hook)
 
 - commit-msg hook enforces Event_ID in commit messages.
 - Required format: EV-YYYYMMDD-NNNN

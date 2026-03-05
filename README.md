@@ -1,15 +1,15 @@
-ï»¿# MoCKA Knowledge Gate
+# MoCKA Knowledge Gate
 
-## Institutional Memory Layer of the MoCKA Ecosystem
+## Institutional Memory Layer of the MoCKA Insight System
 
 > The repository that preserves the reasoning of the MoCKA civilization.
 
-MoCKA Knowledge Gate is the **institutional memory layer** of the MoCKA ecosystem.
+MoCKA Knowledge Gate is the **institutional memory layer** of the MoCKA Insight System.
 
 It preserves research reasoning, governance context, and verification artifacts required to reconstruct AI governance research.
 
-MoCKA Knowledge Gate ã¯ **MoCKA ã‚¨ã‚³ã‚·ã‚¹ãƒ†ãƒ ã®åˆ¶åº¦çš„è¨˜æ†¶ãƒ¬ã‚¤ãƒ¤ãƒ¼** ã§ã™ã€‚  
-ç ”ç©¶éç¨‹ã€æ„æ€æ±ºå®šã®èƒŒæ™¯ã€è¨­è¨ˆæ€æƒ³ã€æ¤œè¨¼å±¥æ­´ã‚’æ§‹é€ åŒ–ã—ã¦ä¿å­˜ã—ã¾ã™ã€‚
+MoCKA Knowledge Gate ‚Í **MoCKA ƒGƒRƒVƒXƒeƒ€‚Ì§“x“I‹L‰¯ƒŒƒCƒ„[** ‚Å‚·B  
+Œ¤‹†‰ß’öAˆÓvŒˆ’è‚Ì”wŒiAİŒvv‘zAŒŸØ—š—ğ‚ğ\‘¢‰»‚µ‚Ä•Û‘¶‚µ‚Ü‚·B
 
 ---
 
@@ -52,11 +52,11 @@ Knowledge Gate prevents these failures by preserving structured research artifac
 
 ```
 Research Artifact
-      â”‚
-      â–¼
+      „ 
+      ¥
 Knowledge Gate Documentation
-      â”‚
-      â–¼
+      „ 
+      ¥
 Traceable Institutional Memory
 ```
 
@@ -74,32 +74,32 @@ Traceable Institutional Memory
 
 ```
 Experiment
-     â”‚
-     â–¼
+     „ 
+     ¥
 Experiment Registry
-     â”‚
-     â–¼
+     „ 
+     ¥
 Research Gate Verification
-     â”‚
-     â–¼
+     „ 
+     ¥
 Knowledge Gate Archival
-     â”‚
-     â–¼
+     „ 
+     ¥
 Institutional Memory
 ```
 
-### æ—¥æœ¬èª
+### “ú–{Œê
 
 ```
-å®Ÿé¨“
- â†“
-å®Ÿé¨“ç™»éŒ²
- â†“
-Research Gate æ¤œè¨¼
- â†“
-Knowledge Gate ä¿å­˜
- â†“
-åˆ¶åº¦çš„è¨˜æ†¶
+ÀŒ±
+ «
+ÀŒ±“o˜^
+ «
+Research Gate ŒŸØ
+ «
+Knowledge Gate •Û‘¶
+ «
+§“x“I‹L‰¯
 ```
 
 ---
@@ -108,16 +108,16 @@ Knowledge Gate ä¿å­˜
 
 ```
 MoCKA-KNOWLEDGE-GATE
-â”‚
-â”œâ”€ docs
-â”‚   â”œâ”€ architecture
-â”‚   â”œâ”€ research_maps
-â”‚   â”œâ”€ governance
-â”‚   â””â”€ verification
-â”‚
-â”œâ”€ artifacts
-â”‚
-â””â”€ README.md
+„ 
+„¥„Ÿ docs
+„    „¥„Ÿ architecture
+„    „¥„Ÿ research_maps
+„    „¥„Ÿ governance
+„    „¤„Ÿ verification
+„ 
+„¥„Ÿ artifacts
+„ 
+„¤„Ÿ README.md
 ```
 
 ---
@@ -126,11 +126,11 @@ MoCKA-KNOWLEDGE-GATE
 
 ```
 Institutional Memory
-        â”‚
-        â”œâ”€ Architecture Knowledge
-        â”œâ”€ Research Knowledge
-        â”œâ”€ Governance Knowledge
-        â””â”€ Verification Knowledge
+        „ 
+        „¥„Ÿ Architecture Knowledge
+        „¥„Ÿ Research Knowledge
+        „¥„Ÿ Governance Knowledge
+        „¤„Ÿ Verification Knowledge
 ```
 
 ---
@@ -149,7 +149,7 @@ Institutional Memory
 
 ## Summary
 
-MoCKA Knowledge Gate functions as the **memory infrastructure of the MoCKA ecosystem**.
+MoCKA Knowledge Gate functions as the **memory infrastructure of the MoCKA Insight System**.
 
 It preserves reasoning artifacts that make AI governance systems:
 

@@ -2,85 +2,48 @@
 
 ## Overview
 
-This guide provides a comprehensive implementation of **bidirectional (双方向) synchronization** between MoCKA-KNOWLEDGE-GATE and Google NotebookLM. The integration enables seamless two-way data flow with real-time updates, webhook triggers, and automated knowledge management.
+This guide provides a comprehensive implementation of **bidirectional (双方吁E synchronization** between MoCKA-KNOWLEDGE-GATE and Google NotebookLM. The integration enables seamless two-way data flow with real-time updates, webhook triggers, and automated knowledge management.
 
 ## Architecture Overview
 
 ### System Components
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    GitHub Repository                        │
-│         (MoCKA-KNOWLEDGE-GATE on main branch)              │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  AI-SIMULATION/    AI-SHARE-      ALGORITHM-             │
-│  data/             CONSTITUTION/  DELIVERABLES/          │
-│                                                              │
-└──────────────┬──────────────────────────────┬──────────────┘
-               │                              │
-         [GitHub Actions]              [Webhooks]
-               │                              │
-               ▼                              ▼
-┌──────────────────────────────────────────────────────────────┐
-│         API Gateway & Middleware (Node.js Next.js)          │
-├──────────────────────────────────────────────────────────────┤
-│  /api/notebooklm-sync     (Bidirectional Sync)             │
-│  /api/notebooklm-webhook  (Webhook Handler)                │
-│  /api/notebooklm-export   (Export to NotebookLM)          │
-│  /api/notebooklm-import   (Import from NotebookLM)        │
-│  /api/notebooklm-metadata (Metadata Management)            │
-│  /api/knowledge-sync       (Knowledge Base Sync)            │
-└──────────────┬──────────────────────────────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────────────────────────────┐
-│             Google NotebookLM & Google AI API               │
-├──────────────────────────────────────────────────────────────┤
-│                                                              │
-│  Notebooks  │  Sources  │  Notes  │  Audio Guide│  Export│
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
-```
+┌─────────────────────────────────────────────────────────────━E━E                   GitHub Repository                        ━E━E        (MoCKA-KNOWLEDGE-GATE on main branch)              ━E├─────────────────────────────────────────────────────────────┤
+━E                                                             ━E━E AI-SIMULATION/    AI-SHARE-      ALGORITHM-             ━E━E data/             CONSTITUTION/  DELIVERABLES/          ━E━E                                                             ━E└──────────────┬──────────────────────────────┬──────────────━E               ━E                             ━E         [GitHub Actions]              [Webhooks]
+               ━E                             ━E               ▼                              ▼
+┌──────────────────────────────────────────────────────────────━E━E        API Gateway & Middleware (Node.js Next.js)          ━E├──────────────────────────────────────────────────────────────┤
+━E /api/notebooklm-sync     (Bidirectional Sync)             ━E━E /api/notebooklm-webhook  (Webhook Handler)                ━E━E /api/notebooklm-export   (Export to NotebookLM)          ━E━E /api/notebooklm-import   (Import from NotebookLM)        ━E━E /api/notebooklm-metadata (Metadata Management)            ━E━E /api/knowledge-sync       (Knowledge Base Sync)            ━E└──────────────┬──────────────────────────────────────────────━E               ━E               ▼
+┌──────────────────────────────────────────────────────────────━E━E            Google NotebookLM & Google AI API               ━E├──────────────────────────────────────────────────────────────┤
+━E                                                             ━E━E Notebooks  ━E Sources  ━E Notes  ━E Audio Guide━E Export━E━E                                                             ━E└──────────────────────────────────────────────────────────────━E```
 
 ## Bidirectional Sync Flow
 
-### 1. GitHub → NotebookLM (Push)
+### 1. GitHub ↁENotebookLM (Push)
 
 When AI simulations complete or algorithms are delivered:
 
 ```mermaid
 GitHub Commit
-    ↓
-[Generate ISSUE-ID & ROD Number]
-    ↓
-[Create/Update Simulation Result]
-    ↓
-[Trigger notebooklm-sync API]
-    ↓
-[Export to NotebookLM Notebook]
-    ↓
-[Log sync metadata]
+    ↁE[Generate ISSUE-ID & ROD Number]
+    ↁE[Create/Update Simulation Result]
+    ↁE[Trigger notebooklm-sync API]
+    ↁE[Export to NotebookLM Notebook]
+    ↁE[Log sync metadata]
 ```
 
-### 2. NotebookLM → GitHub (Pull)
+### 2. NotebookLM ↁEGitHub (Pull)
 
 When notebooks are updated or new insights are generated:
 
 ```mermaid
 NotebookLM Webhook Event
-    ↓
-[Receive webhook at /api/notebooklm-webhook]
-    ↓
-[Extract notebook data & metadata]
-    ↓
-[Create/Update GitHub issue]
-    ↓
-[Store as AI-SIMULATION result]
-    ↓
-[Commit to main branch]
-    ↓
-[Generate audit logs]
+    ↁE[Receive webhook at /api/notebooklm-webhook]
+    ↁE[Extract notebook data & metadata]
+    ↁE[Create/Update GitHub issue]
+    ↁE[Store as AI-SIMULATION result]
+    ↁE[Commit to main branch]
+    ↁE[Generate audit logs]
 ```
 
 ## Implementation Files

@@ -110,7 +110,7 @@ After adding all secrets:
 
 1. Go back to **Secrets and variables** > **Actions**
 2. You should see all 5 secrets listed
-3. The values are masked with asterisks (✓ normal, values are hidden)
+3. The values are masked with asterisks (✁Enormal, values are hidden)
 
 ## Testing Secrets
 
@@ -120,9 +120,9 @@ Once configured, you can test the integration:
 
 1. Go to the **Actions** tab in your repository
 2. Select either:
-   - `mem-ai-export.yml` (Mem.ai → GitHub)
-   - `mem-ai-import.yml` (GitHub → Mem.ai)
-   - `miro-export.yml` (Miro → GitHub) [if available]
+   - `mem-ai-export.yml` (Mem.ai ↁEGitHub)
+   - `mem-ai-import.yml` (GitHub ↁEMem.ai)
+   - `miro-export.yml` (Miro ↁEGitHub) [if available]
 3. Click **Run workflow** button
 4. Monitor the workflow run for errors
 
@@ -140,18 +140,18 @@ If the workflow fails:
 ## Security Best Practices
 
 ### DO:
-- ✅ Rotate secrets regularly (at least quarterly)
-- ✅ Use strong, unique API keys
-- ✅ Store secrets only in GitHub Secrets, never in code
-- ✅ Monitor API usage for unauthorized access
-- ✅ Review GitHub Actions logs regularly
+- ✁ERotate secrets regularly (at least quarterly)
+- ✁EUse strong, unique API keys
+- ✁EStore secrets only in GitHub Secrets, never in code
+- ✁EMonitor API usage for unauthorized access
+- ✁EReview GitHub Actions logs regularly
 
 ### DON'T:
-- ❌ Commit secrets to git history
-- ❌ Share secrets via email or chat
-- ❌ Hardcode secrets in configuration files
-- ❌ Use the same secret for multiple integrations
-- ❌ Add secrets to environment files (.env)
+- ❁ECommit secrets to git history
+- ❁EShare secrets via email or chat
+- ❁EHardcode secrets in configuration files
+- ❁EUse the same secret for multiple integrations
+- ❁EAdd secrets to environment files (.env)
 
 ## Troubleshooting
 
