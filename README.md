@@ -1,131 +1,106 @@
-﻿Ecosystem Navigation
+﻿# MoCKA Ecosystem
 
-MoCKA https://github.com/nsjpkimura-del/MoCKA
-MoCKA Knowledge Gate https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
-MoCKA Civilization https://github.com/nsjpkimura-del/mocka-civilization
-MoCKA Transparency https://github.com/nsjpkimura-del/mocka-transparency
-MoCKA External Brain https://github.com/nsjpkimura-del/mocka-external-brain
-MoCKA Core Private https://github.com/nsjpkimura-del/mocka-core-private
+Verifiable AI Civilization Architecture
 
-cd C:\Users\sirok\mocka-ecosystem\MoCKA-KNOWLEDGE-GATE
+MoCKA is a research-grade AI ecosystem designed for verifiable reasoning, institutional memory, and transparent governance.
 
-@'
-MoCKA Knowledge Gate
+MoCKA は、検証可能な AI 推論、制度的記憶、透明なガバナンスを目的とする研究エコシステムです.
 
+---
 
-Role
+# Architecture
 
-MoCKA Knowledge Gate is the institutional memory layer of the MoCKA ecosystem.
+![MoCKA Architecture](docs/images/mocka_architecture.svg)
 
-It preserves reasoning traces, decision context, and verification-relevant documentation as reproducible artifacts.
+---
 
+# Repositories
 
-What You Can Do Here
+| Layer | Role | Repository |
+|------|------|-----------|
+| MoCKA Core | Research gate and execution | https://github.com/nsjpkimura-del/MoCKA |
+| Knowledge Gate | Institutional memory | https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE |
+| Transparency | Audit and public proof | https://github.com/nsjpkimura-del/mocka-transparency |
+| External Brain | External knowledge integration | https://github.com/nsjpkimura-del/mocka-external-brain |
+| Civilization | Governance philosophy | https://github.com/nsjpkimura-del/mocka-civilization |
+| Core Private | Operational layer | private repository |
 
-Understand the governance and memory model used across the MoCKA ecosystem.
+---
 
-Navigate canonical documentation and integration documents.
+# Research Workflow
 
-Follow verification and transparency workflows.
+![Research Workflow](docs/images/mocka_workflow.svg)
 
+Experiment → Experiment Registry → Research Gate → Verification → Research Map
 
-Canonical Documentation
+---
 
-Canonical docs are maintained in the ecosystem root documentation directory.
+# Technical Backbone
 
-C:\Users\sirok\mocka-ecosystem\_canon\docs
+MoCKA includes an automated verification system called **Research Gate**.
 
-Key documents
+Research Gate verifies the ecosystem across structural integrity, research process registration, documentation consistency, and audit evidence.
 
-SYSTEM_OVERVIEW.md
-MOCKA_ARCHITECTURE_DIAGRAM.md
-MOCKA_ECOSYSTEM_DIAGRAM.md
-MOCKA_REPOSITORY_MAP.md
-VERIFICATION_QUICKSTART.md
-INTEGRITY_TRANSPARENCY_MODEL.md
-RESEARCH_POSITIONING.md
-AI_GOVERNANCE_REFERENCE_ARCHITECTURE.md
+Verification Status
 
+RESEARCH_RUN: OK  
+Verification controls executed : 20  
+All verification checks passed
 
-Repository Documents
+---
 
-Integration overview
+# Verification Architecture
 
-docs/INTEGRATION-SUMMARY.md
+<details>
+<summary>1 System Integrity Verification</summary>
 
-Monitoring dashboard
+ecosystem_doctor_integrity  
+ecosystem_structure_scan  
+canon_directory_integrity  
+artifact_directory_integrity  
+repo_entrypoints_present  
+repo_git_clean_check  
+repo_license_presence  
 
-scripts/docs/MONITORING-DASHBOARD.md
+</details>
 
-Secrets configuration
+<details>
+<summary>2 Research Process Verification</summary>
 
-.github/SECRETS-CONFIGURATION.md
+experiments_minimum_coverage  
+research_registry_schema  
+research_map_registry_integrity  
+research_runner_selfcheck  
 
-Webhook receiver
+</details>
 
-.github/WEBHOOK-RECEIVER.md
+<details>
+<summary>3 Documentation Verification</summary>
 
+readme_role_vocab_integrity  
+readme_research_entry_presence  
+docs_link_audit  
 
-Design Notes
+</details>
 
-This repository intentionally emphasizes documentation and traceability.
+<details>
+<summary>4 Audit and Evidence Verification</summary>
 
-It is not only a code repository.
+gpg_signing_config_present  
+doctor_script_presence  
+doctor_artifact_schema  
+doctor_emit_json_artifact  
+doctor_sha_note_upsert  
+canon_notes_integrity  
 
-It is an institutional layer for long-term verification and governance continuity.
+</details>
 
+---
 
-日本語説明
+# Quick Demo
 
+powershell -ExecutionPolicy Bypass -File MoCKA/tools/mocka_research_run.ps1
 
-MoCKA Knowledge Gate は MoCKA エコシステムの制度的記憶層である。
+Expected result
 
-判断過程
-
-推論痕跡
-
-検証に必要な文脈
-
-を再現可能な成果物として保存する。
-
-
-ここでできること
-
-MoCKA のガバナンスと記憶モデルを理解する。
-
-正本ドキュメントと運用ドキュメントへ最短で到達する。
-
-検証と透明性のワークフローを追跡する。
-
-
-正本ドキュメント
-
-正本は ecosystem ルートの canonical docs にある。
-
-C:\Users\sirok\mocka-ecosystem\_canon\docs
-
-
-このリポジトリ内のドキュメント
-
-統合概要
-
-docs/INTEGRATION-SUMMARY.md
-
-監視ダッシュボード
-
-scripts/docs/MONITORING-DASHBOARD.md
-
-Secrets 設定
-
-.github/SECRETS-CONFIGURATION.md
-
-Webhook receiver
-
-.github/WEBHOOK-RECEIVER.md
-'@ | Set-Content -Encoding UTF8 ".\README.md"
-## Role
-Primary Role: Institutional Memory
-
-## Research Map
-See: RESEARCH_MAP.md
-
+RESEARCH_RUN: OK
