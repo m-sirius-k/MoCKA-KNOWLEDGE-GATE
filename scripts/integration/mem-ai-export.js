@@ -21,7 +21,7 @@ const path = require('path');
 const MEM_API_KEY = process.env.MEM_API_KEY;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const MEM_COLLECTION_ID = process.env.MEM_COLLECTION_ID;
-const GITHUB_OWNER = process.env.GITHUB_OWNER || 'nsjpkimura-del';
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'm-sirius-k';
 const GITHUB_REPO = process.env.GITHUB_REPO || 'MoCKA-KNOWLEDGE-GATE';
 const EXPORT_PATH = process.env.EXPORT_PATH || 'exported-mems';
 
@@ -184,3 +184,4 @@ module.exports = {
   generateFilename,
   exportMems
 };
+

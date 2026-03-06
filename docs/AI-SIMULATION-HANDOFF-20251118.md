@@ -1,7 +1,7 @@
 # AI Simulation Project - 譏取律邯咏ｶ夂畑繝上Φ繝峨が繝輔ラ繧ｭ繝･繝｡繝ｳ繝・## Tomorrow's Continuation Handoff Document
 
 **菴懈・譌･**: 2025-11-18 18:30 JST  
-**菴懈・閠・*: Comet AI Automation + nsjpkimura-del  
+**菴懈・閠・*: Comet AI Automation + m-sirius-k  
 **谺｡蝗樣幕蟋倶ｺ亥ｮ・*: 2025-11-19 (譏取律)  
 **繝励Ο繧ｸ繧ｧ繧ｯ繝亥ｮ梧・蠎ｦ**: 100% 笨・
 ---
@@ -101,11 +101,11 @@
 ### GitHub 繝ｪ繝昴ず繝医Μ
 | 繝ｪ繧ｽ繝ｼ繧ｹ | URL |
 |---------|-----|
-| 繝ｯ繝ｼ繧ｯ繝輔Ο繝ｼ螳溯｡・| https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/actions/workflows/ai-simulation.yml |
-| API 繝・ぅ繝ｬ繧ｯ繝医Μ | https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/tree/main/pages/api |
-| 繝峨く繝･繝｡繝ｳ繝・| https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/tree/main/docs |
-| 螳溯｣・Ξ繝昴・繝・| https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/blob/main/docs/IMPLEMENTATION-REPORT-20251118.md |
-| GitHub Actions 繧ｷ繝ｼ繧ｯ繝ｬ繝・ヨ | https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/settings/secrets/actions |
+| 繝ｯ繝ｼ繧ｯ繝輔Ο繝ｼ螳溯｡・| https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/actions/workflows/ai-simulation.yml |
+| API 繝・ぅ繝ｬ繧ｯ繝医Μ | https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/tree/main/pages/api |
+| 繝峨く繝･繝｡繝ｳ繝・| https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/tree/main/docs |
+| 螳溯｣・Ξ繝昴・繝・| https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/blob/main/docs/IMPLEMENTATION-REPORT-20251118.md |
+| GitHub Actions 繧ｷ繝ｼ繧ｯ繝ｬ繝・ヨ | https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/settings/secrets/actions |
 
 ### Firebase & Firestore
 | 繝ｪ繧ｽ繝ｼ繧ｹ | URL |
@@ -200,3 +200,4 @@
 
 *縺薙・繝峨く繝･繝｡繝ｳ繝医・ AI 邯咏ｶ壼ｮ溯｣・・縺溘ａ縺ｫ菴懈・縺輔ｌ縺ｾ縺励◆縲・  
 *This document was created for AI continuation implementation.*
+

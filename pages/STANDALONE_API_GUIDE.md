@@ -348,7 +348,7 @@ If you were using the old Firebase-dependent endpoints, here's how to migrate:
 ## Support
 
 For issues or questions about the standalone APIs, please refer to:
-- GitHub Issues: [MoCKA-KNOWLEDGE-GATE](https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/issues)
+- GitHub Issues: [MoCKA-KNOWLEDGE-GATE](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/issues)
 - API Specification: Check individual endpoint implementations in `/pages/api/`
 
 ---
@@ -356,3 +356,4 @@ For issues or questions about the standalone APIs, please refer to:
 **Version**: 1.0.0  
 **Last Updated**: 2024  
 **Status**: Production Ready ✁E
+

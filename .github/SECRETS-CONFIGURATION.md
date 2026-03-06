@@ -10,7 +10,7 @@ This guide explains how to configure GitHub repository secrets required for Felo
 
 ## Step 1: Access Repository Settings
 
-1. Navigate to your repository: `https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE`
+1. Navigate to your repository: `https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE`
 2. Click the **Settings** tab
 3. In the left sidebar, click **Secrets and variables**
 4. Select **Actions**
@@ -224,3 +224,4 @@ For issues or questions:
 - [Webhook Receiver](./WEBHOOK-RECEIVER.md)
 - [Workflow Configuration](./.github/workflows/felo-bidirectional-sync.yml)
 - [Connection Configuration](../connection/connection-info.yaml)
+

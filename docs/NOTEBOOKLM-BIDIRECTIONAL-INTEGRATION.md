@@ -95,7 +95,7 @@ NOTEBOOKLM_API_ENDPOINT=https://notebooklm.googleapis.com/v1
 
 # GitHub Integration
 GITHUB_TOKEN=xxx
-GITHUB_REPO=nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+GITHUB_REPO=m-sirius-k/MoCKA-KNOWLEDGE-GATE
 
 # Webhook Configuration
 WEBHOOK_SECRET=xxx
@@ -312,3 +312,4 @@ For issues or questions:
 3. Test webhook connectivity
 4. Review error messages and stack traces
 5. Create GitHub issue with detailed logs
+

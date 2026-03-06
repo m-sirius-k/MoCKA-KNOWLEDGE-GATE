@@ -2,7 +2,7 @@
   "system": "MoCKA-KNOWLEDGE-GATE",
   "source": {
     "type": "github",
-    "repository": "nsjpkimura-del/MoCKA-KNOWLEDGE-GATE",
+    "repository": "m-sirius-k/MoCKA-KNOWLEDGE-GATE",
     "branch": "main"
   },
   "watch_targets": [
@@ -47,3 +47,4 @@
     }
   }
 }
+

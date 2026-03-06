@@ -136,7 +136,7 @@ MEM_COLLECTION_KNOWLEDGE=knowledge-base
 
 # GitHub
 GITHUB_TOKEN=xxx
-GITHUB_REPO=nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+GITHUB_REPO=m-sirius-k/MoCKA-KNOWLEDGE-GATE
 
 # Firebase
 FIREBASE_PROJECT_ID=xxx
@@ -328,3 +328,4 @@ mem_ai_chat_history/
 - syncId
 - memNoteId
 - タイムスタンチE
+

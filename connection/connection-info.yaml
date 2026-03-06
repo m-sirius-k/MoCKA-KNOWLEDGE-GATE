@@ -1,4 +1,4 @@
-repository: nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+repository: m-sirius-k/MoCKA-KNOWLEDGE-GATE
 
 access:
   - protocol: REST
@@ -116,3 +116,4 @@ felo_integration:
     gdpr_compliant: true
 felo_integration_status: active
 felo_last_sync: 2025-11-18T14:00:00Z
+

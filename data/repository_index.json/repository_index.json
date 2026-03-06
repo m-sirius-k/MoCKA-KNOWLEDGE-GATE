@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "repository": {
     "name": "MoCKA-KNOWLEDGE-GATE",
-    "owner": "nsjpkimura-del",
+    "owner": "m-sirius-k",
     "default_branch": "main",
     "description": "MoCKA 2.0 knowledge gate and AI governance repository"
   },
@@ -47,3 +47,4 @@
     ]
   }
 }
+

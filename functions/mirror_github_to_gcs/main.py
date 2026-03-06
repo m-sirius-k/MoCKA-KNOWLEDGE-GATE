@@ -8,7 +8,7 @@ from google.cloud import storage
 
 
 def build_raw_url(repository: str, branch: str, path: str) -> str:
-    # 例: https://raw.githubusercontent.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE/main/ARCHITECTURE.md
+    # 侁E https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/ARCHITECTURE.md
     return f"https://raw.githubusercontent.com/{repository}/{branch}/{path}"
 
 
@@ -81,3 +81,4 @@ def mirror_github_to_gcs(request):
         "timestamp": now
     }
     return (json.dumps(result), 200, {"Content-Type": "application/json"})
+

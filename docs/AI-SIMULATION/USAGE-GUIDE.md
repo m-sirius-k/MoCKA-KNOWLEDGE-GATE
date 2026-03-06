@@ -7,7 +7,7 @@
 The easiest way to store simulation results is using the GitHub Actions workflow.
 
 #### Step 1: Navigate to Actions
-1. Go to your repository: https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+1. Go to your repository: https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE
 2. Click on the **Actions** tab
 3. Select **AI Simulation Results Storage** workflow
 4. Click **Run workflow**
@@ -188,3 +188,4 @@ For issues or questions:
 1. Check the SCHEMA.md for detailed specifications
 2. Review stored examples in `docs/AI-SIMULATION/`
 3. Check GitHub Actions logs for workflow errors
+

@@ -83,7 +83,7 @@ You need to configure the following secrets for all integrations to work properl
 
 ### Step 1: Access GitHub Secrets Settings
 
-1. Go to your repository: https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE
+1. Go to your repository: https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE
 2. Click **Settings** tab
 3. In the left sidebar, go to: **Secrets and variables** > **Actions**
 4. Click **New repository secret** button
@@ -217,3 +217,4 @@ After setting up all secrets:
 
 **Last Updated**: November 18, 2025
 **Status**: Ready for integration
+

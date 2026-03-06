@@ -9,7 +9,7 @@ This document describes how to integrate **Mem.ai** (a note-taking and knowledge
 ### Components
 
 1. **Mem.ai Platform**: Cloud-based note-taking and knowledge management system
-2. **GitHub Repository**: MoCKA-KNOWLEDGE-GATE (https://github.com/nsjpkimura-del/MoCKA-KNOWLEDGE-GATE)
+2. **GitHub Repository**: MoCKA-KNOWLEDGE-GATE (https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE)
 3. **Mem API**: RESTful API for programmatic access to Mem.ai
 4. **Integration Layer**: Scripts/workflows to sync content between platforms
 
@@ -404,3 +404,4 @@ For issues or questions:
 
 *Last Updated: November 18, 2025*
 *Version: 1.0*
+
