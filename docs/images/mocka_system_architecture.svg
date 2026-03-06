@@ -1,0 +1,33 @@
+﻿<svg width="1000" height="520" xmlns="http://www.w3.org/2000/svg">
+
+<rect width="1000" height="520" fill="#ffffff"/>
+
+<rect x="400" y="60" width="200" height="80" fill="#f5f7fb" stroke="#1e6bff" stroke-width="3" rx="10"/>
+<text x="500" y="95" text-anchor="middle" font-size="18" fill="#111">MoCKA Core</text>
+<text x="500" y="115" text-anchor="middle" font-size="14" fill="#333">Research Execution</text>
+
+<rect x="150" y="240" width="200" height="80" fill="#f5fffa" stroke="#19b37c" stroke-width="3" rx="10"/>
+<text x="250" y="275" text-anchor="middle" font-size="18" fill="#111">Knowledge Gate</text>
+<text x="250" y="295" text-anchor="middle" font-size="14" fill="#333">Institutional Memory</text>
+
+<rect x="400" y="240" width="200" height="80" fill="#fff7ed" stroke="#ff8c1a" stroke-width="3" rx="10"/>
+<text x="500" y="275" text-anchor="middle" font-size="18" fill="#111">Transparency</text>
+<text x="500" y="295" text-anchor="middle" font-size="14" fill="#333">Audit Layer</text>
+
+<rect x="650" y="240" width="200" height="80" fill="#f6f3ff" stroke="#7b5cff" stroke-width="3" rx="10"/>
+<text x="750" y="275" text-anchor="middle" font-size="18" fill="#111">External Brain</text>
+<text x="750" y="295" text-anchor="middle" font-size="14" fill="#333">Knowledge Integration</text>
+
+<rect x="400" y="400" width="200" height="80" fill="#fff5f5" stroke="#e53935" stroke-width="3" rx="10"/>
+<text x="500" y="435" text-anchor="middle" font-size="18" fill="#111">Civilization</text>
+<text x="500" y="455" text-anchor="middle" font-size="14" fill="#333">Governance Philosophy</text>
+
+<line x1="500" y1="140" x2="250" y2="240" stroke="#1e6bff" stroke-width="3"/>
+<line x1="500" y1="140" x2="500" y2="240" stroke="#ff8c1a" stroke-width="3"/>
+<line x1="500" y1="140" x2="750" y2="240" stroke="#19b37c" stroke-width="3"/>
+
+<line x1="250" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
+<line x1="500" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
+<line x1="750" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
+
+</svg>
