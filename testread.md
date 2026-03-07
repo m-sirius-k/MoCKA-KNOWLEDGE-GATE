@@ -1,52 +1,39 @@
-﻿# MoCKA Knowledge Gate（Test Read）
+﻿# Knowledge Gate SVG Test
 
-MoCKA Knowledge Gate は、MoCKA Insight System 全体の中で、研究の推論や判断、検証の文脈を整理し、未来の研究に再利用できる形で保存する制度的記憶レイヤーです。MoCKA Core で生まれた推論やログを受け取り、Transparency Layer で検証された内容を取り込み、研究の文脈を体系化して蓄積します。
+## English Version
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="300" fill="#111111"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI" font-size="20" fill="#ffffff">Knowledge Gate – Institutional Memory</text>
+  <rect x="60" y="100" width="200" height="120" fill="none" stroke="#2962ff" stroke-width="3" rx="10"/>
+  <text x="160" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">Execution Logs</text>
+  <rect x="350" y="80" width="200" height="160" fill="none" stroke="#00bfa5" stroke-width="3" rx="10"/>
+  <text x="450" y="150" text-anchor="middle" font-family="Segoe UI" font-size="16" fill="#ffffff">Knowledge Gate</text>
+  <rect x="640" y="100" width="200" height="120" fill="none" stroke="#7c4dff" stroke-width="3" rx="10"/>
+  <text x="740" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">Future Research</text>
+  <defs>
+    <marker id="arrow-white" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#ffffff"/>
+    </marker>
+  </defs>
+  <line x1="260" y1="160" x2="350" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
+  <line x1="550" y1="160" x2="640" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
+</svg>
 
-Knowledge Gate は、MoCKA 全体の中で研究の記憶を長期的に保持し、次の研究や制度設計に渡す中枢として機能します。
-
----
-
-## System Architecture（MoCKA 全体の中での位置づけ）
-
-MoCKA Insight System は複数のレイヤーで構成され、研究の実行から検証、記憶、再利用までを循環させる仕組みを持ちます。
-
-- MoCKA Core：研究実行と一次成果物の生成  
-- Knowledge Gate：推論や判断の文脈を保存し制度化する  
-- Transparency Layer：監査と検証可能性の提供  
-- External Brain：外部知識との統合  
-- Civilization Layer：ガバナンス思想や制度設計の保持  
-
-Knowledge Gate はこの中で、研究の文脈を受け取り、整理し、未来に渡す役割を担います。
-
-![System Architecture](docs/images/mocka_system_architecture_night.svg)
-
----
-
-## Research Knowledge Flow（知識の流れ）
-
-Knowledge Gate は MoCKA の知識循環の中心にあります。
-
-1. Execution：MoCKA Core が研究を実行し、推論やログを生成する  
-2. Verification：Transparency Layer が内容を検証する  
-3. Institutionalization：Knowledge Gate が文脈を整理し制度的記憶として保存する  
-4. Reuse and Governance：保存された知識が次の研究や制度設計に活用される  
-
-この循環により、MoCKA Insight System は積み上がる研究文明として進化します。
-
-![Research Knowledge Flow](docs/images/research_knowledge_architecture_night.svg)
-
----
-
-## Knowledge Gate の重要性
-
-一般的な AI は文脈を忘れ、推論の根拠を残さず、同じ質問でも回答が変わるため、長期的な研究には向きません。Knowledge Gate はこれを補完し、研究の再現性を保証し、誤解や暴走を制度的に抑制し、研究成果を文明レベルで蓄積します。
-
----
-
-## 進化中のプロジェクトとしての位置づけ
-
-Knowledge Gate は完成形ではなく、MoCKA Insight System の成長に合わせて進化し続けます。新しい研究プロセスや検証手法の追加、文脈保存の精度向上、外部脳との連携強化など、柔軟に拡張されるレイヤーです。
-
----
-
-（この testread は検証用です。内容が確定したら README.md に反映します）
+## Japanese Version
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="300" fill="#111111"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI" font-size="20" fill="#ffffff">Knowledge Gate（制度的記憶）</text>
+  <rect x="60" y="100" width="200" height="120" fill="none" stroke="#2962ff" stroke-width="3" rx="10"/>
+  <text x="160" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">実行ログ</text>
+  <rect x="350" y="80" width="200" height="160" fill="none" stroke="#00bfa5" stroke-width="3" rx="10"/>
+  <text x="450" y="150" text-anchor="middle" font-family="Segoe UI" font-size="16" fill="#ffffff">Knowledge Gate</text>
+  <rect x="640" y="100" width="200" height="120" fill="none" stroke="#7c4dff" stroke-width="3" rx="10"/>
+  <text x="740" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">次の研究</text>
+  <defs>
+    <marker id="arrow-white" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#ffffff"/>
+    </marker>
+  </defs>
+  <line x1="260" y1="160" x2="350" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
+  <line x1="550" y1="160" x2="640" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
+</svg>
