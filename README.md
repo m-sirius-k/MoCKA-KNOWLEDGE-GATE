@@ -3,45 +3,26 @@
 ## Institutional Memory Infrastructure of the MoCKA Insight System
 
 MoCKA Knowledge Gate is the institutional memory infrastructure of the MoCKA Insight System.
-It preserves research reasoning, governance context, and verification artifacts required to reconstruct AI governance research.
 
----
-
-# System Architecture
-
-The MoCKA Insight System is composed of multiple structural layers that together enable verifiable AI research.
-
-![MoCKA System Architecture](docs/images/mocka_system_architecture.svg)
-
----
-
-# System Layers
-
-The MoCKA Insight System consists of several structural layers that support verifiable AI research.
-
-| Layer | Role |
-|------|------|
-| MoCKA Core | Research execution and verification |
-| Knowledge Gate | Institutional reasoning archive |
-| Transparency | Public audit and verification |
-| External Brain | External knowledge integration |
-| Civilization | Governance philosophy |
+It preserves research reasoning, governance context, and verification artifacts required to reconstruct verifiable AI governance research.
 
 ---
 
 # Knowledge Gate Architecture
 
-Knowledge Gate preserves the institutional memory of the system.
-It connects research execution and public verification by storing structured reasoning artifacts.
+The Knowledge Gate functions as the institutional memory layer of the MoCKA Insight System.
 
-![Knowledge Gate Architecture](docs/images/knowledge_gate_architecture.svg)
+Research execution, verification, knowledge integration, and governance are structurally connected through this architecture.
+
+![Knowledge Gate Architecture](docs/images/mocka_system_architecture.svg)
 
 ---
 
 # Why Knowledge Gate Exists
 
-AI governance research produces complex reasoning and decision processes.
-Without structured preservation, institutional knowledge can disappear.
+AI governance research produces complex reasoning processes and decision contexts.
+
+Without structured preservation, institutional knowledge disappears.
 
 Typical failure modes include:
 
@@ -64,9 +45,7 @@ Research artifacts become institutional memory through documentation and archiva
 
 # Research Knowledge Flow
 
-Research activities produce artifacts that are verified and archived into institutional memory.
-
-The following architecture illustrates how research flows through verification and archival processes inside the Knowledge Gate infrastructure.
+Research activities produce artifacts that are verified and archived as institutional memory.
 
 ![Research Knowledge Flow](docs/images/research_knowledge_architecture.svg)
 
@@ -133,9 +112,9 @@ Institutional Memory
 
 # Summary
 
-MoCKA Knowledge Gate functions as the memory infrastructure of the MoCKA Insight System.
+MoCKA Knowledge Gate functions as the institutional memory infrastructure of the MoCKA Insight System.
 
-It preserves reasoning artifacts that make AI governance systems:
+It preserves reasoning artifacts that make AI governance research:
 
 - transparent
 - traceable
@@ -150,45 +129,26 @@ It preserves reasoning artifacts that make AI governance systems:
 ## MoCKA Insight System の制度的記憶基盤
 
 MoCKA Knowledge Gate は MoCKA Insight System の制度的記憶基盤です。
-AIガバナンス研究を再構成できるよう、研究過程、意思決定の背景、設計思想、検証履歴を構造化して保存します。
+
+研究過程、意思決定の背景、設計思想、検証履歴を構造化して保存し、AIガバナンス研究を再構成可能にします。
 
 ---
 
-# システムアーキテクチャ
+# Knowledge Gate アーキテクチャ
 
-MoCKA Insight System は、検証可能なAI研究を実現する複数の構造レイヤーから構成されています。
+Knowledge Gate は MoCKA Insight System における制度的記憶レイヤーとして機能します。
 
-![MoCKA System Architecture](docs/images/mocka_system_architecture.svg)
+研究実行、検証、知識統合、ガバナンスがこの構造の中で接続されています。
 
----
-
-# システム構造
-
-MoCKA Insight System は、検証可能なAI研究を支える複数の構造レイヤーで構成されています。
-
-| レイヤー | 役割 |
-|------|------|
-| MoCKA Core | 研究実行と検証 |
-| Knowledge Gate | 制度的推論の保存 |
-| Transparency | 公開監査と証明 |
-| External Brain | 外部知識統合 |
-| Civilization | ガバナンス思想 |
-
----
-
-# Knowledge Gate の構造
-
-Knowledge Gate はシステムの制度的記憶を保存します。
-研究実行と公開検証を接続するため、推論成果を構造化して保存します。
-
-![Knowledge Gate Architecture](docs/images/knowledge_gate_architecture.svg)
+![Knowledge Gate Architecture](docs/images/mocka_system_architecture.svg)
 
 ---
 
 # Knowledge Gate が存在する理由
 
-AIガバナンス研究では複雑な推論や意思決定過程が生まれます。
-構造化された保存がなければ、その知識は失われます。
+AIガバナンス研究では複雑な推論過程と意思決定が生まれます。
+
+構造的保存がなければ、その知識は失われます。
 
 代表的な問題は次の通りです。
 
@@ -197,7 +157,7 @@ AIガバナンス研究では複雑な推論や意思決定過程が生まれます。
 - 再現不能な研究結果
 - 制度知識の分断
 
-Knowledge Gate は研究成果を構造化して保存することで、これらの問題を防ぎます。
+Knowledge Gate は研究成果を構造化して保存することでこれらの問題を防ぎます。
 
 ---
 
@@ -231,8 +191,6 @@ Knowledge Gate は複数の種類の研究成果を保存します。
 
 # リポジトリ構造
 
-MoCKA Knowledge Gate は制度的記憶を構造化して保存します。
-
 ```
 MoCKA-KNOWLEDGE-GATE
 │
@@ -250,8 +208,6 @@ MoCKA-KNOWLEDGE-GATE
 ---
 
 # 制度的記憶構造
-
-制度的記憶は複数の知識領域に整理されます。
 
 ```
 Institutional Memory
