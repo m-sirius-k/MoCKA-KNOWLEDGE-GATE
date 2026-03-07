@@ -1,42 +1,24 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
 
-<rect width="100%" height="100%" fill="#0d1117"/>
+<rect width="100%" height="100%" fill="#0D1117"/>
 
-<defs>
-<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-<polygon points="0 0, 10 3, 0 6" fill="#ffffff"/>
-</marker>
-</defs>
+<line x1="260" y1="230" x2="400" y2="140" stroke="white" stroke-width="3"/>
+<line x1="260" y1="230" x2="400" y2="300" stroke="white" stroke-width="3"/>
+<line x1="540" y1="140" x2="680" y2="230" stroke="white" stroke-width="3"/>
+<line x1="540" y1="300" x2="680" y2="230" stroke="white" stroke-width="3"/>
 
-<!-- PROCESS -->
+<path d="M680 240 C600 320 320 320 260 250" stroke="#58A6FF" stroke-width="3" fill="none"/>
 
-<rect x="80" y="250" width="180" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
-<text x="170" y="280" fill="#0D1117" font-size="14" text-anchor="middle">Research Execution</text>
+<rect x="120" y="210" width="160" height="50" fill="none" stroke="#58A6FF" stroke-width="3"/>
+<text x="200" y="240" fill="white" text-anchor="middle">Research Execution</text>
 
-<rect x="340" y="250" width="180" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
-<text x="430" y="280" fill="#0D1117" font-size="14" text-anchor="middle">Verification</text>
+<rect x="400" y="120" width="160" height="50" fill="none" stroke="#F0883E" stroke-width="3"/>
+<text x="480" y="150" fill="white" text-anchor="middle">Verification</text>
 
-<!-- KNOWLEDGE STACK (UPWARD) -->
+<rect x="680" y="210" width="160" height="50" fill="none" stroke="#3FB950" stroke-width="3"/>
+<text x="760" y="240" fill="white" text-anchor="middle">Knowledge Archive</text>
 
-<rect x="650" y="300" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<rect x="650" y="255" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<rect x="650" y="210" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-
-<text x="725" y="190" fill="#3fb950" font-size="14" text-anchor="middle">Knowledge Archive</text>
-
-<!-- FLOW ARROWS -->
-
-<line x1="260" y1="275" x2="340" y2="275" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
-<line x1="520" y1="275" x2="650" y2="275" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
-
-<!-- REUSE LOOP -->
-
-<path d="M725 300 C725 420 200 420 170 300"
-stroke="#58a6ff" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
-
-<text x="430" y="420" fill="#58a6ff" font-size="13" text-anchor="middle">
-Knowledge reused for next research cycle
-</text>
+<rect x="400" y="280" width="160" height="50" fill="none" stroke="#A371F7" stroke-width="3"/>
+<text x="480" y="310" fill="white" text-anchor="middle">Institutional Memory</text>
 
 </svg>
-
