@@ -1,16 +1,16 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420">
 
 <rect x="380" y="40" width="240" height="90" stroke="#2ECC71" stroke-width="3" fill="none"/>
-<text x="500" y="90" fill="white" font-size="16" text-anchor="middle">Knowledge Gate</text>
+<text x="500" y="90" fill="white" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Knowledge Gate</text>
 
 <rect x="120" y="220" width="220" height="90" stroke="#2979FF" stroke-width="3" fill="none"/>
-<text x="230" y="270" fill="white" font-size="16" text-anchor="middle">MoCKA Core</text>
+<text x="230" y="270" fill="white" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">MoCKA Core</text>
 
 <rect x="390" y="220" width="220" height="90" stroke="#FF9800" stroke-width="3" fill="none"/>
-<text x="500" y="270" fill="white" font-size="16" text-anchor="middle">Transparency</text>
+<text x="500" y="270" fill="white" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Transparency</text>
 
 <rect x="660" y="220" width="220" height="90" stroke="#9C27B0" stroke-width="3" fill="none"/>
-<text x="770" y="270" fill="white" font-size="16" text-anchor="middle">External Brain</text>
+<text x="770" y="270" fill="white" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">External Brain</text>
 
 <line x1="500" y1="130" x2="230" y2="220" stroke="white" stroke-width="2"/>
 <line x1="500" y1="130" x2="500" y2="220" stroke="white" stroke-width="2"/>
