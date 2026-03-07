@@ -1,17 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="350">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
 
 <rect width="100%" height="100%" fill="#0d1117"/>
 
-<rect x="100" y="150" width="180" height="50" fill="none" stroke="#58a6ff"/>
-<text x="190" y="180" fill="white" font-size="13" text-anchor="middle">Research Execution</text>
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+<polygon points="0 0, 10 3, 0 6" fill="#ffffff"/>
+</marker>
+</defs>
 
-<rect x="360" y="150" width="180" height="50" fill="none" stroke="#f0883e"/>
-<text x="450" y="180" fill="white" font-size="13" text-anchor="middle">Verification</text>
+<!-- nodes -->
 
-<rect x="620" y="150" width="180" height="50" fill="none" stroke="#3fb950"/>
-<text x="710" y="180" fill="white" font-size="13" text-anchor="middle">Knowledge Archive</text>
+<rect x="90" y="180" width="180" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
+<text x="180" y="210" fill="white" font-size="13" text-anchor="middle">Research Execution</text>
 
-<line x1="280" y1="175" x2="360" y2="175" stroke="#58a6ff"/>
-<line x1="540" y1="175" x2="620" y2="175" stroke="#58a6ff"/>
+<rect x="360" y="80" width="180" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
+<text x="450" y="110" fill="white" font-size="13" text-anchor="middle">Verification</text>
+
+<rect x="360" y="280" width="180" height="50" fill="#0d1117" stroke="#a371f7" stroke-width="3"/>
+<text x="450" y="310" fill="white" font-size="13" text-anchor="middle">Knowledge Integration</text>
+
+<rect x="650" y="180" width="180" height="50" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<text x="740" y="210" fill="white" font-size="13" text-anchor="middle">Knowledge Archive</text>
+
+<!-- arrows -->
+
+<line x1="270" y1="205" x2="360" y2="105" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="270" y1="205" x2="360" y2="305" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+
+<line x1="540" y1="105" x2="650" y2="205" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="540" y1="305" x2="650" y2="205" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+
+<!-- research loop -->
+
+<path d="M740 230 C740 360 180 360 180 230"
+stroke="#58a6ff" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
 
 </svg>
