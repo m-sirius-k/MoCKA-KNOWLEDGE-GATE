@@ -1,0 +1,20 @@
+﻿<svg width="600" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="600" fill="#111111"/>
+  <circle cx="300" cy="150" r="60" fill="none" stroke="white"/>
+  <text x="260" y="155" fill="white">Execution</text>
+  <circle cx="450" cy="300" r="60" fill="none" stroke="white"/>
+  <text x="415" y="305" fill="white">Verification</text>
+  <circle cx="300" cy="450" r="60" fill="none" stroke="white"/>
+  <text x="250" y="455" fill="white">Institutionalization</text>
+  <circle cx="150" cy="300" r="60" fill="none" stroke="white"/>
+  <text x="130" y="305" fill="white">Reuse</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="white"/>
+    </marker>
+  </defs>
+  <line x1="330" y1="180" x2="420" y2="260" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="420" y1="340" x2="330" y2="420" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="270" y1="420" x2="180" y2="340" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="180" y1="260" x2="270" y2="180" stroke="white" marker-end="url(#arrow)"/>
+</svg>
