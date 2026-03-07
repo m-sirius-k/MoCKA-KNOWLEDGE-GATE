@@ -1,26 +1,19 @@
-﻿<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420">
 
-<rect width="100%" height="100%" fill="#0d1117"/>
+<rect x="380" y="40" width="240" height="90" stroke="#2ECC71" stroke-width="3" fill="none"/>
+<text x="500" y="90" fill="white" font-size="16" text-anchor="middle">Knowledge Gate</text>
 
-<rect x="360" y="40" width="200" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="460" y="70" fill="#0D1117" font-size="14" text-anchor="middle">MoCKA Knowledge Gate</text>
+<rect x="120" y="220" width="220" height="90" stroke="#2979FF" stroke-width="3" fill="none"/>
+<text x="230" y="270" fill="white" font-size="16" text-anchor="middle">MoCKA Core</text>
 
-<rect x="150" y="180" width="200" height="50" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="250" y="210" fill="#0D1117" font-size="13" text-anchor="middle">docs</text>
+<rect x="390" y="220" width="220" height="90" stroke="#FF9800" stroke-width="3" fill="none"/>
+<text x="500" y="270" fill="white" font-size="16" text-anchor="middle">Transparency</text>
 
-<rect x="550" y="180" width="200" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="650" y="210" fill="#0D1117" font-size="13" text-anchor="middle">artifacts</text>
+<rect x="660" y="220" width="220" height="90" stroke="#9C27B0" stroke-width="3" fill="none"/>
+<text x="770" y="270" fill="white" font-size="16" text-anchor="middle">External Brain</text>
 
-<rect x="360" y="300" width="200" height="50" fill="#0d1117" stroke="#a371f7" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="460" y="330" fill="#0D1117" font-size="13" text-anchor="middle">README</text>
-
-<line x1="460" y1="90" x2="250" y2="180" stroke="#ffffff" stroke-width="2"/>
-<line x1="460" y1="90" x2="650" y2="180" stroke="#ffffff" stroke-width="2"/>
-<line x1="460" y1="90" x2="460" y2="300" stroke="#ffffff" stroke-width="2"/>
+<line x1="500" y1="130" x2="230" y2="220" stroke="white" stroke-width="2"/>
+<line x1="500" y1="130" x2="500" y2="220" stroke="white" stroke-width="2"/>
+<line x1="500" y1="130" x2="770" y2="220" stroke="white" stroke-width="2"/>
 
 </svg>
-
-
-
-
-

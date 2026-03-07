@@ -1,28 +1,15 @@
-﻿<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420">
 
-<rect width="100%" height="100%" fill="#0D1117"/>
+<rect x="80" y="160" width="200" height="90" stroke="#9C27B0" stroke-width="3" fill="none"/>
+<text x="180" y="210" fill="white" font-size="16" text-anchor="middle">External Brain</text>
 
-<line x1="260" y1="230" x2="400" y2="140" stroke="white" stroke-width="3"/>
-<line x1="260" y1="230" x2="400" y2="300" stroke="white" stroke-width="3"/>
-<line x1="540" y1="140" x2="680" y2="230" stroke="white" stroke-width="3"/>
-<line x1="540" y1="300" x2="680" y2="230" stroke="white" stroke-width="3"/>
+<rect x="380" y="160" width="200" height="90" stroke="#2ECC71" stroke-width="3" fill="none"/>
+<text x="480" y="210" fill="white" font-size="16" text-anchor="middle">Knowledge Gate</text>
 
-<path d="M680 240 C600 320 320 320 260 250" stroke="#58A6FF" stroke-width="3" fill="none"/>
+<rect x="680" y="160" width="200" height="90" stroke="#2979FF" stroke-width="3" fill="none"/>
+<text x="780" y="210" fill="white" font-size="16" text-anchor="middle">MoCKA Core</text>
 
-<rect x="120" y="210" width="160" height="50" fill="none" stroke="#58A6FF" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="200" y="240" fill="white" text-anchor="middle">Research Execution</text>
-
-<rect x="400" y="120" width="160" height="50" fill="none" stroke="#F0883E" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="480" y="150" fill="white" text-anchor="middle">Verification</text>
-
-<rect x="680" y="210" width="160" height="50" fill="none" stroke="#3FB950" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="760" y="240" fill="white" text-anchor="middle">Knowledge Archive</text>
-
-<rect x="400" y="280" width="160" height="50" fill="none" stroke="#A371F7" stroke-width="3"/>
-<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="480" y="310" fill="white" text-anchor="middle">Institutional Memory</text>
+<line x1="280" y1="205" x2="380" y2="205" stroke="white" stroke-width="2"/>
+<line x1="580" y1="205" x2="680" y2="205" stroke="white" stroke-width="2"/>
 
 </svg>
-
-
-
-
