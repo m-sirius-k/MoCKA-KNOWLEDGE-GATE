@@ -1,26 +1,35 @@
-﻿<svg width="900" height="420" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="420" fill="#111111"/>
-  <rect x="40" y="60" width="220" height="260" fill="none" stroke="white"/>
-  <text x="60" y="100" fill="white">入力</text>
-  <text x="60" y="140" fill="white">Execution Logs</text>
-  <text x="60" y="170" fill="white">Reasoning Traces</text>
-  <text x="60" y="200" fill="white">Validation Results</text>
-  <rect x="340" y="60" width="220" height="260" fill="none" stroke="white"/>
-  <text x="360" y="100" fill="white">中央処理</text>
-  <text x="360" y="140" fill="white">Context Structuring</text>
-  <text x="360" y="170" fill="white">Institutionalization</text>
-  <text x="360" y="200" fill="white">Reuse Tags</text>
-  <rect x="640" y="60" width="220" height="260" fill="none" stroke="white"/>
-  <text x="660" y="100" fill="white">出力</text>
-  <text x="660" y="140" fill="white">Future Research</text>
-  <text x="660" y="170" fill="white">Governance Decisions</text>
-  <text x="660" y="200" fill="white">Civilization Layer</text>
-  <line x1="260" y1="190" x2="340" y2="190" stroke="white" marker-end="url(#arrow)"/>
-  <line x1="560" y1="190" x2="640" y2="190" stroke="white" marker-end="url(#arrow)"/>
-  <line x1="640" y1="260" x2="340" y2="260" stroke="white" marker-end="url(#arrow)"/>
+﻿<svg width="900" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="300" fill="#111111"/>
+
+  <!-- 入力 -->
+  <rect x="40" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
+  <text x="140" y="90" fill="white" text-anchor="middle">入力</text>
+  <text x="140" y="125" fill="white" text-anchor="middle">Execution Logs</text>
+  <text x="140" y="150" fill="white" text-anchor="middle">Reasoning Traces</text>
+  <text x="140" y="175" fill="white" text-anchor="middle">Validation Results</text>
+
+  <!-- 中央 -->
+  <rect x="350" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
+  <text x="450" y="90" fill="white" text-anchor="middle">中央処理</text>
+  <text x="450" y="125" fill="white" text-anchor="middle">Context Structuring</text>
+  <text x="450" y="150" fill="white" text-anchor="middle">Institutionalization</text>
+  <text x="450" y="175" fill="white" text-anchor="middle">Reuse Tags</text>
+
+  <!-- 出力 -->
+  <rect x="660" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
+  <text x="760" y="90" fill="white" text-anchor="middle">出力</text>
+  <text x="760" y="125" fill="white" text-anchor="middle">Future Research</text>
+  <text x="760" y="150" fill="white" text-anchor="middle">Governance Decisions</text>
+  <text x="760" y="175" fill="white" text-anchor="middle">Civilization Layer</text>
+
+  <!-- 矢印 -->
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
       <polygon points="0 0, 10 3, 0 6" fill="white"/>
     </marker>
   </defs>
+
+  <line x1="240" y1="150" x2="350" y2="150" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="550" y1="150" x2="660" y2="150" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="660" y1="210" x2="350" y2="210" stroke="white" marker-end="url(#arrow)"/>
 </svg>
