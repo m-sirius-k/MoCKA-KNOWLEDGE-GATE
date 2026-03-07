@@ -1,31 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460">
 
 <rect width="100%" height="100%" fill="#0d1117"/>
 
-<!-- lines -->
-<line x1="450" y1="90" x2="200" y2="200" stroke="#58a6ff"/>
-<line x1="450" y1="90" x2="450" y2="200" stroke="#58a6ff"/>
-<line x1="450" y1="90" x2="700" y2="200" stroke="#58a6ff"/>
+<!-- CONNECTION LINES -->
 
-<line x1="200" y1="230" x2="450" y2="330" stroke="#f85149"/>
-<line x1="450" y1="230" x2="450" y2="330" stroke="#f85149"/>
-<line x1="700" y1="230" x2="450" y2="330" stroke="#f85149"/>
+<line x1="450" y1="90" x2="200" y2="210" stroke="#ffffff" stroke-width="3"/>
+<line x1="450" y1="90" x2="450" y2="210" stroke="#ffffff" stroke-width="3"/>
+<line x1="450" y1="90" x2="700" y2="210" stroke="#ffffff" stroke-width="3"/>
 
-<!-- boxes -->
+<line x1="200" y1="250" x2="450" y2="350" stroke="#ffffff" stroke-width="3"/>
+<line x1="450" y1="250" x2="450" y2="350" stroke="#ffffff" stroke-width="3"/>
+<line x1="700" y1="250" x2="450" y2="350" stroke="#ffffff" stroke-width="3"/>
 
-<rect x="380" y="50" width="140" height="40" fill="none" stroke="#58a6ff"/>
+<!-- BOXES -->
+
+<rect x="380" y="50" width="140" height="40" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
 <text x="450" y="75" fill="white" font-size="14" text-anchor="middle">MoCKA Core</text>
 
-<rect x="120" y="200" width="160" height="40" fill="none" stroke="#3fb950"/>
-<text x="200" y="225" fill="white" font-size="13" text-anchor="middle">Knowledge Gate</text>
+<rect x="120" y="210" width="160" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<text x="200" y="235" fill="white" font-size="13" text-anchor="middle">Knowledge Gate</text>
 
-<rect x="370" y="200" width="160" height="40" fill="none" stroke="#f0883e"/>
-<text x="450" y="225" fill="white" font-size="13" text-anchor="middle">Transparency</text>
+<rect x="370" y="210" width="160" height="40" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
+<text x="450" y="235" fill="white" font-size="13" text-anchor="middle">Transparency</text>
 
-<rect x="620" y="200" width="160" height="40" fill="none" stroke="#a371f7"/>
-<text x="700" y="225" fill="white" font-size="13" text-anchor="middle">External Brain</text>
+<rect x="620" y="210" width="160" height="40" fill="#0d1117" stroke="#a371f7" stroke-width="3"/>
+<text x="700" y="235" fill="white" font-size="13" text-anchor="middle">External Brain</text>
 
-<rect x="380" y="330" width="140" height="40" fill="none" stroke="#f85149"/>
-<text x="450" y="355" fill="white" font-size="13" text-anchor="middle">Civilization</text>
+<rect x="380" y="350" width="140" height="40" fill="#0d1117" stroke="#f85149" stroke-width="3"/>
+<text x="450" y="375" fill="white" font-size="13" text-anchor="middle">Civilization</text>
 
 </svg>
