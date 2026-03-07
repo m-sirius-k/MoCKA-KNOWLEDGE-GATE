@@ -1,28 +1,28 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420">
 
 <rect width="100%" height="100%" fill="#0D1117"/>
 
-<line x1="450" y1="110" x2="200" y2="220" stroke="white" stroke-width="3"/>
-<line x1="450" y1="110" x2="450" y2="220" stroke="white" stroke-width="3"/>
-<line x1="450" y1="110" x2="700" y2="220" stroke="white" stroke-width="3"/>
+<line x1="450" y1="120" x2="200" y2="220" stroke="white" stroke-width="3"/>
+<line x1="450" y1="120" x2="450" y2="220" stroke="white" stroke-width="3"/>
+<line x1="450" y1="120" x2="700" y2="220" stroke="white" stroke-width="3"/>
 
 <line x1="200" y1="220" x2="450" y2="320" stroke="white" stroke-width="3"/>
 <line x1="450" y1="220" x2="450" y2="320" stroke="white" stroke-width="3"/>
 <line x1="700" y1="220" x2="450" y2="320" stroke="white" stroke-width="3"/>
 
-<rect x="380" y="70" width="140" height="50" fill="none" stroke="#58A6FF" stroke-width="3"/>
-<text x="450" y="100" fill="white" font-size="14" text-anchor="middle">MoCKA Core</text>
+<rect x="380" y="80" width="140" height="50" fill="none" stroke="#58A6FF" stroke-width="3"/>
+<text x="450" y="110" text-anchor="middle" dominant-baseline="middle" fill="#58A6FF" font-size="16">MoCKA Core</text>
 
 <rect x="120" y="200" width="160" height="50" fill="none" stroke="#3FB950" stroke-width="3"/>
-<text x="200" y="230" fill="white" font-size="13" text-anchor="middle">Knowledge Gate</text>
+<text x="200" y="225" text-anchor="middle" dominant-baseline="middle" fill="#3FB950" font-size="14">Knowledge Gate</text>
 
 <rect x="370" y="200" width="160" height="50" fill="none" stroke="#F0883E" stroke-width="3"/>
-<text x="450" y="230" fill="white" font-size="13" text-anchor="middle">Transparency</text>
+<text x="450" y="225" text-anchor="middle" dominant-baseline="middle" fill="#F0883E" font-size="14">Transparency</text>
 
 <rect x="620" y="200" width="160" height="50" fill="none" stroke="#A371F7" stroke-width="3"/>
-<text x="700" y="230" fill="white" font-size="13" text-anchor="middle">External Brain</text>
+<text x="700" y="225" text-anchor="middle" dominant-baseline="middle" fill="#A371F7" font-size="14">External Brain</text>
 
 <rect x="380" y="310" width="140" height="50" fill="none" stroke="#F85149" stroke-width="3"/>
-<text x="450" y="340" fill="white" font-size="13" text-anchor="middle">Civilization</text>
+<text x="450" y="335" text-anchor="middle" dominant-baseline="middle" fill="#F85149" font-size="14">Civilization</text>
 
 </svg>
