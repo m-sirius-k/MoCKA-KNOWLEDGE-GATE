@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="350">
+
+<rect width="100%" height="100%" fill="#0d1117"/>
+
+<rect x="80" y="140" width="180" height="50" fill="none" stroke="#58a6ff"/>
+<text x="170" y="170" fill="white" font-size="13" text-anchor="middle">Research Activity</text>
+
+<rect x="320" y="140" width="180" height="50" fill="none" stroke="#f0883e"/>
+<text x="410" y="170" fill="white" font-size="13" text-anchor="middle">Documentation</text>
+
+<rect x="560" y="140" width="180" height="50" fill="none" stroke="#3fb950"/>
+<text x="650" y="170" fill="white" font-size="13" text-anchor="middle">Institutional Memory</text>
+
+<line x1="260" y1="165" x2="320" y2="165" stroke="#58a6ff"/>
+<line x1="500" y1="165" x2="560" y2="165" stroke="#58a6ff"/>
+
+</svg>
