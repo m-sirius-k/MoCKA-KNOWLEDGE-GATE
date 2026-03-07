@@ -1,39 +1,7 @@
 ﻿# Knowledge Gate SVG Test
 
 ## English Version
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="300" fill="#111111"/>
-  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI" font-size="20" fill="#ffffff">Knowledge Gate – Institutional Memory</text>
-  <rect x="60" y="100" width="200" height="120" fill="none" stroke="#2962ff" stroke-width="3" rx="10"/>
-  <text x="160" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">Execution Logs</text>
-  <rect x="350" y="80" width="200" height="160" fill="none" stroke="#00bfa5" stroke-width="3" rx="10"/>
-  <text x="450" y="150" text-anchor="middle" font-family="Segoe UI" font-size="16" fill="#ffffff">Knowledge Gate</text>
-  <rect x="640" y="100" width="200" height="120" fill="none" stroke="#7c4dff" stroke-width="3" rx="10"/>
-  <text x="740" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">Future Research</text>
-  <defs>
-    <marker id="arrow-white" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 z" fill="#ffffff"/>
-    </marker>
-  </defs>
-  <line x1="260" y1="160" x2="350" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
-  <line x1="550" y1="160" x2="640" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
-</svg>
+<img src="docs/images/knowledge_gate_en.svg">
 
 ## Japanese Version
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="300" fill="#111111"/>
-  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI" font-size="20" fill="#ffffff">Knowledge Gate（制度的記憶）</text>
-  <rect x="60" y="100" width="200" height="120" fill="none" stroke="#2962ff" stroke-width="3" rx="10"/>
-  <text x="160" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">実行ログ</text>
-  <rect x="350" y="80" width="200" height="160" fill="none" stroke="#00bfa5" stroke-width="3" rx="10"/>
-  <text x="450" y="150" text-anchor="middle" font-family="Segoe UI" font-size="16" fill="#ffffff">Knowledge Gate</text>
-  <rect x="640" y="100" width="200" height="120" fill="none" stroke="#7c4dff" stroke-width="3" rx="10"/>
-  <text x="740" y="160" text-anchor="middle" font-family="Segoe UI" font-size="14" fill="#ffffff">次の研究</text>
-  <defs>
-    <marker id="arrow-white" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L8,3 L0,6 z" fill="#ffffff"/>
-    </marker>
-  </defs>
-  <line x1="260" y1="160" x2="350" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
-  <line x1="550" y1="160" x2="640" y2="160" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-white)"/>
-</svg>
+<img src="docs/images/knowledge_gate_jp.svg">
