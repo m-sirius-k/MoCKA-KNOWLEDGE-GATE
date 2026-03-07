@@ -1,93 +1,39 @@
 ﻿# MoCKA Knowledge Gate
-
-## Institutional Memory Infrastructure of the MoCKA Insight System
-
-MoCKA Knowledge Gate is the institutional memory infrastructure of the MoCKA Insight System.
-
-It preserves research reasoning, governance context, and verification artifacts required to reconstruct verifiable AI governance research.
+Institutional memory layer for verifiable AI governance research.
 
 ---
 
 ## Knowledge Gate Architecture
-
 The Knowledge Gate functions as the institutional memory layer of the MoCKA Insight System.
+Research execution, verification, knowledge integration, and governance reasoning are connected through this architecture.
 
-Research execution, verification, knowledge integration, and governance are structurally connected through this architecture.
-
-<img src="./docs/images/knowledge_gate_architecture.svg" width="900">
-
----
-
-## Why Knowledge Gate Exists
-
-AI governance research produces complex reasoning processes and decision contexts.
-
-Without structured preservation, institutional knowledge disappears.
-
-Typical failure modes include:
-
-- loss of reasoning traces
-- disappearance of governance context
-- irreproducible research results
-- fragmentation of institutional knowledge
-
-Knowledge Gate prevents these failures by preserving structured research artifacts.
+![Knowledge Gate Architecture](docs/images/knowledge_gate_architecture.svg)
 
 ---
 
 ## Knowledge Preservation Model
+Research artifacts become institutional memory through documentation and verification.
 
-Research artifacts become institutional memory through documentation and archival.
-
-Knowledge is not static storage.
-
-Artifacts accumulate as institutional memory and become the foundation for future research cycles.
-
-<img src="./docs/images/knowledge_preservation_model.svg" width="900">
+![Knowledge Preservation Model](docs/images/knowledge_preservation_model.svg)
 
 ---
 
 ## Research Knowledge Flow
-
 Research activities produce artifacts that are verified and archived as institutional memory.
 
-Archived knowledge accumulates and forms the base for the next research cycle.
-
-The system forms a continuous loop where knowledge is produced, verified, accumulated, and reused.
-
-<img src="./docs/images/research_knowledge_flow.svg" width="900">
+![Research Knowledge Flow](docs/images/research_knowledge_flow.svg)
 
 ---
 
 ## Repository Structure
 
-MoCKA Knowledge Gate stores structured institutional memory artifacts used across the MoCKA Insight System.
-
-<img src="./docs/images/repository_structure.svg" width="900">
+![Repository Structure](docs/images/repository_structure.svg)
 
 ---
 
 ## Institutional Memory Structure
 
-Institutional memory is organized into several knowledge domains.
-
-Each domain preserves a different aspect of the research lifecycle and governance structure.
-
-<img src="./docs/images/institutional_memory_structure.svg" width="900">
-
----
-
-## Stored Artifacts
-
-Knowledge Gate preserves multiple categories of institutional research artifacts:
-
-- architecture documentation
-- research maps
-- governance frameworks
-- decision context
-- verification reports
-
-These artifacts together form the persistent institutional memory layer of the MoCKA Insight System.
+![Institutional Memory Structure](docs/images/institutional_memory_structure.svg)
 
 ---
 
@@ -103,5 +49,53 @@ These artifacts together form the persistent institutional memory layer of the M
 
 ---
 
+# MoCKA Knowledge Gate（日本語版）
+
+検証可能なAIガバナンス研究のための制度的記憶レイヤー。
+
+---
+
+## Knowledge Gate アーキテクチャ
+Knowledge Gate は MoCKA Insight System の制度的記憶基盤として機能する。
+
+![Knowledge Gate Architecture](docs/images/knowledge_gate_architecture.svg)
+
+---
+
+## 知識保存モデル
+研究成果物は記録・検証を通じて制度的記憶として蓄積される。
+
+![Knowledge Preservation Model](docs/images/knowledge_preservation_model.svg)
+
+---
+
+## 研究知識フロー
+研究活動は知識を生成し、検証され、制度的記憶として保存される。
+
+![Research Knowledge Flow](docs/images/research_knowledge_flow.svg)
+
+---
+
+## リポジトリ構造
+
+![Repository Structure](docs/images/repository_structure.svg)
+
+---
+
+## 制度的記憶構造
+
+![Institutional Memory Structure](docs/images/institutional_memory_structure.svg)
+
+---
+
+## 関連リポジトリ
+
+| システム層 | 説明 | リポジトリ |
+|---|---|---|
+| MoCKA Core | 研究実行エンジン | 🟦 [MoCKA Core](https://github.com/m-sirius-k/MoCKA) |
+| Knowledge Gate | 制度的記憶インフラ | 🟩 [Knowledge Gate](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE) |
+| Transparency | 検証・監査レイヤー | 🟧 [Transparency](https://github.com/m-sirius-k/mocka-transparency) |
+| External Brain | 知識統合レイヤー | 🟪 [External Brain](https://github.com/m-sirius-k/mocka-external-brain) |
+| Civilization | ガバナンス思想フレームワーク | 🟥 [Civilization](https://github.com/m-sirius-k/mocka-civilization) |
 
 
