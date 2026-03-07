@@ -1,35 +1,35 @@
-﻿<svg width="900" height="300" xmlns="http://www.w3.org/2000/svg">
-  <rect width="900" height="300" fill="#111111"/>
+﻿<svg width="900" height="220" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="220" fill="#111111"/>
 
   <!-- 入力 -->
-  <rect x="40" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
-  <text x="140" y="90" fill="white" text-anchor="middle">入力</text>
-  <text x="140" y="125" fill="white" text-anchor="middle">Execution Logs</text>
-  <text x="140" y="150" fill="white" text-anchor="middle">Reasoning Traces</text>
-  <text x="140" y="175" fill="white" text-anchor="middle">Validation Results</text>
+  <rect x="40" y="40" width="170" height="95" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <text x="125" y="65" fill="white" text-anchor="middle" font-size="15">入力</text>
+  <text x="125" y="92" fill="white" text-anchor="middle" font-size="12">Execution Logs</text>
+  <text x="125" y="112" fill="white" text-anchor="middle" font-size="12">Reasoning Traces</text>
+  <text x="125" y="132" fill="white" text-anchor="middle" font-size="12">Validation Results</text>
 
   <!-- 中央 -->
-  <rect x="350" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
-  <text x="450" y="90" fill="white" text-anchor="middle">中央処理</text>
-  <text x="450" y="125" fill="white" text-anchor="middle">Context Structuring</text>
-  <text x="450" y="150" fill="white" text-anchor="middle">Institutionalization</text>
-  <text x="450" y="175" fill="white" text-anchor="middle">Reuse Tags</text>
+  <rect x="365" y="35" width="180" height="105" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <text x="455" y="65" fill="white" text-anchor="middle" font-size="15">中央処理</text>
+  <text x="455" y="92" fill="white" text-anchor="middle" font-size="12">Context Structuring</text>
+  <text x="455" y="112" fill="white" text-anchor="middle" font-size="12">Institutionalization</text>
+  <text x="455" y="132" fill="white" text-anchor="middle" font-size="12">Reuse Tags</text>
 
   <!-- 出力 -->
-  <rect x="660" y="60" width="200" height="180" fill="none" stroke="white" rx="6"/>
-  <text x="760" y="90" fill="white" text-anchor="middle">出力</text>
-  <text x="760" y="125" fill="white" text-anchor="middle">Future Research</text>
-  <text x="760" y="150" fill="white" text-anchor="middle">Governance Decisions</text>
-  <text x="760" y="175" fill="white" text-anchor="middle">Civilization Layer</text>
+  <rect x="690" y="40" width="170" height="95" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <text x="775" y="65" fill="white" text-anchor="middle" font-size="15">出力</text>
+  <text x="775" y="92" fill="white" text-anchor="middle" font-size="12">Future Research</text>
+  <text x="775" y="112" fill="white" text-anchor="middle" font-size="12">Governance Decisions</text>
+  <text x="775" y="132" fill="white" text-anchor="middle" font-size="12">Civilization Layer</text>
 
   <!-- 矢印 -->
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="white"/>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="7" refY="3.5" orient="auto">
+      <polygon points="0 0, 14 3.5, 0 7" fill="white"/>
     </marker>
   </defs>
 
-  <line x1="240" y1="150" x2="350" y2="150" stroke="white" marker-end="url(#arrow)"/>
-  <line x1="550" y1="150" x2="660" y2="150" stroke="white" marker-end="url(#arrow)"/>
-  <line x1="660" y1="210" x2="350" y2="210" stroke="white" marker-end="url(#arrow)"/>
+  <line x1="210" y1="90" x2="365" y2="90" stroke="white" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <line x1="545" y1="90" x2="690" y2="90" stroke="white" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <line x1="690" y1="145" x2="365" y2="145" stroke="white" stroke-width="2.2" marker-end="url(#arrow)"/>
 </svg>
