@@ -1,28 +1,28 @@
 ﻿<svg width="900" height="220" xmlns="http://www.w3.org/2000/svg">
   <rect width="900" height="220" fill="#111111"/>
 
-  <!-- 入力 -->
-  <rect x="40" y="40" width="170" height="95" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <!-- 入力（緑） -->
+  <rect x="40" y="40" width="170" height="95" fill="none" stroke="#6DFF8F" stroke-width="2.2" rx="5"/>
   <text x="125" y="65" fill="white" text-anchor="middle" font-size="15">入力</text>
   <text x="125" y="92" fill="white" text-anchor="middle" font-size="12">Execution Logs</text>
   <text x="125" y="112" fill="white" text-anchor="middle" font-size="12">Reasoning Traces</text>
   <text x="125" y="132" fill="white" text-anchor="middle" font-size="12">Validation Results</text>
 
-  <!-- 中央 -->
-  <rect x="365" y="35" width="180" height="105" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <!-- 中央処理（紫） -->
+  <rect x="365" y="35" width="180" height="105" fill="none" stroke="#C28CFF" stroke-width="2.2" rx="5"/>
   <text x="455" y="65" fill="white" text-anchor="middle" font-size="15">中央処理</text>
   <text x="455" y="92" fill="white" text-anchor="middle" font-size="12">Context Structuring</text>
   <text x="455" y="112" fill="white" text-anchor="middle" font-size="12">Institutionalization</text>
   <text x="455" y="132" fill="white" text-anchor="middle" font-size="12">Reuse Tags</text>
 
-  <!-- 出力 -->
-  <rect x="690" y="40" width="170" height="95" fill="none" stroke="white" stroke-width="2.2" rx="5"/>
+  <!-- 出力（オレンジ） -->
+  <rect x="690" y="40" width="170" height="95" fill="none" stroke="#FFB84D" stroke-width="2.2" rx="5"/>
   <text x="775" y="65" fill="white" text-anchor="middle" font-size="15">出力</text>
   <text x="775" y="92" fill="white" text-anchor="middle" font-size="12">Future Research</text>
   <text x="775" y="112" fill="white" text-anchor="middle" font-size="12">Governance Decisions</text>
   <text x="775" y="132" fill="white" text-anchor="middle" font-size="12">Civilization Layer</text>
 
-  <!-- 矢印 -->
+  <!-- 矢印（白） -->
   <defs>
     <marker id="arrow" markerWidth="14" markerHeight="14" refX="7" refY="3.5" orient="auto">
       <polygon points="0 0, 14 3.5, 0 7" fill="white"/>
