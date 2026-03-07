@@ -1,22 +1,23 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+﻿<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" width="900" height="420">
 
 <rect width="100%" height="100%" fill="#0d1117"/>
 
 <rect x="360" y="40" width="200" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
-<text x="460" y="70" fill="#0D1117" font-size="14" text-anchor="middle">MoCKA Knowledge Gate</text>
+<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="460" y="70" fill="#0D1117" font-size="14" text-anchor="middle">MoCKA Knowledge Gate</text>
 
 <rect x="150" y="180" width="200" height="50" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<text x="250" y="210" fill="#0D1117" font-size="13" text-anchor="middle">docs</text>
+<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="250" y="210" fill="#0D1117" font-size="13" text-anchor="middle">docs</text>
 
 <rect x="550" y="180" width="200" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
-<text x="650" y="210" fill="#0D1117" font-size="13" text-anchor="middle">artifacts</text>
+<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="650" y="210" fill="#0D1117" font-size="13" text-anchor="middle">artifacts</text>
 
 <rect x="360" y="300" width="200" height="50" fill="#0d1117" stroke="#a371f7" stroke-width="3"/>
-<text x="460" y="330" fill="#0D1117" font-size="13" text-anchor="middle">README</text>
+<text font-family="Segoe UI, Arial" text-anchor="middle" dominant-baseline="middle" x="460" y="330" fill="#0D1117" font-size="13" text-anchor="middle">README</text>
 
 <line x1="460" y1="90" x2="250" y2="180" stroke="#ffffff" stroke-width="2"/>
 <line x1="460" y1="90" x2="650" y2="180" stroke="#ffffff" stroke-width="2"/>
 <line x1="460" y1="90" x2="460" y2="300" stroke="#ffffff" stroke-width="2"/>
 
 </svg>
+
 
