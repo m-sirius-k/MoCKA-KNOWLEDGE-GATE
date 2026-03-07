@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500">
 
 <rect width="100%" height="100%" fill="#0d1117"/>
 
@@ -8,34 +8,34 @@
 </marker>
 </defs>
 
-<!-- Research source -->
-<rect x="80" y="220" width="180" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
-<text x="170" y="250" fill="white" font-size="14" text-anchor="middle">Research Execution</text>
+<!-- PROCESS -->
 
-<!-- Verification -->
-<rect x="330" y="220" width="180" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
-<text x="420" y="250" fill="white" font-size="14" text-anchor="middle">Verification</text>
+<rect x="80" y="250" width="180" height="50" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
+<text x="170" y="280" fill="white" font-size="14" text-anchor="middle">Research Execution</text>
 
-<!-- Knowledge Blocks (stack) -->
+<rect x="340" y="250" width="180" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
+<text x="430" y="280" fill="white" font-size="14" text-anchor="middle">Verification</text>
 
-<rect x="650" y="300" width="140" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<rect x="630" y="260" width="140" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
-<rect x="610" y="220" width="140" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<!-- KNOWLEDGE STACK (UPWARD) -->
 
-<text x="680" y="210" fill="white" font-size="13" text-anchor="middle">Knowledge Archive</text>
+<rect x="650" y="300" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<rect x="650" y="255" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<rect x="650" y="210" width="150" height="40" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
 
-<!-- arrows -->
+<text x="725" y="190" fill="#3fb950" font-size="14" text-anchor="middle">Knowledge Archive</text>
 
-<line x1="260" y1="245" x2="330" y2="245" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
-<line x1="510" y1="245" x2="610" y2="240" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+<!-- FLOW ARROWS -->
 
-<!-- reuse arrow -->
+<line x1="260" y1="275" x2="340" y2="275" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
+<line x1="520" y1="275" x2="650" y2="275" stroke="#ffffff" stroke-width="3" marker-end="url(#arrow)"/>
 
-<path d="M680 340 C680 420 200 420 170 270"
+<!-- REUSE LOOP -->
+
+<path d="M725 300 C725 420 200 420 170 300"
 stroke="#58a6ff" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 
-<text x="450" y="410" fill="#58a6ff" font-size="13" text-anchor="middle">
-Knowledge reused for next research
+<text x="430" y="420" fill="#58a6ff" font-size="13" text-anchor="middle">
+Knowledge reused for next research cycle
 </text>
 
 </svg>
