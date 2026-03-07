@@ -1,7 +1,7 @@
 ﻿# Knowledge Gate SVG Test
 
-## English Version
+## Knowledge Gate (EN)
 <img src="docs/images/knowledge_gate_en.svg">
 
-## Japanese Version
+## Knowledge Gate (JP)
 <img src="docs/images/knowledge_gate_jp.svg">
