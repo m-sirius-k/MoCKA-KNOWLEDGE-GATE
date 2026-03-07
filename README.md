@@ -94,29 +94,6 @@ These artifacts together form the persistent institutional memory layer of the M
 ## Related Repositories
 
 | System Layer | Description | Repository |
-|--------------|-------------|------------|
-| **MoCKA Core** | Research execution engine | [![](https://img.shields.io/badge/Open-Repository-blue?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA) |
-| **Knowledge Gate** | Institutional memory infrastructure | [![](https://img.shields.io/badge/Open-Repository-green?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE) |
-| **Transparency** | Verification and audit layer | [![](https://img.shields.io/badge/Open-Repository-orange?style=for-the-badge)](https://github.com/m-sirius-k/mocka-transparency) |
-| **External Brain** | Knowledge integration layer | [![](https://img.shields.io/badge/Open-Repository-purple?style=for-the-badge)](https://github.com/m-sirius-k/mocka-external-brain) |
-| **Civilization** | Governance philosophy framework | [![](https://img.shields.io/badge/Open-Repository-red?style=for-the-badge)](https://github.com/m-sirius-k/mocka-civilization) |
-
-These repositories together form the MoCKA Insight System architecture.
-
----
-
-## Summary
-
-MoCKA Knowledge Gate functions as the institutional memory infrastructure of the MoCKA Insight System.
-
-It preserves research reasoning, governance context, and verification artifacts required to ensure that AI governance research remains transparent, traceable, and reproducible.
-
-Knowledge is not merely stored; it is accumulated, structured, and reused across research cycles.
-
-
-
-
-| System Layer | Description | Repository |
 |---|---|---|
 | MoCKA Core | Research execution engine | 🟦 [MoCKA Core](https://github.com/m-sirius-k/MoCKA) |
 | Knowledge Gate | Institutional memory infrastructure | 🟩 [Knowledge Gate](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE) |
@@ -124,9 +101,7 @@ Knowledge is not merely stored; it is accumulated, structured, and reused across
 | External Brain | Knowledge integration layer | 🟪 [External Brain](https://github.com/m-sirius-k/mocka-external-brain) |
 | Civilization | Governance philosophy framework | 🟥 [Civilization](https://github.com/m-sirius-k/mocka-civilization) |
 
-
-
-
+---
 
 
 
