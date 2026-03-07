@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420">
+
+<rect width="100%" height="100%" fill="#0d1117"/>
+
+<circle cx="450" cy="200" r="70" fill="none" stroke="#58a6ff" stroke-width="3"/>
+<text x="450" y="205" fill="white" font-size="14" text-anchor="middle">Institutional Memory</text>
+
+<rect x="150" y="60" width="220" height="50" fill="#0d1117" stroke="#3fb950" stroke-width="3"/>
+<text x="260" y="90" fill="white" font-size="13" text-anchor="middle">Architecture Knowledge</text>
+
+<rect x="630" y="60" width="220" height="50" fill="#0d1117" stroke="#f0883e" stroke-width="3"/>
+<text x="740" y="90" fill="white" font-size="13" text-anchor="middle">Research Knowledge</text>
+
+<rect x="150" y="320" width="220" height="50" fill="#0d1117" stroke="#a371f7" stroke-width="3"/>
+<text x="260" y="350" fill="white" font-size="13" text-anchor="middle">Governance Knowledge</text>
+
+<rect x="630" y="320" width="220" height="50" fill="#0d1117" stroke="#f85149" stroke-width="3"/>
+<text x="740" y="350" fill="white" font-size="13" text-anchor="middle">Verification Knowledge</text>
+
+<line x1="370" y1="90" x2="410" y2="150" stroke="#ffffff" stroke-width="2"/>
+<line x1="530" y1="150" x2="630" y2="90" stroke="#ffffff" stroke-width="2"/>
+<line x1="370" y1="310" x2="410" y2="250" stroke="#ffffff" stroke-width="2"/>
+<line x1="530" y1="250" x2="630" y2="310" stroke="#ffffff" stroke-width="2"/>
+
+</svg>
