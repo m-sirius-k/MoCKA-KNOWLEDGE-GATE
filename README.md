@@ -95,11 +95,11 @@ These artifacts together form the persistent institutional memory layer of the M
 
 | System Layer | Description | Repository |
 |--------------|-------------|------------|
-| **MoCKA Core** | Research execution engine | [![Open Repository](https://img.shields.io/badge/Open-Repository-blue?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA) |
-| **Knowledge Gate** | Institutional memory infrastructure | [![Open Repository](https://img.shields.io/badge/Open-Repository-green?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE) |
-| **Transparency** | Verification and audit layer | [![Open Repository](https://img.shields.io/badge/Open-Repository-orange?style=for-the-badge)](https://github.com/m-sirius-k/mocka-transparency) |
-| **External Brain** | Knowledge integration layer | [![Open Repository](https://img.shields.io/badge/Open-Repository-purple?style=for-the-badge)](https://github.com/m-sirius-k/mocka-external-brain) |
-| **Civilization** | Governance philosophy framework | [![Open Repository](https://img.shields.io/badge/Open-Repository-red?style=for-the-badge)](https://github.com/m-sirius-k/mocka-civilization) |
+| **MoCKA Core** | Research execution engine | [![](https://img.shields.io/badge/Open-Repository-blue?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA) |
+| **Knowledge Gate** | Institutional memory infrastructure | [![](https://img.shields.io/badge/Open-Repository-green?style=for-the-badge)](https://github.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE) |
+| **Transparency** | Verification and audit layer | [![](https://img.shields.io/badge/Open-Repository-orange?style=for-the-badge)](https://github.com/m-sirius-k/mocka-transparency) |
+| **External Brain** | Knowledge integration layer | [![](https://img.shields.io/badge/Open-Repository-purple?style=for-the-badge)](https://github.com/m-sirius-k/mocka-external-brain) |
+| **Civilization** | Governance philosophy framework | [![](https://img.shields.io/badge/Open-Repository-red?style=for-the-badge)](https://github.com/m-sirius-k/mocka-civilization) |
 
 These repositories together form the MoCKA Insight System architecture.
 
@@ -123,5 +123,7 @@ Knowledge is not merely stored; it is accumulated, structured, and reused across
 | Transparency | Verification and audit layer | 🟧 [open｜Transparency](https://github.com/m-sirius-k/mocka-transparency) |
 | External Brain | Knowledge integration layer | 🟪 [open｜External Brain](https://github.com/m-sirius-k/mocka-external-brain) |
 | Civilization | Governance philosophy framework | 🟥 [open｜Civilization](https://github.com/m-sirius-k/mocka-civilization) |
+
+
 
 
