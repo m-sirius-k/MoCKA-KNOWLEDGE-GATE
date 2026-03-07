@@ -1,44 +1,33 @@
-﻿<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+﻿<svg width="1000" height="520" xmlns="http://www.w3.org/2000/svg">
 
-<style>
-.box { fill:#0b1220; stroke:#6aa0ff; stroke-width:2; rx:10; }
-.text { fill:white; font-family:Segoe UI, Arial; font-size:16px; text-anchor:middle; }
-.sub { fill:#9bbcff; font-size:13px; }
-.line { stroke:#7f9cff; stroke-width:2; }
-</style>
+<rect width="1000" height="520" fill="#ffffff"/>
 
-<!-- MoCKA Core -->
-<rect class="box" x="350" y="40" width="200" height="60"/>
-<text class="text" x="450" y="65">MoCKA Core</text>
-<text class="text sub" x="450" y="85">Research Execution</text>
+<rect x="400" y="60" width="200" height="80" fill="#f5f7fb" stroke="#1e6bff" stroke-width="3" rx="10"/>
+<text x="500" y="95" text-anchor="middle" font-size="18" fill="#111">MoCKA Core</text>
+<text x="500" y="115" text-anchor="middle" font-size="14" fill="#333">Research Execution</text>
 
-<!-- Knowledge Gate -->
-<rect class="box" x="120" y="200" width="200" height="70"/>
-<text class="text" x="220" y="225">Knowledge Gate</text>
-<text class="text sub" x="220" y="245">Institutional Memory</text>
+<rect x="150" y="240" width="200" height="80" fill="#f5fffa" stroke="#19b37c" stroke-width="3" rx="10"/>
+<text x="250" y="275" text-anchor="middle" font-size="18" fill="#111">Knowledge Gate</text>
+<text x="250" y="295" text-anchor="middle" font-size="14" fill="#333">Institutional Memory</text>
 
-<!-- Transparency -->
-<rect class="box" x="350" y="200" width="200" height="70"/>
-<text class="text" x="450" y="225">Transparency</text>
-<text class="text sub" x="450" y="245">Audit Layer</text>
+<rect x="400" y="240" width="200" height="80" fill="#fff7ed" stroke="#ff8c1a" stroke-width="3" rx="10"/>
+<text x="500" y="275" text-anchor="middle" font-size="18" fill="#111">Transparency</text>
+<text x="500" y="295" text-anchor="middle" font-size="14" fill="#333">Audit Layer</text>
 
-<!-- External Brain -->
-<rect class="box" x="580" y="200" width="200" height="70"/>
-<text class="text" x="680" y="225">External Brain</text>
-<text class="text sub" x="680" y="245">Knowledge Integration</text>
+<rect x="650" y="240" width="200" height="80" fill="#f6f3ff" stroke="#7b5cff" stroke-width="3" rx="10"/>
+<text x="750" y="275" text-anchor="middle" font-size="18" fill="#111">External Brain</text>
+<text x="750" y="295" text-anchor="middle" font-size="14" fill="#333">Knowledge Integration</text>
 
-<!-- Civilization -->
-<rect class="box" x="350" y="380" width="200" height="70"/>
-<text class="text" x="450" y="405">Civilization</text>
-<text class="text sub" x="450" y="425">Governance Philosophy</text>
+<rect x="400" y="400" width="200" height="80" fill="#fff5f5" stroke="#e53935" stroke-width="3" rx="10"/>
+<text x="500" y="435" text-anchor="middle" font-size="18" fill="#111">Civilization</text>
+<text x="500" y="455" text-anchor="middle" font-size="14" fill="#333">Governance Philosophy</text>
 
-<!-- Lines -->
-<line class="line" x1="450" y1="100" x2="220" y2="200"/>
-<line class="line" x1="450" y1="100" x2="450" y2="200"/>
-<line class="line" x1="450" y1="100" x2="680" y2="200"/>
+<line x1="500" y1="140" x2="250" y2="240" stroke="#1e6bff" stroke-width="3"/>
+<line x1="500" y1="140" x2="500" y2="240" stroke="#ff8c1a" stroke-width="3"/>
+<line x1="500" y1="140" x2="750" y2="240" stroke="#19b37c" stroke-width="3"/>
 
-<line class="line" x1="220" y1="270" x2="450" y2="380"/>
-<line class="line" x1="450" y1="270" x2="450" y2="380"/>
-<line class="line" x1="680" y1="270" x2="450" y2="380"/>
+<line x1="250" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
+<line x1="500" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
+<line x1="750" y1="320" x2="500" y2="400" stroke="#e53935" stroke-width="3"/>
 
 </svg>
