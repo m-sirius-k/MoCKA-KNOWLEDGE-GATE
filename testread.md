@@ -34,7 +34,7 @@ is verified through the Transparency Layer, and is finally preserved by the Know
 
 This flow is not merely a processing pipeline but a structural representation of research civilization.
 
-![MoCKA Civilization System Map](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_civilization_system_map.svg)
+![MoCKA Civilization System Map](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_system_architecture_night.svg)
 
 ---
 
@@ -83,7 +83,7 @@ Knowledge Gate operates in coordination with multiple supporting systems.
 
 These systems surround the knowledge generation cycle and provide the institutional infrastructure that enables research continuity.
 
-![MoCKA Knowledge Orbit Model](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_knowledge_orbit_model.svg)
+![MoCKA Knowledge Orbit Model](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/research_knowledge_architecture_night.svg)
 
 ---
 
@@ -120,7 +120,7 @@ Transparency によって検証され、Knowledge Gate によって制度的記�
 
 この流れは単なる処理パイプラインではなく、研究文明を構成する制度的な構造として設計されています。
 
-![MoCKA Civilization System Map](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_civilization_system_map.svg)
+![MoCKA Civilization System Map](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_system_architecture_night.svg)
 
 ---
 
@@ -161,4 +161,5 @@ Experiment Registry、Verification System、Research Map、Repository Ecosystem�
 これらのシステムは Knowledge Generation Cycle の外側に配置され、  
 研究の実行、検証、保存、再利用を支える制度的基盤として機能します。
 
-![MoCKA Knowledge Orbit Model](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_knowledge_orbit_model.svg)
+![MoCKA Knowledge Orbit Model](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/research_knowledge_architecture_night.svg)
+
