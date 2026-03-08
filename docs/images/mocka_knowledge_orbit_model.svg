@@ -1,0 +1,23 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500">
+<rect width="100%" height="100%" fill="#0b1320"/>
+
+<text x="450" y="60" text-anchor="middle" fill="white" font-size="28">
+MoCKA Knowledge Orbit Model
+</text>
+
+<circle cx="450" cy="260" r="70" fill="none" stroke="white"/>
+<text x="450" y="265" text-anchor="middle" fill="white">Knowledge Cycle</text>
+
+<circle cx="200" cy="260" r="60" fill="none" stroke="white"/>
+<text x="200" y="265" text-anchor="middle" fill="white">Experiment Registry</text>
+
+<circle cx="700" cy="260" r="60" fill="none" stroke="white"/>
+<text x="700" y="265" text-anchor="middle" fill="white">Verification System</text>
+
+<circle cx="450" cy="120" r="60" fill="none" stroke="white"/>
+<text x="450" y="125" text-anchor="middle" fill="white">AI Agents</text>
+
+<circle cx="450" cy="420" r="60" fill="none" stroke="white"/>
+<text x="450" y="425" text-anchor="middle" fill="white">Research Map</text>
+
+</svg>
