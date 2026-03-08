@@ -1,17 +1,11 @@
-﻿# MoCKA Knowledge Gate
+﻿# 1 Civilization Structure
 
-MoCKA Knowledge Gate は、MoCKA Insight System の中で研究の推論や判断、検証の文脈を整理し、未来の研究に再利用できる形で保存する制度的記憶レイヤーです。
+<img src="./docs/images/mocka_civilization_system_map.svg">
 
-## Knowledge Gate (EN)
-<img src="docs/images/knowledge_gate_en.svg">
+# 2 Knowledge Generation Cycle
 
-## Knowledge Gate (JP)
-<img src="docs/images/knowledge_gate_jp.svg">
+<img src="./docs/images/research_knowledge_cycle.svg">
 
-## System Architecture (Outline Night)
-<img src="docs/images/mocka_system_architecture_night.svg">
+# 3 Institutional Infrastructure
 
-## Research Flow (Outline Night)
-<img src="docs/images/research_flow_outline.svg">
-## SVG Assets List
-(see notes/svg_list_note.md)
+<img src="./docs/images/mocka_knowledge_orbit_model.svg">
