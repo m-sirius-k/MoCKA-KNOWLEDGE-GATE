@@ -37,6 +37,8 @@ These elements together create a structured knowledge layer that can be queried 
 
 ## Position in the MoCKA Architecture
 
+![MoCKA Architecture](docs/images/mocka_architecture.svg)
+
 Even if the diagrams cannot be displayed, the architecture can be understood as a layered structure.
 
 Civilization Layer  
