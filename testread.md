@@ -37,7 +37,7 @@ These elements together create a structured knowledge layer that can be queried 
 
 ## Position in the MoCKA Architecture
 
-![MoCKA Architecture](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_architecture.svg)
+![MoCKA Architecture](https://raw.githubusercontent.com/m-sirius-k/MoCKA-KNOWLEDGE-GATE/main/docs/images/mocka_system_architecture.svg)
 
 Even if the diagrams cannot be displayed, the architecture can be understood as a layered structure.
 
@@ -210,4 +210,5 @@ Knowledge Gateはこの問題を解決するため、研究活動を制度的知識として保存します。
 ## License
 
 MIT License
+
 
