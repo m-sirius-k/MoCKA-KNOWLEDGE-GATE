@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MoCKA Architecture</title>
+</head>
+
+<body style="background:#0b1220;">
+
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+.box{rx:12;ry:12;fill:none;stroke-width:3}
+.txt{fill:#ffffff;font-family:Segoe UI,Arial;font-size:16;text-anchor:middle}
+.small{font-size:13;opacity:0.9}
+.arrow{stroke:#ffffff;stroke-width:2;marker-end:url(#arrow)}
+</style>
+
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+<path d="M0,0 L0,6 L9,3 z" fill="#ffffff"/>
+</marker>
+</defs>
+
+<rect width="900" height="500" fill="#0b1220"/>
+
+<!-- MoCKA Core -->
+<rect class="box" x="350" y="40" width="200" height="70" stroke="#2F6BFF"/>
+<text class="txt" x="450" y="70">MoCKA Core</text>
+<text class="txt small" x="450" y="95">Execution Engine</text>
+
+<!-- Knowledge Gate -->
+<rect class="box" x="120" y="200" width="200" height="70" stroke="#22C55E"/>
+<text class="txt" x="220" y="230">Knowledge Gate</text>
+<text class="txt small" x="220" y="255">Institutional Memory</text>
+
+<!-- Transparency -->
+<rect class="box" x="350" y="200" width="200" height="70" stroke="#F97316"/>
+<text class="txt" x="450" y="230">Transparency</text>
+<text class="txt small" x="450" y="255">Verification Layer</text>
+
+<!-- External Brain -->
+<rect class="box" x="580" y="200" width="200" height="70" stroke="#8B5CF6"/>
+<text class="txt" x="680" y="230">External Brain</text>
+<text class="txt small" x="680" y="255">Knowledge Integration</text>
+
+<!-- Civilization -->
+<rect class="box" x="350" y="360" width="200" height="70" stroke="#EF4444"/>
+<text class="txt" x="450" y="390">Civilization</text>
+<text class="txt small" x="450" y="415">Governance Layer</text>
+
+<!-- arrows -->
+<line class="arrow" x1="450" y1="110" x2="220" y2="200"/>
+<line class="arrow" x1="450" y1="110" x2="450" y2="200"/>
+<line class="arrow" x1="450" y1="110" x2="680" y2="200"/>
+<line class="arrow" x1="220" y1="270" x2="450" y2="360"/>
+
+</svg>
+
+</body>
+</html>
