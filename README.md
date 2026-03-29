@@ -1,52 +1,121 @@
-﻿[Whitepaper v0.1](https://github.com/nsjpkimura-del/mocka-civilization/blob/main/WHITEPAPER_v0.1.md)
+﻿# MoCKA Knowledge Gate — Institutional Memory Layer
 
-Structured institutional memory layer.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/m-sirius-k/MoCKA/main/docs/images/mocka_overview.svg" width="800">
+</p>
 
-# MoCKA Knowledge Gate
-
-## Institutional Memory Layer
-MoCKA Knowledge Gate ― 制度的記憶層
+> **This is not a database. Not a knowledge base. Not a search index.**
+> It is the layer that records HOW knowledge was formed —
+> hypothesis → attempt → validation → correction → retry —
+> as reproducible, verifiable artifacts.
+>
+> Its purpose is not to make AI smarter.
+> Its purpose is to historicize trial and error.
 
 ---
 
-### What is MoCKA Knowledge Gate?
+## Position in mocka_Movement
 
-MoCKA Knowledge Gate is the Institutional Memory Layer of the MoCKA architecture.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/m-sirius-k/MoCKA/main/docs/images/mocka_architecture_v2.svg" width="720">
+</p>
+```
+MoCKA (core · heart)
+      ↓
+[ mocka-knowledge-gate ]   ← ② Record — YOU ARE HERE
+      ↓
+mocka-transparency         ③ Incident · ④ Recurrence
+      ↓
+mocka-external-brain       ⑥ Decision
+      ↓
+mocka-civilization         ⑧ Institutionalize
+```
 
-It does not merely store knowledge.  
-It preserves the evolution of reasoning itself.
+**Loop step: ② Record**
+Upstream: MoCKA core → sends structured events
+Downstream: mocka-transparency → verifies records
 
-Each entry anchors hypothesis formation, experimental attempts, validation results, corrective adjustments, and subsequent retries as structured and reproducible artifacts.
+---
 
-Rather than accumulating static information, this layer institutionalizes the iterative process of inquiry.
+## What this repository does
 
-By structuring reasoning traces and decision contexts over time, MoCKA Knowledge Gate enables:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/m-sirius-k/MoCKA/main/docs/images/mocka_loop_v2.svg" width="720">
+</p>
 
+mocka-knowledge-gate preserves the evolution of reasoning itself.
+
+Each entry anchors:
+- Hypothesis formation
+- Experimental attempts
+- Validation results
+- Corrective adjustments
+- Subsequent retries
+
+By structuring reasoning traces over time, this layer enables:
 - Historically accountable AI cognition
 - Reproducible reasoning pathways
 - Cross-agent knowledge continuity
 - Long-term institutional memory for verifiable systems
 
-Its purpose is not to make AI smarter.  
-Its purpose is to historicize trial and error.
+---
 
-In doing so, it transforms knowledge storage into a temporal layer of verifiable thought —  
-a cognitive clockwork within the broader MoCKA system.
+## acceptor:infield
+
+This layer IS the infield.
+```
+mocka_Receptor receives stimulus
+      ↓
+acceptor:infield    ← knowledge-gate stores here
+(store · memory · accumulate)
+      ↓
+mocka_insight_system (mocka_Movement + shadow_Movement)
+```
+
+infield = what the civilization remembers.
+The same event can also flow to acceptor:outfield for external sharing.
 
 ---
 
-### Position in the MoCKA Architecture
+## A single event — end to end
 ```
-MoCKA（心臓部）
-  → mocka-knowledge-gate（制度的記憶層）
-  → mocka-transparency（改ざん検知層）
-  → mocka-external-brain（AIオーケストラバス）
-  → mocka-civilization（設計思想・青写真層）
+Human sends intent via control panel
+      ↓
+mocka_Receptor receives the stimulus
+      ↓
+acceptor:infield stores it as a structured 5W1H event
+      ↓
+ledger.json seals it with SHA256 chain
+      ↓
+mocka-seal anchors it to governance/anchor_record.json
+      ↓
+verify_all confirms: ALL CHECKS PASSED
+      ↓
+The event is now part of institutional memory — forever.
 ```
 
-MoCKA Knowledge Gate receives structured knowledge from the core runtime,  
-preserves it as verifiable institutional memory,  
-and makes it available for cross-agent continuity across sessions.
+---
+
+## Quick Start
+```powershell
+# Step 1 — Verify the system is intact
+mocka-check
+# → LEDGER OK + ALL CHECKS PASSED
+
+# Step 2 — Seal a new institutional memory entry
+mocka-seal "your knowledge entry here"
+# → ANCHOR UPDATED AND COMMITTED
+# → ALL CHECKS PASSED
+```
+
+---
+
+## Status
+
+**v1.0.0 — Active Development**
+Part of the MoCKA deterministic governance architecture.
+Loop position: ② Record
+All governance checks passing.
 
 ---
 
@@ -54,43 +123,55 @@ and makes it available for cross-agent continuity across sessions.
 
 ### MoCKA Knowledge Gateとは何か
 
-MoCKA Knowledge Gate は MoCKAアーキテクチャにおける制度的記憶層である。
+データベースではありません。ナレッジベースでもありません。
+知識がどのように形成されたかを記録する層です：
+仮説 → 試行 → 検証 → 修正 → 再試行
+すべてが再現可能なアーティファクトとして保存されます。
 
-それは単なる知識保存機構ではない。  
-推論の進化そのものを保存する層である。
+目的はAIを賢くすることではありません。
+AIの試行錯誤を歴史化することです。
 
-各エントリは、仮説形成、実験的試行、検証結果、修正過程、再試行という反復構造を、再現可能な形式で固定する。
+### mocka_Movementにおける位置づけ
+```
+MoCKA（コア・心臓部）
+      ↓
+[ mocka-knowledge-gate ]   ← ② Record — ここです
+      ↓
+mocka-transparency         ③ Incident · ④ Recurrence
+      ↓
+mocka-external-brain       ⑥ Decision
+      ↓
+mocka-civilization         ⑧ 制度化
+```
 
-静的情報の蓄積ではなく、探究の反復運動を制度化することが目的である。
+**ループステップ：② Record（記録）**
+上流：MoCKA（コア）→ 構造化イベントを送信
+下流：mocka-transparency → 記録を検証
 
-推論痕跡と意思決定文脈を時間軸上で構造化することにより、本リポジトリは以下を実現する：
+### このリポジトリの役割
 
+推論の進化そのものを保存します。
+
+各エントリは以下を固定します：
+- 仮説形成
+- 実験的試行
+- 検証結果
+- 修正過程
+- 再試行
+
+本リポジトリは以下を実現します：
 - 歴史的責任を伴うAI思考
 - 再現可能な推論経路
 - エージェント間の知識連続性
 - 検証可能なシステムのための長期制度的記憶
 
-目的はAIを賢くすることではない。  
-AIの試行錯誤を歴史化することである。
+### acceptor:infield
 
-それにより、本リポジトリは検証可能な思考時間の層として機能する。
+このレイヤーがinfield（内部記憶）そのものです。
 
----
-
-### mocka_Movement における位置づけ
-```
-MoCKA（心臓部）
-  → mocka-knowledge-gate（制度的記憶層）
-  → mocka-transparency（改ざん検知層）
-  → mocka-external-brain（AIオーケストラバス）
-  → mocka-civilization（設計思想・青写真層）
-```
-
-MoCKA Knowledge Gate はコアランタイムから構造化された知識を受け取り、  
-検証可能な制度的記憶として保存し、  
-セッションを超えたエージェント間の知識連続性を実現する。
+infield = 文明が記憶する場所。
+同じイベントがacceptor:outfieldにも流れ、外部共有が可能です。
 
 ---
 
-Part of the MoCKA Deterministic Governance Architecture.  
-See Civilization layer for full structural doctrine.
+Part of the [MoCKA Deterministic Governance Architecture](https://github.com/m-sirius-k/MoCKA).
