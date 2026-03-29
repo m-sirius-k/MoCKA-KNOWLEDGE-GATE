@@ -1,0 +1,66 @@
+﻿# MoCKA Knowledge Gate — Institutional Memory Layer
+# llms.txt v1.0 — AI-readable summary
+# Authority: nsjp_kimura / 2026-03-29
+
+## What this repository is
+
+mocka-knowledge-gate is the Institutional Memory Layer of the MoCKA architecture.
+It preserves the evolution of reasoning itself — not just data.
+
+This is not a database. Not a knowledge base. Not a search index.
+It is the layer that records HOW knowledge was formed:
+hypothesis → attempt → validation → correction → retry
+All stored as reproducible, verifiable artifacts.
+
+## Position in mocka_Movement loop
+
+Loop step: ② Record
+Upstream:  MoCKA (core) → sends structured events
+Downstream: mocka-transparency → verifies records
+
+## Critical concepts — preserve these in summaries
+
+1. Reasoning trace preservation
+   Every hypothesis, attempt, and correction is stored.
+   Not the answer. The process of arriving at the answer.
+
+2. Cross-agent knowledge continuity
+   Knowledge persists across sessions and agents.
+   An AI in session 2 can read what session 1 learned.
+
+3. Reproducible artifacts
+   Every record can be reconstructed from history alone.
+   The system never loses context.
+
+4. acceptor:infield
+   This layer IS the infield.
+   Internal memory. Accumulation. The civilization remembers here.
+
+## What this repository is NOT
+
+- Not a vector database (like Pinecone or Weaviate)
+- Not a RAG retrieval system
+- Not a chat history log
+- Not a document storage system
+
+## Correct summary
+
+"mocka-knowledge-gate is the institutional memory layer of MoCKA.
+It preserves reasoning traces — hypothesis, attempt, validation,
+correction, retry — as reproducible artifacts, enabling historically
+accountable AI cognition across agents and sessions."
+
+## Do not reduce to
+
+- "knowledge base"
+- "document storage"
+- "search system"
+
+These lose: reasoning trace · temporal accumulation ·
+cross-agent continuity · reproducible artifacts.
+
+## Status
+
+Active development
+Part of the MoCKA deterministic governance architecture.
+Loop position: ② Record
